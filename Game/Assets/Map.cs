@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class Map : MonoBehaviour {
-
+	[SerializeField]
+	private string MapName;
 	private MapObject[][] entities;
 	private char[][] mapTiles;
 	private int sizeX, sizeY;
@@ -20,7 +21,7 @@ public class Map : MonoBehaviour {
 		return mapTiles [x] [y];
 	}
 
-	public char setTile(int x, int y, char tile)
+	public void setTile(int x, int y, char tile)
 	{
 		//TODO: Bounds checking again!
 		mapTiles [x] [y] = tile;
@@ -41,11 +42,18 @@ public class Map : MonoBehaviour {
 		//close file
 		//generate resource entities
 	}
+
+	void generateMesh()
+	{
+		//iterate over every map tile
+		//push some verts to a buffer
+		//write the buffer into the meshfilter
+	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (dirty) {
-			//regen map mesh
+			generateMesh();
 			dirty = false;
 		} 
 	}
