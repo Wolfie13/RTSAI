@@ -7,9 +7,8 @@ public class Map : MonoBehaviour {
 	private string MapName;
 	private MapObject[,] entities;
 	private char[,] mapTiles;
-	private int sizeX, sizeY;
-
-	private bool dirty = false;
+	public int sizeX;
+	public int sizeY;
 
 	public MapObject getObject (int x, int y)
 	{
@@ -19,19 +18,25 @@ public class Map : MonoBehaviour {
 
 	public char getTile(int x, int y)
 	{
+		if (x < 0 || x > sizeX || y < 0 || y > sizeY) {
+			return '@';
+		}
 		return mapTiles [x, y];
 	}
 
 	public void setTile(int x, int y, char tile)
 	{
-		//TODO: Bounds checking again!
-		mapTiles [x, y] = tile;
-		dirty = true;
+		if (x < 0 || x > sizeX || y < 0 || y > sizeY) {
+			return;
+		} else {
+			mapTiles [x, y] = tile;
+		}
 	}
 
 	// Use this for initialization
 	void Start () {
 		load (MapName);
+		initChunks ();
 	}
 
 	void load(string filename)
@@ -78,18 +83,29 @@ public class Map : MonoBehaviour {
 
 	}
 
-	void generateMesh()
-	{
-		//iterate over every map tile
-		//push some verts to a buffer
-		//write the buffer into the meshfilter
+	public void initChunks() {
+		int chunksX = this.sizeX / 32;
+		int chunksY = this.sizeY / 32;
+
+		for (int i = 0; i != chunksX; i++) {
+			for (int j = 0; j != chunksY; j++) {
+				GameObject newChunk = new GameObject("Chunk" + i + "," + j);
+				newChunk.transform.parent = this.gameObject.transform;
+				MapChunk obj = newChunk.AddComponent<MapChunk>();
+				obj.chunkX = i;
+				obj.chunkY = j;
+				obj.parent = this;
+				obj.Generate();
+				obj.Position();
+			}
+		}
+	}
+
+	public bool isLoaded() {
+		return mapTiles != null;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (dirty) {
-			generateMesh();
-			dirty = false;
-		} 
 	}
 }

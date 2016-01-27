@@ -187,6 +187,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MapName: plaguelands.map
+  sizeX: 0
+  sizeY: 0
 --- !u!4 &1303748745
 Transform:
   m_ObjectHideFlags: 0
