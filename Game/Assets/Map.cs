@@ -9,6 +9,7 @@ public class Map : MonoBehaviour {
 	private char[,] mapTiles;
 	public int sizeX;
 	public int sizeY;
+	public Material mapMaterial;
 
 	public MapObject getObject (int x, int y)
 	{

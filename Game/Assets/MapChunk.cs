@@ -23,9 +23,17 @@ public class MapChunk : MonoBehaviour {
 	}
 
 	public void Generate()	{
-		this.gameObject.AddComponent<MeshFilter> ();
-		MeshRenderer renderer = this.gameObject.AddComponent<MeshRenderer> ();
+		MeshFilter filter = this.gameObject.GetComponent<MeshFilter> ();
+		if (filter == null) {
+			filter = this.gameObject.AddComponent<MeshFilter> ();
+		}
 
+		MeshRenderer rend = this.gameObject.GetComponent<MeshRenderer> ();
+		if (rend == null) {
+			rend = this.gameObject.AddComponent<MeshRenderer> ();
+		}
+
+		rend.material = parent.mapMaterial;
 
 		MeshBuilder meshBuilder = new MeshBuilder();
 
