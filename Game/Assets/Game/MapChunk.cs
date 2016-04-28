@@ -5,6 +5,7 @@ public class MapChunk : MonoBehaviour {
 	public Map parent;
 	public int chunkX, chunkY;
 	private bool dirty = true;
+    public const float TILE_SIZE = 2.5f;
 
 	// Use this for initialization
 	void Start () {
@@ -19,7 +20,7 @@ public class MapChunk : MonoBehaviour {
 	}
 
 	public void Position() {
-		this.transform.position = new Vector3 (chunkX * 32 * 2.5f, 0, chunkY * 32 * 2.5f);
+        this.transform.position = new Vector3(chunkX * Map.ChunkSize * TILE_SIZE, 0, chunkY * Map.ChunkSize * TILE_SIZE);
 	}
 
 	public void Generate()	{
@@ -50,7 +51,7 @@ public class MapChunk : MonoBehaviour {
 		this.GetComponent<MeshFilter> ().sharedMesh = meshBuilder.CreateMesh ();
 	}
 
-	private const float TILE_SIZE = 2.5f;
+	
 
 	private static void Tri(MeshBuilder meshBuilder)
 	{
