@@ -11,6 +11,8 @@ public class Map : MonoBehaviour {
 	public int sizeY;
 	public Material mapMaterial;
 
+    private static int ChunkSize = 25;
+
 	public MapObject getObject (int x, int y)
 	{
 		//TODO: bounds check
@@ -33,6 +35,14 @@ public class Map : MonoBehaviour {
 			mapTiles [x, y] = tile;
 		}
 	}
+
+    public Vector3 getTilePos(int x, int y)
+    {
+        float xPos = MapChunk.TILE_SIZE * x;
+        float yPos = MapChunk.TILE_SIZE * y;
+
+        return new Vector3(xPos, 0, yPos);
+    }
 
 	// Use this for initialization
 	void Start () {
@@ -85,8 +95,8 @@ public class Map : MonoBehaviour {
 	}
 
 	public void initChunks() {
-		int chunksX = this.sizeX / 32;
-		int chunksY = this.sizeY / 32;
+		int chunksX = this.sizeX / ChunkSize;
+		int chunksY = this.sizeY / ChunkSize;
 
 		for (int i = 0; i != chunksX; i++) {
 			for (int j = 0; j != chunksY; j++) {

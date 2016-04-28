@@ -50,7 +50,7 @@ public class MapChunk : MonoBehaviour {
 		this.GetComponent<MeshFilter> ().sharedMesh = meshBuilder.CreateMesh ();
 	}
 
-	private const float TILE_SIZE = 2.5f;
+	static public const float TILE_SIZE = 2.5f;
 
 	private static void Tri(MeshBuilder meshBuilder)
 	{
