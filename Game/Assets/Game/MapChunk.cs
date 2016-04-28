@@ -52,6 +52,13 @@ public class MapChunk : MonoBehaviour {
 
 	private const float TILE_SIZE = 2.5f;
 
+	private static void Tri(MeshBuilder meshBuilder)
+	{
+		int baseIndex = meshBuilder.Vertices.Count;
+		meshBuilder.AddTriangle (baseIndex, baseIndex + 1, baseIndex + 2);
+		meshBuilder.AddTriangle (baseIndex, baseIndex + 2, baseIndex + 3);
+	}
+
 	private static void BuildTile(MeshBuilder meshBuilder, Vector3 offset, char tile)
 	{
 
@@ -59,7 +66,7 @@ public class MapChunk : MonoBehaviour {
 
 		if (tile != '@') {
 			//Index of vertex 0 for this tile.
-			int baseIndex = meshBuilder.Vertices.Count;
+			Tri(meshBuilder);
 			meshBuilder.Vertices.Add (new Vector3 (0.0f, 0.0f, 0.0f) + offset);
 			meshBuilder.UVs.Add (new Vector2 (0.0f, 0.0f));
 			meshBuilder.Normals.Add (Vector3.up);
@@ -75,11 +82,10 @@ public class MapChunk : MonoBehaviour {
 			meshBuilder.Vertices.Add (new Vector3 (TILE_SIZE, 0.0f, 0.0f) + offset);
 			meshBuilder.UVs.Add (new Vector2 (1.0f, 0.0f));
 			meshBuilder.Normals.Add (Vector3.up);
-			
-			meshBuilder.AddTriangle (baseIndex, baseIndex + 1, baseIndex + 2);
-			meshBuilder.AddTriangle (baseIndex, baseIndex + 2, baseIndex + 3);
+
 		} else {
 			//Top layer
+			Tri(meshBuilder);
 			meshBuilder.Vertices.Add (new Vector3 (0.0f, 1.0f, 0.0f) + offset);
 			meshBuilder.UVs.Add (new Vector2 (0.0f, 0.0f));
 			meshBuilder.Normals.Add (Vector3.up);
@@ -95,14 +101,9 @@ public class MapChunk : MonoBehaviour {
 			meshBuilder.Vertices.Add (new Vector3 (TILE_SIZE, 1.0f, 0.0f) + offset);
 			meshBuilder.UVs.Add (new Vector2 (1.0f, 0.0f));
 			meshBuilder.Normals.Add (Vector3.up);
-
-			{
-				int baseIndex = meshBuilder.Vertices.Count;
-				meshBuilder.AddTriangle (baseIndex, baseIndex + 1, baseIndex + 2);
-				meshBuilder.AddTriangle (baseIndex, baseIndex + 2, baseIndex + 3);
-			}
 
 			//0-1 side
+			Tri(meshBuilder);
 			meshBuilder.Vertices.Add (new Vector3 (0.0f, 0.0f, 0.0f) + offset);
 			meshBuilder.UVs.Add (new Vector2 (0.0f, 0.0f));
 			meshBuilder.Normals.Add (Vector3.up);
@@ -118,14 +119,9 @@ public class MapChunk : MonoBehaviour {
 			meshBuilder.Vertices.Add (new Vector3 (0.0f, 1.0f, 0.0f) + offset);
 			meshBuilder.UVs.Add (new Vector2 (1.0f, 0.0f));
 			meshBuilder.Normals.Add (Vector3.up);
-			
-			{
-				int baseIndex = meshBuilder.Vertices.Count;
-				meshBuilder.AddTriangle (baseIndex, baseIndex + 1, baseIndex + 2);
-				meshBuilder.AddTriangle (baseIndex, baseIndex + 2, baseIndex + 3);
-			}
 
 			//1-2 side
+			Tri(meshBuilder);
 			meshBuilder.Vertices.Add (new Vector3 (0.0f, 0.0f, TILE_SIZE) + offset);
 			meshBuilder.UVs.Add (new Vector2 (0.0f, 1.0f));
 			meshBuilder.Normals.Add (Vector3.up);
@@ -141,14 +137,10 @@ public class MapChunk : MonoBehaviour {
 			meshBuilder.Vertices.Add (new Vector3 (0.0f, 1.0f, TILE_SIZE) + offset);
 			meshBuilder.UVs.Add (new Vector2 (1.0f, 0.0f));
 			meshBuilder.Normals.Add (Vector3.up);
-			
-			{
-				int baseIndex = meshBuilder.Vertices.Count;
-				meshBuilder.AddTriangle (baseIndex, baseIndex + 1, baseIndex + 2);
-				meshBuilder.AddTriangle (baseIndex, baseIndex + 2, baseIndex + 3);
-			}
+
 
 			//2-3 side
+			Tri(meshBuilder);
 			meshBuilder.Vertices.Add (new Vector3 (TILE_SIZE, 0.0f, TILE_SIZE) + offset);
 			meshBuilder.UVs.Add (new Vector2 (0.0f, 1.0f));
 			meshBuilder.Normals.Add (Vector3.up);
@@ -164,14 +156,10 @@ public class MapChunk : MonoBehaviour {
 			meshBuilder.Vertices.Add (new Vector3 (TILE_SIZE, 1.0f, TILE_SIZE) + offset);
 			meshBuilder.UVs.Add (new Vector2 (0.0f, 1.0f));
 			meshBuilder.Normals.Add (Vector3.up);
-			
-			{
-				int baseIndex = meshBuilder.Vertices.Count;
-				meshBuilder.AddTriangle (baseIndex, baseIndex + 1, baseIndex + 2);
-				meshBuilder.AddTriangle (baseIndex, baseIndex + 2, baseIndex + 3);
-			}
+
 
 			//3-0 side
+			Tri(meshBuilder);
 			meshBuilder.Vertices.Add (new Vector3 (TILE_SIZE, 0.0f, 0.0f) + offset);
 			meshBuilder.UVs.Add (new Vector2 (0.0f, 1.0f));
 			meshBuilder.Normals.Add (Vector3.up);
@@ -187,12 +175,7 @@ public class MapChunk : MonoBehaviour {
 			meshBuilder.Vertices.Add (new Vector3 (TILE_SIZE, 1.0f, 0.0f) + offset);
 			meshBuilder.UVs.Add (new Vector2 (0.0f, 1.0f));
 			meshBuilder.Normals.Add (Vector3.up);
-			
-			{
-				int baseIndex = meshBuilder.Vertices.Count;
-				meshBuilder.AddTriangle (baseIndex, baseIndex + 1, baseIndex + 2);
-				meshBuilder.AddTriangle (baseIndex, baseIndex + 2, baseIndex + 3);
-			}
+
 		}
 
 		
