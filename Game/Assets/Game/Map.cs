@@ -11,7 +11,7 @@ public class Map : MonoBehaviour {
 	public int sizeY;
 	public Material mapMaterial;
 
-    private static int ChunkSize = 25;
+    public const int ChunkSize = 32;
 
 	public MapObject getObject (int x, int y)
 	{
