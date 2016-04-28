@@ -58,122 +58,122 @@ public class MapChunk : MonoBehaviour {
 		meshBuilder.AddTriangle (baseIndex, baseIndex + 1, baseIndex + 2);
 		meshBuilder.AddTriangle (baseIndex, baseIndex + 2, baseIndex + 3);
 	}
-
 	private static void BuildTile(MeshBuilder meshBuilder, Vector3 offset, char tile)
 	{
-
+		float[] grass = new float[] {0, 0.5f, 0.5f, 1};
+		float[] stone = new float[] {0.5f, 0.5f, 1, 1};
 
 
 		if (tile != '@') {
 			//Index of vertex 0 for this tile.
 			Tri(meshBuilder);
 			meshBuilder.Vertices.Add (new Vector3 (0.0f, 0.0f, 0.0f) + offset);
-			meshBuilder.UVs.Add (new Vector2 (0.0f, 0.0f));
+			meshBuilder.UVs.Add (new Vector2 (grass[0], grass[1]));
 			meshBuilder.Normals.Add (Vector3.up);
 			
 			meshBuilder.Vertices.Add (new Vector3 (0.0f, 0.0f, TILE_SIZE) + offset);
-			meshBuilder.UVs.Add (new Vector2 (0.0f, 1.0f));
+			meshBuilder.UVs.Add (new Vector2 (grass[0], grass[3]));
 			meshBuilder.Normals.Add (Vector3.up);
 			
 			meshBuilder.Vertices.Add (new Vector3 (TILE_SIZE, 0.0f, TILE_SIZE) + offset);
-			meshBuilder.UVs.Add (new Vector2 (1.0f, 1.0f));
+			meshBuilder.UVs.Add (new Vector2 (grass[2], grass[3]));
 			meshBuilder.Normals.Add (Vector3.up);
-			
+
 			meshBuilder.Vertices.Add (new Vector3 (TILE_SIZE, 0.0f, 0.0f) + offset);
-			meshBuilder.UVs.Add (new Vector2 (1.0f, 0.0f));
+			meshBuilder.UVs.Add (new Vector2 (grass[2], grass[1]));
 			meshBuilder.Normals.Add (Vector3.up);
 
 		} else {
 			//Top layer
 			Tri(meshBuilder);
 			meshBuilder.Vertices.Add (new Vector3 (0.0f, 1.0f, 0.0f) + offset);
-			meshBuilder.UVs.Add (new Vector2 (0.0f, 0.0f));
+			meshBuilder.UVs.Add (new Vector2 (stone[0], stone[1]));
 			meshBuilder.Normals.Add (Vector3.up);
 			
 			meshBuilder.Vertices.Add (new Vector3 (0.0f, 1.0f, TILE_SIZE) + offset);
-			meshBuilder.UVs.Add (new Vector2 (0.0f, 1.0f));
+			meshBuilder.UVs.Add (new Vector2 (stone[0], stone[3]));
 			meshBuilder.Normals.Add (Vector3.up);
 			
 			meshBuilder.Vertices.Add (new Vector3 (TILE_SIZE, 1.0f, TILE_SIZE) + offset);
-			meshBuilder.UVs.Add (new Vector2 (1.0f, 1.0f));
+			meshBuilder.UVs.Add (new Vector2 (stone[2], stone[3]));
 			meshBuilder.Normals.Add (Vector3.up);
 			
 			meshBuilder.Vertices.Add (new Vector3 (TILE_SIZE, 1.0f, 0.0f) + offset);
-			meshBuilder.UVs.Add (new Vector2 (1.0f, 0.0f));
+			meshBuilder.UVs.Add (new Vector2 (stone[2], stone[1]));
 			meshBuilder.Normals.Add (Vector3.up);
 
 			//0-1 side
 			Tri(meshBuilder);
 			meshBuilder.Vertices.Add (new Vector3 (0.0f, 0.0f, 0.0f) + offset);
-			meshBuilder.UVs.Add (new Vector2 (0.0f, 0.0f));
+			meshBuilder.UVs.Add (new Vector2 (stone[0], stone[1]));
 			meshBuilder.Normals.Add (Vector3.up);
 			
 			meshBuilder.Vertices.Add (new Vector3 (0.0f, 0.0f, TILE_SIZE) + offset);
-			meshBuilder.UVs.Add (new Vector2 (0.0f, 1.0f));
+			meshBuilder.UVs.Add (new Vector2 (stone[0], stone[3]));
 			meshBuilder.Normals.Add (Vector3.up);
 			
 			meshBuilder.Vertices.Add (new Vector3 (0.0f, 1.0f, TILE_SIZE) + offset);
-			meshBuilder.UVs.Add (new Vector2 (1.0f, 1.0f));
+			meshBuilder.UVs.Add (new Vector2 (stone[2], stone[3]));
 			meshBuilder.Normals.Add (Vector3.up);
 			
 			meshBuilder.Vertices.Add (new Vector3 (0.0f, 1.0f, 0.0f) + offset);
-			meshBuilder.UVs.Add (new Vector2 (1.0f, 0.0f));
+			meshBuilder.UVs.Add (new Vector2 (stone[2], stone[1]));
 			meshBuilder.Normals.Add (Vector3.up);
 
 			//1-2 side
 			Tri(meshBuilder);
 			meshBuilder.Vertices.Add (new Vector3 (0.0f, 0.0f, TILE_SIZE) + offset);
-			meshBuilder.UVs.Add (new Vector2 (0.0f, 1.0f));
+			meshBuilder.UVs.Add (new Vector2 (stone[0], stone[1]));
 			meshBuilder.Normals.Add (Vector3.up);
 			
 			meshBuilder.Vertices.Add (new Vector3 (TILE_SIZE, 0.0f, TILE_SIZE) + offset);
-			meshBuilder.UVs.Add (new Vector2 (0.0f, 1.0f));
+			meshBuilder.UVs.Add (new Vector2 (stone[0], stone[3]));
 			meshBuilder.Normals.Add (Vector3.up);
 			
 			meshBuilder.Vertices.Add (new Vector3 (TILE_SIZE, 1.0f, TILE_SIZE) + offset);
-			meshBuilder.UVs.Add (new Vector2 (1.0f, 1.0f));
+			meshBuilder.UVs.Add (new Vector2 (stone[2], stone[3]));
 			meshBuilder.Normals.Add (Vector3.up);
 			
 			meshBuilder.Vertices.Add (new Vector3 (0.0f, 1.0f, TILE_SIZE) + offset);
-			meshBuilder.UVs.Add (new Vector2 (1.0f, 0.0f));
+			meshBuilder.UVs.Add (new Vector2 (stone[2], stone[1]));
 			meshBuilder.Normals.Add (Vector3.up);
 
 
 			//2-3 side
 			Tri(meshBuilder);
 			meshBuilder.Vertices.Add (new Vector3 (TILE_SIZE, 0.0f, TILE_SIZE) + offset);
-			meshBuilder.UVs.Add (new Vector2 (0.0f, 1.0f));
+			meshBuilder.UVs.Add (new Vector2 (stone[0], stone[1]));
 			meshBuilder.Normals.Add (Vector3.up);
 			
 			meshBuilder.Vertices.Add (new Vector3 (TILE_SIZE, 0.0f, 0.0f) + offset);
-			meshBuilder.UVs.Add (new Vector2 (0.0f, 1.0f));
+			meshBuilder.UVs.Add (new Vector2 (stone[0], stone[3]));
 			meshBuilder.Normals.Add (Vector3.up);
 			
 			meshBuilder.Vertices.Add (new Vector3 (TILE_SIZE, 1.0f, 0.0f) + offset);
-			meshBuilder.UVs.Add (new Vector2 (1.0f, 1.0f));
+			meshBuilder.UVs.Add (new Vector2 (stone[2], stone[3]));
 			meshBuilder.Normals.Add (Vector3.up);
 			
 			meshBuilder.Vertices.Add (new Vector3 (TILE_SIZE, 1.0f, TILE_SIZE) + offset);
-			meshBuilder.UVs.Add (new Vector2 (0.0f, 1.0f));
+			meshBuilder.UVs.Add (new Vector2 (stone[2], stone[1]));
 			meshBuilder.Normals.Add (Vector3.up);
 
 
 			//3-0 side
 			Tri(meshBuilder);
 			meshBuilder.Vertices.Add (new Vector3 (TILE_SIZE, 0.0f, 0.0f) + offset);
-			meshBuilder.UVs.Add (new Vector2 (0.0f, 1.0f));
+			meshBuilder.UVs.Add (new Vector2 (stone[0], stone[1]));
 			meshBuilder.Normals.Add (Vector3.up);
 			
 			meshBuilder.Vertices.Add (new Vector3 (0.0f, 0.0f, 0.0f) + offset);
-			meshBuilder.UVs.Add (new Vector2 (0.0f, 1.0f));
+			meshBuilder.UVs.Add (new Vector2 (stone[0], stone[3]));
 			meshBuilder.Normals.Add (Vector3.up);
 			
 			meshBuilder.Vertices.Add (new Vector3 (0.0f, 1.0f, 0.0f) + offset);
-			meshBuilder.UVs.Add (new Vector2 (1.0f, 1.0f));
+			meshBuilder.UVs.Add (new Vector2 (stone[2], stone[3]));
 			meshBuilder.Normals.Add (Vector3.up);
 			
 			meshBuilder.Vertices.Add (new Vector3 (TILE_SIZE, 1.0f, 0.0f) + offset);
-			meshBuilder.UVs.Add (new Vector2 (0.0f, 1.0f));
+			meshBuilder.UVs.Add (new Vector2 (stone[2], stone[1]));
 			meshBuilder.Normals.Add (Vector3.up);
 
 		}
