@@ -9,10 +9,11 @@ public class CameraControl : MonoBehaviour {
 
     public float Min_Zoom_Dist = 2, Max_Zoom_Dist = 75;
 
+	private Camera thisCamera = null;
 
 	// Use this for initialization
 	void Start () {
-	
+		thisCamera = GetComponent<Camera> ();
 	}
 	
 	// Update is called once per frame
@@ -22,12 +23,16 @@ public class CameraControl : MonoBehaviour {
 
         movedirection.Normalize();
         movedirection *= (Input.GetButton("CameraSpeedUp")) ?  Scroll_Shift_Speed : Scroll_Speed;
-
-        movedirection.y = Input.GetAxis("Mouse ScrollWheel") * Camera_Zoom_Step;
-
+	
         transform.position += movedirection;
 
-        transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, Min_Zoom_Dist, Max_Zoom_Dist), transform.position.z);
+		if (thisCamera) 
+		{
+			thisCamera.orthographicSize +=Input.GetAxis("Mouse ScrollWheel") * Camera_Zoom_Step;
+			thisCamera.orthographicSize = Mathf.Clamp(thisCamera.orthographicSize, Min_Zoom_Dist, Max_Zoom_Dist);
+		}
+
+        transform.position = new Vector3(transform.position.x, 10, transform.position.z);
 
         
 
