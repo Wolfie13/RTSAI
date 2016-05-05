@@ -12,10 +12,15 @@ public class AStar {
        public float Distance2Go;
     }
 
+    private Dictionary<uint, ivec2> EndPos;
+
     public IEnumerator GetPath(ivec2 MapPosStart, ivec2 MapPosEnd, int Maxsteps, float TimePerframe, uint ID)
     {
         List<Node> result = new List<Node>(); 
         List<AStarNodes> OpenList = new List<AStarNodes>();
+
+       // SortedList<float,AStarNodes> openQueue = new SortedList<float,AStarNodes>()
+        
         List<AStarNodes> CloseList = new List<AStarNodes>();
 
         AStarNodes startNode = new AStarNodes();
@@ -40,6 +45,8 @@ public class AStar {
                 yield return true;
                 myTimer.Start();
             }
+
+
         }
 
         
@@ -68,19 +75,33 @@ public class AStar {
         List<AStarNodes> NextPositions = new List<AStarNodes>();
 
 
-
-        for (int x = -1; x <= 1; ++x )
+        ivec2 offset = new ivec2(-1,-1);
+        for (; offset.x <= 1; ++offset.x )
         {
-            if(CurrentNode.NodeInfo.MapPos.x  + x <0 ||
-               CurrentNode.NodeInfo.MapPos.x + x > PathFinder.CurrentMap.sizeX)
-                continue;
-
-            for (int y = -1; y <= 1; ++y)
+            for (; offset.y <= 1; ++offset.y)
             {
-                if (CurrentNode.NodeInfo.MapPos.y + y < 0 ||
-                    CurrentNode.NodeInfo.MapPos.y + y > PathFinder.CurrentMap.sizeY)
-                    continue;
+                ivec2 newPos = CurrentNode.NodeInfo.MapPos + offset;
 
+                if(newPos.x <0 ||
+                    newPos.x > PathFinder.CurrentMap.sizeX)
+                     break;
+
+                if (newPos.y < 0 ||
+                    newPos.y > PathFinder.CurrentMap.sizeY)
+                    continue;                    
+
+                if(Map.Terrain.Contains(PathFinder.CurrentMap.getTile(newPos.x, newPos.y)))
+                {
+                    AStarNodes newNode = new AStarNodes();
+
+                    newNode.DistanceGone = CurrentNode.DistanceGone + offset.magnitude();
+                    //newNode.NodeInfo.MapSymbol = PathFinder.CurrentMap.getTile(newPos.x, newPos.y)
+                    newNode.NodeInfo.MapPos = newPos;
+                    newNode.NodeInfo.PrevNode = CurrentNode.NodeInfo;
+                    //newNode.Distance2Go
+
+                    //NextPositions.Add
+                }
 
             }
 
