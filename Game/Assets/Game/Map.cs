@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Map : MonoBehaviour {
 	[SerializeField]
@@ -12,6 +13,17 @@ public class Map : MonoBehaviour {
 	public Material mapMaterial;
 
     public const int ChunkSize = 32;
+
+    //passable
+    public static IList<char> Terrain = new List<char>{ '.', 'G' }.AsReadOnly();
+    //out of bounds
+    public static IList<char> OutBounds = new List<char> { '@', 'O' }.AsReadOnly();
+    //Unpassable
+    public static IList<char> Trees = new List<char> { 'T' }.AsReadOnly();
+    //passable from regular terrain
+    public static IList<char> swamp = new List<char> { 'S' }.AsReadOnly();
+    //traversable, but not passable from terrain
+    public static IList<char> water = new List<char> { 'W' }.AsReadOnly();
 
 	public MapObject getObject (int x, int y)
 	{
