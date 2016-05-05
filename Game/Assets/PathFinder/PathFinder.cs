@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-struct  Node
+public class Node
 {
     public Vector2 MapPos;
-    //public Node? NextNode;
-    //public Node? PrevNode;
+    public Node NextNode = null;
+    public Node PrevNode = null;
 };
 
-struct path
+public struct path
 {
     public List<Node> FoundPath;
     public bool isPathFound;
@@ -26,7 +26,7 @@ public class PathFinder : MonoBehaviour {
 
    public static Map CurrentMap = null;
 
-    public static Dictionary<uint,path> Paths;
+    public static Dictionary<uint,path> Paths = new Dictionary<uint,path>();
 
     private uint count = 0;
 

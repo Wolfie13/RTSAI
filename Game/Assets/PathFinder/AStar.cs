@@ -40,6 +40,8 @@ public class AStar {
         theWay.FoundPath = result;
         theWay.isPathFound = true;
         PathFinder.Paths[ID] = theWay;
+
+        yield return true;
     }
 
 
