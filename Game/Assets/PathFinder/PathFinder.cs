@@ -14,7 +14,7 @@ public class Node
 public struct path
 {
     public List<Node> FoundPath;
-    public bool isPathFound;
+    public bool isPathFound{get;set;}
 };
 
 
@@ -27,6 +27,8 @@ public class ivec2
     public static ivec2 operator +(ivec2 a, ivec2 b) { return new ivec2(a.x + b.y, a.y + b.y); }
     public static ivec2 operator -(ivec2 a, ivec2 b) { return new ivec2(a.x - b.y, a.y - b.y); }
     public static ivec2 operator *(ivec2 a, int b) { return new ivec2(a.x * b, a.y * b); }
+    public static bool operator ==(ivec2 a, ivec2 b) { return (a.x==b.x && a.y == b.y);}
+    public static bool operator !=(ivec2 a, ivec2 b) { return !(a==b); }
 
     public float magnitude() { return Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2)); }
 
@@ -37,21 +39,22 @@ public class ivec2
 public class PathFinder : MonoBehaviour {
 
     // this is a bridge class to call the Path Finding Functions 
-    AStar AStar = new AStar();
+   static private AStar AStar = new AStar();
 
    public static Map CurrentMap = null;
 
     public static Dictionary<uint,path> Paths = new Dictionary<uint,path>();
 
-    private uint count = 1;
+    private static uint count = 1;
 
     void Start () {
-        CurrentMap = GetComponent<Map>();
+        CurrentMap = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>();
+        DontDestroyOnLoad(this);
 	}
 
 
 
-    public uint GetPath(ivec2 MapPosStart, ivec2 MapPosEnd, int Maxsteps = int.MaxValue, float TimePerframe = float.MaxValue)
+    public uint GetPath(ivec2 MapPosStart, ivec2 MapPosEnd, float TimePerframe = float.MaxValue, int Maxsteps = int.MaxValue)
     {
         if(!CurrentMap)
             return 0;
