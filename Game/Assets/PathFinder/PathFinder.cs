@@ -24,8 +24,8 @@ public class ivec2
     public ivec2(int newx, int newy) { x = newx; y = newy; }
     public ivec2(ivec2 newVec) { x = newVec.x; y = newVec.y; }
 
-    public static ivec2 operator +(ivec2 a, ivec2 b) { return new ivec2(a.x + b.y, a.y + b.y); }
-    public static ivec2 operator -(ivec2 a, ivec2 b) { return new ivec2(a.x - b.y, a.y - b.y); }
+    public static ivec2 operator +(ivec2 a, ivec2 b) { return new ivec2(a.x + b.x, a.y + b.y); }
+    public static ivec2 operator -(ivec2 a, ivec2 b) { return new ivec2(a.x - b.x, a.y - b.y); }
     public static ivec2 operator *(ivec2 a, int b) { return new ivec2(a.x * b, a.y * b); }
     public static bool operator ==(ivec2 a, ivec2 b) { return (a.x==b.x && a.y == b.y);}
     public static bool operator !=(ivec2 a, ivec2 b) { return !(a==b); }

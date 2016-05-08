@@ -17,7 +17,7 @@ public class AStar {
     {
         List<Node> result = new List<Node>();
 
-        SortedList<float, AStarNodes> openQueue = new SortedList<float, AStarNodes>();
+        List<AStarNodes> openQueue = new List<AStarNodes>();
         
         List<AStarNodes> CloseList = new List<AStarNodes>();
 
@@ -34,15 +34,16 @@ public class AStar {
         startNode.NodeInfo.MapSymbol = PathFinder.CurrentMap.getTile(MapPosStart.x, MapPosStart.y);
         startNode.DistanceGone = 0;
         startNode.Distance2Go = GetDirectDistance2End(MapPosStart,ID);
-        openQueue.Add(startNode.DistanceGone + startNode.Distance2Go, startNode);
+        openQueue.Add(startNode);
+        CloseList.Add(startNode);
 
         myTimer.Start();
 
         while (openQueue.Count > 0)
         {
-            var currentNode = openQueue[openQueue.Keys[0]];
+            var currentNode = openQueue[0];
 
-            openQueue.Remove(openQueue.Keys[0]);
+            openQueue.RemoveAt(0);
 
             // do stuff and Yeild on Timeperframe
             if(myTimer.ElapsedMilliseconds > TimePerframe)
@@ -64,14 +65,18 @@ public class AStar {
             {
                 if (isValid(item, ref CloseList))
                 {
-                    openQueue.Add(item.DistanceGone + item.Distance2Go, item);
+                    openQueue.Add(item);
                     CloseList.Add(item);
                 }
             }
 
-            Debug.Log("OpenQueue size: " + openQueue.Count);
 
-            Debug.Log("close list size: " + CloseList.Count);
+            openQueue.Sort((AStarNodes a, AStarNodes b) => (a.Distance2Go + a.DistanceGone).CompareTo(b.Distance2Go + b.DistanceGone));
+
+
+            //Debug.Log("OpenQueue size: " + openQueue.Count);
+
+            //Debug.Log("close list size: " + CloseList.Count);
         }
 
         while(EndNode != null)
@@ -105,15 +110,16 @@ public class AStar {
         ivec2 offset = new ivec2(-1,-1);
         for (; offset.x <= 1; ++offset.x )
         {
-            for (; offset.y <= 1; ++offset.y)
+
+            for (offset.y = -1; offset.y <= 1; ++offset.y)
             {
                 ivec2 newPos = CurrentNode.NodeInfo.MapPos + offset;
 
-                if(newPos.x <0 ||
+                if(newPos.x <0 || 
                     newPos.x > PathFinder.CurrentMap.sizeX)
                      break;
 
-                if (newPos.y < 0 ||
+                if (newPos.y < 0 || newPos == CurrentNode.NodeInfo.MapPos ||
                     newPos.y > PathFinder.CurrentMap.sizeY)
                     continue;                    
 

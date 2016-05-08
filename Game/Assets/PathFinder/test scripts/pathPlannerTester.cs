@@ -48,15 +48,15 @@ public class pathPlannerTester : MonoBehaviour {
                     ivec2 LineStart, LineEnd;
 
                     LineStart = foundpath[idx].MapPos;
-                    if (foundpath[idx].NextNode != null) ;
+                    if (foundpath[idx].NextNode != null)
                     {
                         LineEnd = foundpath[idx].NextNode.MapPos;
 
                        Vector3 realstart, realEnd;
                        realstart = CurrentMap.getTilePos(LineStart.x, LineStart.y);
                        realEnd = CurrentMap.getTilePos(LineEnd.x, LineEnd.y);
-                       realstart.y += 10;
-                       realEnd.y += 10;
+                      // realstart.y += 10;
+                       //realEnd.y += 10;
                        Gizmos.color = Color.red;
                        Gizmos.DrawLine(realstart, realEnd);
 
