@@ -37,33 +37,36 @@ public class pathPlannerTester : MonoBehaviour {
 
     void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawSphere(CurrentMap.getTilePos(istartpos.x, istartpos.y), 10);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(CurrentMap.getTilePos(iendpos.x, iendpos.y), 10);
-        Gizmos.color = Color.red;
-       if(pathID > 0)
+        if (CurrentMap)
         {
-           if(PathFinder.Paths[pathID].isPathFound)
+            Gizmos.color = Color.blue;
+            Gizmos.DrawSphere(CurrentMap.getTilePos(istartpos.x, istartpos.y), 10);
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawSphere(CurrentMap.getTilePos(iendpos.x, iendpos.y), 10);
+            Gizmos.color = Color.red;
+            if (pathID > 0)
             {
-               var foundpath = PathFinder.Paths[pathID].FoundPath;
-
-                for(int idx = 0; idx < foundpath.Count; ++idx)
+                if (PathFinder.Paths[pathID].isPathFound)
                 {
-                    ivec2 LineStart, LineEnd;
+                    var foundpath = PathFinder.Paths[pathID].FoundPath;
 
-                    LineStart = foundpath[idx].MapPos;
-                    if (foundpath[idx].NextNode != null)
+                    for (int idx = 0; idx < foundpath.Count; ++idx)
                     {
-                        LineEnd = foundpath[idx].NextNode.MapPos;
+                        ivec2 LineStart, LineEnd;
 
-                       Vector3 realstart, realEnd;
-                       realstart = CurrentMap.getTilePos(LineStart.x, LineStart.y);
-                       realEnd = CurrentMap.getTilePos(LineEnd.x, LineEnd.y);
-                      // realstart.y += 10;
-                       //realEnd.y += 10;
-                       Gizmos.DrawLine(realstart, realEnd);
+                        LineStart = foundpath[idx].MapPos;
+                        if (foundpath[idx].NextNode != null)
+                        {
+                            LineEnd = foundpath[idx].NextNode.MapPos;
 
+                            Vector3 realstart, realEnd;
+                            realstart = CurrentMap.getTilePos(LineStart.x, LineStart.y);
+                            realEnd = CurrentMap.getTilePos(LineEnd.x, LineEnd.y);
+                            // realstart.y += 10;
+                            //realEnd.y += 10;
+                            Gizmos.DrawLine(realstart, realEnd);
+
+                        }
                     }
                 }
             }
