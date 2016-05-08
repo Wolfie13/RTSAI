@@ -37,6 +37,11 @@ public class pathPlannerTester : MonoBehaviour {
 
     void OnDrawGizmos()
     {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawSphere(CurrentMap.getTilePos(istartpos.x, istartpos.y), 10);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(CurrentMap.getTilePos(iendpos.x, iendpos.y), 10);
+        Gizmos.color = Color.red;
        if(pathID > 0)
         {
            if(PathFinder.Paths[pathID].isPathFound)
@@ -57,7 +62,6 @@ public class pathPlannerTester : MonoBehaviour {
                        realEnd = CurrentMap.getTilePos(LineEnd.x, LineEnd.y);
                       // realstart.y += 10;
                        //realEnd.y += 10;
-                       Gizmos.color = Color.red;
                        Gizmos.DrawLine(realstart, realEnd);
 
                     }

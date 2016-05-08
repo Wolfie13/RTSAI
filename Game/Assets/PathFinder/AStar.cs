@@ -81,8 +81,11 @@ public class AStar {
 
         while(EndNode != null)
         {
-            result.Insert(0, EndNode);
+            if(EndNode.PrevNode != null)
+                EndNode.PrevNode.NextNode = EndNode;
 
+            result.Insert(0, EndNode);
+            
             EndNode = EndNode.PrevNode;
         }
 
@@ -91,7 +94,7 @@ public class AStar {
         //output
         path theWay = new path();
         theWay.FoundPath = result;
-        theWay.isPathFound = true;
+        theWay.isPathFound = result.Count>0;
         PathFinder.Paths[ID] = theWay;
     }
 
