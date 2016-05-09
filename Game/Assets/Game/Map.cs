@@ -16,7 +16,8 @@ public class Map : MonoBehaviour {
     public const int ChunkSize = 32;
 
 
-    public float lenghtofTimeUnit = 1;
+    public float TimeUnit = 1;
+    private float timePassed = 0;
 
     //passable
     public static IList<char> Terrain = new List<char>{ '.', 'G' }.AsReadOnly();
@@ -139,5 +140,16 @@ public class Map : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        timePassed += Time.deltaTime;
+
+        if(timePassed > TimeUnit)
+        {
+            timePassed = 0;
+
+            foreach (var item in entities)
+            {
+                item.Update();
+            }
+        }
 	}
 }
