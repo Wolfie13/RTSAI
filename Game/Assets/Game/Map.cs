@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
+
 public class Map : MonoBehaviour {
 	[SerializeField]
 	private string MapName;
@@ -13,6 +14,9 @@ public class Map : MonoBehaviour {
 	public Material mapMaterial;
 
     public const int ChunkSize = 32;
+
+
+    public float lenghtofTimeUnit = 1;
 
     //passable
     public static IList<char> Terrain = new List<char>{ '.', 'G' }.AsReadOnly();
@@ -27,7 +31,10 @@ public class Map : MonoBehaviour {
 
 	public MapObject getObject (int x, int y)
 	{
-		//TODO: bounds check
+        if (x < 0 || x > sizeX || y < 0 || y > sizeY)
+        {
+            return null;
+        }
 		return entities [x, y];
 	}
 
@@ -93,7 +100,9 @@ public class Map : MonoBehaviour {
 		{
 			for (int i = 0; i < line.Length; i++)
 			{
-				mapTiles[i, lineCount] = line[i];
+                mapTiles[i, lineCount] = line[i];
+                entities[i, lineCount] = new MapObject();
+                entities[i, lineCount].setTile(line[i],new ivec2(i,lineCount),getTilePos(i,lineCount));
 			}
 
 			lineCount++;
