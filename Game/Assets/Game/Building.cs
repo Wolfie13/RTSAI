@@ -22,7 +22,7 @@ public enum BuildingType
 
 public class Building : MonoBehaviour {
 
-    public const Dictionary<BuildingType, ivec2> Sizes = new Dictionary<BuildingType, ivec2>()
+    public static Dictionary<BuildingType, ivec2> Sizes = new Dictionary<BuildingType, ivec2>()
     {
         {BuildingType.none,         new ivec2(1,1)},
         {BuildingType.turfHut,      new ivec2(2,2)},
@@ -40,7 +40,7 @@ public class Building : MonoBehaviour {
     };
 
 
-    public const Dictionary<BuildingType, int> BuildTime = new Dictionary<BuildingType, int>()
+    public static Dictionary<BuildingType, int> BuildTime = new Dictionary<BuildingType, int>()
     {
         {BuildingType.none,         0},
         {BuildingType.turfHut,     10},
@@ -69,7 +69,7 @@ public class Building : MonoBehaviour {
     //returns true if sucsessful
     public bool Build(BuildingType buildingType, ivec2 mapPos)
     {
-
+        return true;
     }
 
 	// Use this for initialization
