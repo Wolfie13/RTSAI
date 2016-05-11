@@ -63,9 +63,10 @@ public class MapChunk : MonoBehaviour {
 	{
 		float[] grass = new float[] {0, 0.5f, 0.5f, 1};
 		float[] stone = new float[] {0.5f, 0.5f, 1, 1};
+        float[] tree = new float[] { 0, 0, 0.5f, 0.5f };
 
-
-		if (tile != '@') {
+        if (Map.Terrain.Contains(tile))
+        {
 			//Index of vertex 0 for this tile.
 			Tri(meshBuilder);
 			meshBuilder.Vertices.Add (new Vector3 (0.0f, 0.0f, 0.0f) + offset);
@@ -84,7 +85,29 @@ public class MapChunk : MonoBehaviour {
 			meshBuilder.UVs.Add (new Vector2 (grass[2], grass[1]));
 			meshBuilder.Normals.Add (Vector3.up);
 
-		} else {
+		}
+        else if (Map.Trees.Contains(tile))
+        {
+            Tri(meshBuilder);
+            meshBuilder.Vertices.Add(new Vector3(0.0f, 0.0f, 0.0f) + offset);
+            meshBuilder.UVs.Add(new Vector2(tree[0], tree[1]));
+            meshBuilder.Normals.Add(Vector3.up);
+
+            meshBuilder.Vertices.Add(new Vector3(0.0f, 0.0f, TILE_SIZE) + offset);
+            meshBuilder.UVs.Add(new Vector2(tree[0], tree[3]));
+            meshBuilder.Normals.Add(Vector3.up);
+
+            meshBuilder.Vertices.Add(new Vector3(TILE_SIZE, 0.0f, TILE_SIZE) + offset);
+            meshBuilder.UVs.Add(new Vector2(tree[2], tree[3]));
+            meshBuilder.Normals.Add(Vector3.up);
+
+            meshBuilder.Vertices.Add(new Vector3(TILE_SIZE, 0.0f, 0.0f) + offset);
+            meshBuilder.UVs.Add(new Vector2(tree[2], tree[1]));
+            meshBuilder.Normals.Add(Vector3.up);
+        }
+        
+        
+        else {
 			//Top layer
 			Tri(meshBuilder);
 			meshBuilder.Vertices.Add (new Vector3 (0.0f, 1.0f, 0.0f) + offset);

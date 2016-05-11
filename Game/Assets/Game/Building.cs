@@ -57,6 +57,8 @@ public class Building : MonoBehaviour {
 
     };
 
+
+
     //lk=ist of tiles coved by th building
     List<MapObject> Tiles = new List<MapObject>();
     //list of people at the building
@@ -64,7 +66,7 @@ public class Building : MonoBehaviour {
     [HideInInspector]
     public Dictionary<Resources, int> Resources = new Dictionary<Resources, int>();
 
-    BuildingType m_buildingtype;
+    public BuildingType m_buildingtype;
 
     ivec2 m_buildingSize;
 

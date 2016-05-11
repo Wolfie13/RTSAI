@@ -105,6 +105,11 @@ public class CameraControl : MonoBehaviour {
             GUI.BeginGroup(new Rect(Screen.width * UIPos.x, Screen.height * UIPos.y, Screen.width - Screen.width * UIPos.x, Screen.height - Screen.height * UIPos.y));
             if (selectedObject.GetComponent<Person>())
             {
+               
+                foreach (var item in selectedObject.GetComponent<Person>().Resources)
+                {
+                    AddLable(item.Key.ToString() + ": " + item.Value.ToString(), ref CurrentLine);
+                }
                 foreach (var item in selectedObject.GetComponent<Person>().Skills)
                 {
                     AddLable(item.ToString(), ref CurrentLine);
@@ -112,7 +117,11 @@ public class CameraControl : MonoBehaviour {
             }
             else if (selectedObject.GetComponent<Building>())
             {
-
+                AddLable(selectedObject.GetComponent<Building>().m_buildingtype.ToString(), ref CurrentLine);
+                foreach (var item in selectedObject.GetComponent<Building>().Resources)
+                {
+                    AddLable(item.Key.ToString() + ": " + item.Value.ToString(), ref CurrentLine);
+                }
             }
             GUI.EndGroup();
         }
