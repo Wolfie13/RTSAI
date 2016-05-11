@@ -62,13 +62,17 @@ public class Building : MonoBehaviour {
     //lk=ist of tiles coved by th building
     List<MapObject> Tiles = new List<MapObject>();
     //list of people at the building
-    List<Person> people = new List<Person>();
+    [HideInInspector]
+    public List<Person> people = new List<Person>();
     [HideInInspector]
     public Dictionary<Resources, int> Resources = new Dictionary<Resources, int>();
 
     public BuildingType m_buildingtype;
 
     ivec2 m_buildingSize;
+
+    [HideInInspector]
+    public ivec2 m_MapPos = new ivec2();
 
     //returns true if sucsessful
     public bool Build(BuildingType buildingType, ivec2 mapPos)
@@ -87,4 +91,16 @@ public class Building : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<Person>())
+            people.Add(other.gameObject.GetComponent<Person>());
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.GetComponent<Person>())
+            people.Remove(other.gameObject.GetComponent<Person>());
+    }
 }

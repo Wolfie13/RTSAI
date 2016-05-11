@@ -14,7 +14,9 @@ public class CameraControl : MonoBehaviour {
 
     public float Min_Zoom_Dist = 2, Max_Zoom_Dist = 75;
 
-    GameObject selectedObject = null;
+    GameObject selectedObject = null, interactobject = null;
+
+    bool display_context_menu = false;
 
     ivec2 MapPosClick = new ivec2();
 
@@ -64,6 +66,7 @@ public class CameraControl : MonoBehaviour {
 
             Debug.Log("Object selected: " + selectedObject.name);
             }
+            interactobject = null;
         }
 
         //select object
@@ -80,6 +83,14 @@ public class CameraControl : MonoBehaviour {
             {
                 if(selectedObject.GetComponent<Person>())
                 {
+                     Ray mouseRay = camera.ScreenPointToRay(MouseRawPos);
+
+                    RaycastHit info;
+                    Physics.Raycast(mouseRay,out info);
+                    if (info.transform)
+                        interactobject = info.transform.gameObject;
+
+                    display_context_menu = true;
                     selectedObject.GetComponent<Person>().Move(MapPosClick, ()=>{});
                 }
             }
@@ -99,6 +110,7 @@ public class CameraControl : MonoBehaviour {
 
     void onGUI()
     {
+        //object info
         if(selectedObject)
         {
             int CurrentLine = 0;
@@ -118,18 +130,100 @@ public class CameraControl : MonoBehaviour {
             else if (selectedObject.GetComponent<Building>())
             {
                 AddLable(selectedObject.GetComponent<Building>().m_buildingtype.ToString(), ref CurrentLine);
+
                 foreach (var item in selectedObject.GetComponent<Building>().Resources)
                 {
                     AddLable(item.Key.ToString() + ": " + item.Value.ToString(), ref CurrentLine);
                 }
             }
             GUI.EndGroup();
+
+            //contex menu
+            if(display_context_menu)
+            {   
+                CurrentLine = 0;
+                GUI.BeginGroup(new Rect(Screen.width * UIPos.x + (UI_Distance *5), Screen.height * UIPos.y, Screen.width - Screen.width * UIPos.x, Screen.height - Screen.height * UIPos.y));
+                if (selectedObject.GetComponent<Person>())
+                {
+
+                    if(interactobject && interactobject.GetComponent<Building>())
+                    {
+                        Building currentBuilding = interactobject.GetComponent<Building>();
+
+                        switch (currentBuilding.m_buildingtype)
+                        {
+                            case BuildingType.turfHut:
+                                if (currentBuilding.people.Count > 0)
+                                    if(AddButton("Famliy", ref CurrentLine))
+                                        selectedObject.GetComponent<Person>().Move(currentBuilding.m_MapPos,()=>{/*famliy methord here*/});
+                                break;
+                            case BuildingType.House:
+                                 if (currentBuilding.people.Count > 0)
+                                    if(AddButton("Famliy", ref CurrentLine))
+                                        selectedObject.GetComponent<Person>().Move(currentBuilding.m_MapPos,()=>{/*famliy methord here*/});
+                                break;
+                            case BuildingType.School:
+                                 if (currentBuilding.people.Count > 0)
+                                    if(AddButton("Educate", ref CurrentLine))
+                                        selectedObject.GetComponent<Person>().Move(currentBuilding.m_MapPos,()=>{/*Educate methord here*/});
+                                break;
+                            case BuildingType.Barracks:
+                                if (currentBuilding.people.Count > 0)
+                                    if (AddButton("Train", ref CurrentLine))
+                                        selectedObject.GetComponent<Person>().Move(currentBuilding.m_MapPos, () => {/*Train methord here*/});
+                                break;
+                            case BuildingType.Storage:
+                                if (AddButton("Store", ref CurrentLine))
+                                    selectedObject.GetComponent<Person>().Move(currentBuilding.m_MapPos, () => {/*Store methord here*/});
+                                break;
+                            case BuildingType.Mine:
+                                if (AddButton("Mine", ref CurrentLine))
+                                    selectedObject.GetComponent<Person>().Move(currentBuilding.m_MapPos, () => {/*Mine methord here*/});
+                                break;
+                            case BuildingType.Smelter:
+                                if (AddButton("Smelt", ref CurrentLine))
+                                    selectedObject.GetComponent<Person>().Move(currentBuilding.m_MapPos, () => {/*Smelt methord here*/});
+                                break;
+                            case BuildingType.Quarry:
+                                if (AddButton("Quarry", ref CurrentLine))
+                                    selectedObject.GetComponent<Person>().Move(currentBuilding.m_MapPos, () => {/*Quarry methord here*/});
+                                break;
+                            case BuildingType.Sawmill:
+                                if (AddButton("Saw Wood", ref CurrentLine))
+                                    selectedObject.GetComponent<Person>().Move(currentBuilding.m_MapPos, () => {/*Saw methord here*/});
+                                break;
+                            case BuildingType.Blacksmith:
+                                if (AddButton("Make Tool", ref CurrentLine))
+                                    selectedObject.GetComponent<Person>().Move(currentBuilding.m_MapPos, () => {/*Blacksmith methord here*/});
+                                break;
+                            case BuildingType.MarketStall:
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+
+                }
+                GUI.EndGroup();
+            }
+
         }
+        
+
+
     }
 
     void AddLable(string Text, ref int CurrentLine)
     {
         GUI.Box(new Rect(0, CurrentLine * (UI_size.y + UI_Distance), UI_size.x, UI_size.y), Text);
         ++CurrentLine;
+    }
+
+    bool AddButton(string Text, ref int CurrentLine)
+    {
+       bool temp = GUI.Button(new Rect(0, CurrentLine * (UI_size.y + UI_Distance), UI_size.x, UI_size.y), Text);
+        ++CurrentLine;
+
+        return temp;
     }
 }
