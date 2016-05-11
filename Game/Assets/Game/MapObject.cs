@@ -9,10 +9,7 @@ public class MapObject{
          m_hasBuilding = false,
          m_isTraversable = false;
 
-    int m_ammountTimber = 0,
-        m_ammountStone = 0,
-        m_ammountIron = 0,
-        m_avaliableTimber = 0,
+    int m_avaliableTimber = 0,
         m_avaliableStone = 5,
         m_avaliableIron = 5;
 
@@ -24,6 +21,9 @@ public class MapObject{
     char m_rawChar;
 
     uint TimeUnitsPassed = 0;
+
+    [HideInInspector]
+    public Dictionary<Resource, int> Resources = new Dictionary<Resource, int>();
 
     //list of people on the tile;
     List<Person> People = new List<Person>();
@@ -45,6 +45,11 @@ public class MapObject{
         {
             m_isTraversable = true;
         }
+
+        Resources[Resource.Timber] = 0;
+        Resources[Resource.Ore] = 0;
+        Resources[Resource.Stone] = 0;
+
     }
 
     //should be called from the Map UpdateLoop every time unit
@@ -63,22 +68,22 @@ public class MapObject{
     //resource collection
     public int collectWood()
     {
-        int temp = m_ammountTimber;
-        m_ammountTimber = 0;
+        int temp = Resources[Resource.Timber];
+        Resources[Resource.Timber] = 0;
         return temp;
     }
 
     public int collectStone()
     {
-        int temp = m_ammountStone;
-        m_ammountStone = 0;
+        int temp = Resources[Resource.Stone];
+        Resources[Resource.Stone] = 0;
         return temp;
     }
 
     public int collectIron()
     {
-        int temp = m_ammountIron;
-        m_ammountIron = 0;
+        int temp = Resources[Resource.Ore];
+        Resources[Resource.Ore] = 0;
         return temp;
     }
 
@@ -87,7 +92,7 @@ public class MapObject{
         if (m_avaliableTimber > 0)
         {
             --m_avaliableTimber;
-            ++m_ammountTimber;
+            ++Resources[Resource.Timber];
         }
     }
     public void minestone()
@@ -95,7 +100,7 @@ public class MapObject{
         if (m_avaliableStone > 0)
         {
             --m_avaliableStone;
-            ++m_ammountStone;
+            ++Resources[Resource.Stone];
         }
     }
     public void mineIron()
@@ -103,7 +108,7 @@ public class MapObject{
         if (m_avaliableIron > 0)
         {
             --m_avaliableIron;
-            ++m_ammountIron;
+            ++Resources[Resource.Ore];
         }
     }
 

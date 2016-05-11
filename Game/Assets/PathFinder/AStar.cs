@@ -92,10 +92,13 @@ public class AStar {
         Debug.Log("AStarStopped path size: " + result.Count);
 
         //output
-        path theWay = new path();
-        theWay.FoundPath = result;
-        theWay.isPathFound = result.Count>0;
-        PathFinder.Paths[ID] = theWay;
+        if (PathFinder.Paths.ContainsKey(ID))
+        {
+            path theWay = new path();
+            theWay.FoundPath = result;
+            theWay.isPathFound = result.Count > 0;
+            PathFinder.Paths[ID] = theWay;
+        }
     }
 
 
@@ -124,9 +127,11 @@ public class AStar {
 
                 if (newPos.y < 0 || newPos == CurrentNode.NodeInfo.MapPos ||
                     newPos.y > PathFinder.CurrentMap.sizeY)
-                    continue;                    
+                    continue;
 
-                if(Map.Terrain.Contains(PathFinder.CurrentMap.getTile(newPos.x, newPos.y)))
+               
+                if(PathFinder.CurrentMap.getObject(newPos.x, newPos.y) != null &&
+                   PathFinder.CurrentMap.getObject(newPos.x, newPos.y).isTraversable())
                 {
                     AStarNodes newNode = new AStarNodes();
 

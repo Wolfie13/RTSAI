@@ -32,6 +32,8 @@ public class ivec2
 
     public float magnitude() { return Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2)); }
 
+    public override string ToString() { return "(" + x + ", " + y + ")"; }
+
     public int x, y;
 }
 

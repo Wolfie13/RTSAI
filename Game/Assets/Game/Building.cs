@@ -61,6 +61,8 @@ public class Building : MonoBehaviour {
     List<MapObject> Tiles = new List<MapObject>();
     //list of people at the building
     List<Person> people = new List<Person>();
+    [HideInInspector]
+    public Dictionary<Resources, int> Resources = new Dictionary<Resources, int>();
 
     BuildingType m_buildingtype;
 
@@ -69,6 +71,8 @@ public class Building : MonoBehaviour {
     //returns true if sucsessful
     public bool Build(BuildingType buildingType, ivec2 mapPos)
     {
+
+        // create build here
         return true;
     }
 

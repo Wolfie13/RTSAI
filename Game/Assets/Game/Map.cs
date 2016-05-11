@@ -4,6 +4,18 @@ using System.Collections;
 using System.Collections.Generic;
 
 
+public enum Resource
+{
+    Wood,
+    Timber,
+    Stone,
+    Ore,
+    Iron,
+    Coal,
+    Money
+
+}
+
 public class Map : MonoBehaviour {
 	[SerializeField]
 	private string MapName;
@@ -30,6 +42,8 @@ public class Map : MonoBehaviour {
     //traversable, but not passable from terrain
     public static IList<char> water = new List<char> { 'W' }.AsReadOnly();
 
+    public MapObject getObject(ivec2 pos) { return getObject(pos.x, pos.y); }
+
 	public MapObject getObject (int x, int y)
 	{
         if (x < 0 || x > sizeX || y < 0 || y > sizeY)
@@ -39,6 +53,8 @@ public class Map : MonoBehaviour {
 		return entities [x, y];
 	}
 
+    public char getTile(ivec2 pos) { return getTile(pos.x, pos.y); }
+
 	public char getTile(int x, int y)
 	{
 		if (x < 0 || x > sizeX || y < 0 || y > sizeY) {
@@ -46,6 +62,8 @@ public class Map : MonoBehaviour {
 		}
 		return mapTiles [x, y];
 	}
+
+    public void setTile(ivec2 pos, char tile) { setTile(pos.x, pos.y, tile); }
 
 	public void setTile(int x, int y, char tile)
 	{
@@ -56,12 +74,28 @@ public class Map : MonoBehaviour {
 		}
 	}
 
+    public Vector3 getTilePos(ivec2 pos) { return getTilePos(pos.x, pos.y); }
+
     public Vector3 getTilePos(int x, int y)
     {
         float xPos = MapChunk.TILE_SIZE * x;
         float yPos = MapChunk.TILE_SIZE * y;
 
         return new Vector3(xPos, 0, yPos);
+    }
+
+    public ivec2 getTileFromPos(Vector3 worldPos)
+    {
+        //worldPos += new Vector3(0.5f, 0.5f, 0.5f) * MapChunk.TILE_SIZE;
+
+        ivec2 mapPos = new ivec2(Mathf.FloorToInt(worldPos.x / MapChunk.TILE_SIZE), Mathf.FloorToInt(worldPos.z / MapChunk.TILE_SIZE));
+
+        return mapPos;
+    }
+
+    public MapObject getobjectFromPos(Vector3 worldPos)
+    {
+        return getObject(getTileFromPos(worldPos));
     }
 
 	// Use this for initialization
