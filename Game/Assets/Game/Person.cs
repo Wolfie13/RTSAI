@@ -84,9 +84,9 @@ public class Person : MonoBehaviour {
                            // Vector3 world_offset = new Vector3(0.5f, 0.5f, 0.5f) * MapChunk.TILE_SIZE;
                             Vector3 targetLocation = CurrentMap.getTilePos(PathFinder.Paths[PathID].FoundPath[0].MapPos);
                             float travelTime = (Time.time - actionStartTime) / CurrentMap.TimeUnit;
-                            transform.position = Vector3.Slerp(CurrentMap.getTilePos(currentMapPos), targetLocation, travelTime);
+                            transform.position = Vector3.Lerp(CurrentMap.getTilePos(currentMapPos), targetLocation, travelTime);
 
-                            if (CurrentMap.getTileFromPos(transform.position) == PathFinder.Paths[PathID].FoundPath[0].MapPos)
+                            if (travelTime>1)
                             {
                                 actionStartTime = Time.time;
 
@@ -98,6 +98,7 @@ public class Person : MonoBehaviour {
 
                             if(PathFinder.Paths[PathID].FoundPath.Count == 0)
                             {
+                                Debug.Log(currentMapPos);
                                 MoveCallback();
                             }
                         }

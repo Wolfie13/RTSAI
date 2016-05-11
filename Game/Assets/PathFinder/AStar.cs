@@ -112,7 +112,7 @@ public class AStar {
     {
         List<AStarNodes> NextPositions = new List<AStarNodes>();
 
-
+       
         ivec2 offset = new ivec2(-1,-1);
         for (; offset.x <= 1; ++offset.x )
         {
