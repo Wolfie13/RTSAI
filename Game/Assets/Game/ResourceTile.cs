@@ -8,9 +8,6 @@ public class ResourceTile : MapObject {
 
     Building m_Building = null;
 
-    IVec2 m_MapPos;
-    Vector3 m_realPos;
-
     char m_rawChar;
 
     uint TimeUnitsPassed = 0;
@@ -24,8 +21,6 @@ public class ResourceTile : MapObject {
     public void setTile(ResourceType Resource, IVec2 MapPos, Vector3 realPos)
     {
         m_MapPos = MapPos;
-        m_realPos = realPos;
-
         m_resource = Resource;
     }
 

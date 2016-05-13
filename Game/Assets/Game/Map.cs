@@ -12,7 +12,8 @@ public enum ResourceType
     Ore,
     Iron,
     Coal,
-    Money
+    Money,
+    NumOfResourcetypes
 
 }
 
@@ -30,6 +31,11 @@ public class Map : MonoBehaviour {
 
     private List<Building> Buildings = new List<Building>();
     private List<Person> People = new List<Person>();
+
+    public static Map CurrentMap = null;
+
+    //resources
+    public static Dictionary<ResourceType, int> GlobalResources = new Dictionary<ResourceType, int>();
 
 
     public float TimeUnit = 1;
@@ -130,7 +136,7 @@ public class Map : MonoBehaviour {
     }
     public void AddPerson(IVec2 Pos)
     {
-        // code to creat person here
+        // code to create person here
     }
 
     //Buildings
@@ -154,10 +160,33 @@ public class Map : MonoBehaviour {
         //code to build building
     }
 
+    public bool CanBuild (BuildingType type, IVec2 Pos)
+    {
+        bool Buildable = true;
+
+        for (IVec2 offset = new IVec2(); offset.x < Building.Sizes[type].x; offset.x++)
+        {
+            for (offset.y = 0; offset.y < Building.Sizes[type].y; offset.y++)
+            {
+                if(!Terrain.Contains(getTile(Pos + offset)))
+                    Buildable = false;
+            }
+        }
+        return Buildable;
+    }
+
 	// Use this for initialization
 	void Start () {
+
+        if (CurrentMap != this)
+        {
+            Destroy(CurrentMap);
+            CurrentMap = this;
+        }
+
 		load (MapName);
 		initChunks ();
+        ResetResources();
 	}
 
 	void load(string filename)
@@ -222,6 +251,15 @@ public class Map : MonoBehaviour {
 			}
 		}
 	}
+
+    private void ResetResources()
+    {
+        GlobalResources.Clear();
+        for (ResourceType i = ResourceType.Wood; i < ResourceType.NumOfResourcetypes; i++)
+        {
+            GlobalResources.Add(i, 0);
+        }
+    }
 
 	public bool isLoaded() {
 		return mapTiles != null;

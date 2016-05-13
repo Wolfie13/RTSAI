@@ -14,8 +14,8 @@ public enum BuildingType
     Smelter,
     Quarry,
     Sawmill,
-    Blacksmith,
-    MarketStall
+    Blacksmith
+    //,MarketStall
 }
 
 
@@ -34,8 +34,8 @@ public class Building : MapObject {
         {BuildingType.Smelter,      new IVec2(2,2)},
         {BuildingType.Quarry,       new IVec2(1,1)},
         {BuildingType.Sawmill,      new IVec2(3,3)},//may change
-        {BuildingType.Blacksmith,   new IVec2(3,3)},//maychange
-        {BuildingType.MarketStall,  new IVec2(1,1)}
+        {BuildingType.Blacksmith,   new IVec2(3,3)}//maychange
+        //,{BuildingType.MarketStall,  new IVec2(1,1)}
 
     };
 
@@ -52,18 +52,11 @@ public class Building : MapObject {
         {BuildingType.Smelter,     20},
         {BuildingType.Quarry,      10},
         {BuildingType.Sawmill,     30},
-        {BuildingType.Blacksmith,  30},
-        {BuildingType.MarketStall,  5}
+        {BuildingType.Blacksmith,  30}
+       // ,{BuildingType.MarketStall,  5}
 
     };
 
-
-
-    //lk=ist of tiles coved by th building
-    List<MapObject> Tiles = new List<MapObject>();
-    //list of people at the building
-    [HideInInspector]
-    public List<Person> people = new List<Person>();
     [HideInInspector]
     public Dictionary<Resources, int> Resources = new Dictionary<Resources, int>();
 
@@ -71,14 +64,187 @@ public class Building : MapObject {
 
     IVec2 m_buildingSize;
 
-    [HideInInspector]
-    public IVec2 m_MapPos = new IVec2();
 
     //returns true if sucsessful
-    public bool Build(BuildingType buildingType, IVec2 mapPos)
+    public bool Build(BuildingType type, IVec2 mapPos)
     {
+        bool building = false;
+        m_buildingtype = type;
+        switch (m_buildingtype)
+        {
+            case BuildingType.turfHut:
+                building = CheckForSkillWithinBuilding(Skill.Labourer);
+                break;
+            case BuildingType.House:
+                building = CheckResource(ResourceType.Stone);
+                building = CheckResource(ResourceType.Wood);
+                building = CheckForSkillWithinBuilding(Skill.Carpenter);
+                building = CheckForSkillWithinBuilding(Skill.Labourer);
+                break;
+            case BuildingType.School:
+                building = CheckResource(ResourceType.Stone);
+                building = CheckResource(ResourceType.Wood);
+                building = CheckResource(ResourceType.Iron);
+                building = CheckForSkillWithinBuilding(Skill.Carpenter);
+                building = CheckForSkillWithinBuilding(Skill.Labourer);
+                break;
+            case BuildingType.Barracks:
+                building = CheckResource(ResourceType.Stone);
+                building = CheckResource(ResourceType.Wood);
+                building = CheckForSkillWithinBuilding(Skill.Carpenter);
+                building = CheckForSkillWithinBuilding(Skill.Labourer);
+                break;
+            case BuildingType.Storage:
+                building = CheckResource(ResourceType.Stone);
+                building = CheckResource(ResourceType.Wood);
+                building = CheckForSkillWithinBuilding(Skill.Carpenter);
+                building = CheckForSkillWithinBuilding(Skill.Labourer);
+                break;
+            case BuildingType.Mine:
+                building = CheckResource(ResourceType.Wood);
+                building = CheckResource(ResourceType.Iron);
+                building = CheckForSkillWithinBuilding(Skill.Blacksmith);
+                building = CheckForSkillWithinBuilding(Skill.Carpenter);
+                building = CheckForSkillWithinBuilding(Skill.Labourer);
+                break;
+            case BuildingType.Smelter:
+                building = CheckResource(ResourceType.Stone);
+                building = CheckForSkillWithinBuilding(Skill.Labourer);
+                break;
+            case BuildingType.Quarry:
+                building = CheckForSkillWithinBuilding(Skill.Labourer);
+                break;
+            case BuildingType.Sawmill:
+                building = CheckResource(ResourceType.Stone);
+                building = CheckResource(ResourceType.Iron);
+                building = CheckResource(ResourceType.Timber);
+                building = CheckForSkillWithinBuilding(Skill.Labourer);
+                break;
+            case BuildingType.Blacksmith:
+                building = CheckResource(ResourceType.Stone);
+                building = CheckResource(ResourceType.Iron);
+                building = CheckResource(ResourceType.Timber);
+                building = CheckForSkillWithinBuilding(Skill.Labourer);
+                break;
+            default:
+                break;
+        }
+        if (building)
+        {
+            
+            //Spend Resource and set Busy timers
+            //all require a labourer
+            GetNonBusyPersonInBuildingWithSkill(Skill.Labourer).SetBusy(BuildTime[m_buildingtype], () => { });
 
-        // create build here
-        return true;
+            switch (m_buildingtype)
+            {
+                case BuildingType.House:
+                    Map.GlobalResources[ResourceType.Stone]--;
+                    Map.GlobalResources[ResourceType.Wood]--;
+                    GetNonBusyPersonInBuildingWithSkill(Skill.Carpenter).SetBusy(BuildTime[m_buildingtype], () => { });
+                    break;
+                case BuildingType.School:
+                    Map.GlobalResources[ResourceType.Stone]--;
+                    Map.GlobalResources[ResourceType.Wood]--;
+                    Map.GlobalResources[ResourceType.Iron]--;
+                    GetNonBusyPersonInBuildingWithSkill(Skill.Carpenter).SetBusy(BuildTime[m_buildingtype], () => { });
+                    break;
+                case BuildingType.Barracks:
+                    Map.GlobalResources[ResourceType.Stone]--;
+                    Map.GlobalResources[ResourceType.Wood]--;
+                    GetNonBusyPersonInBuildingWithSkill(Skill.Carpenter).SetBusy(BuildTime[m_buildingtype], () => { });
+                    break;
+                case BuildingType.Storage:
+                    Map.GlobalResources[ResourceType.Stone]--;
+                    Map.GlobalResources[ResourceType.Wood]--;
+                    GetNonBusyPersonInBuildingWithSkill(Skill.Carpenter).SetBusy(BuildTime[m_buildingtype], () => { });
+                    break;
+                case BuildingType.Mine:
+                    Map.GlobalResources[ResourceType.Wood]--;
+                    Map.GlobalResources[ResourceType.Iron]--;
+                    GetNonBusyPersonInBuildingWithSkill(Skill.Carpenter).SetBusy(BuildTime[m_buildingtype], () => { });
+                    GetNonBusyPersonInBuildingWithSkill(Skill.Blacksmith).SetBusy(BuildTime[m_buildingtype], () => { });
+                    break;
+                case BuildingType.Smelter:
+                    Map.GlobalResources[ResourceType.Stone]--;
+                    break;
+                case BuildingType.Sawmill:
+                    Map.GlobalResources[ResourceType.Stone]--;
+                    Map.GlobalResources[ResourceType.Iron]--;
+                    Map.GlobalResources[ResourceType.Timber]--;
+                    break;
+                case BuildingType.Blacksmith:
+                    Map.GlobalResources[ResourceType.Stone]--;
+                    Map.GlobalResources[ResourceType.Iron]--;
+                    Map.GlobalResources[ResourceType.Timber]--;
+
+                    break;
+                default:
+                    break;
+            }
+        }
+        return building;
+    }
+
+    bool CheckResource(ResourceType type)
+    {
+          if (Map.GlobalResources[type] > 0)
+          {
+              return true;
+          }
+        return false;
+    }
+
+    bool CheckForSkillWithinBuilding(Skill WantedSkill)
+    {
+        bool Skillfound = false;
+
+        for (IVec2 offset = new IVec2(); offset.x < Building.Sizes[m_buildingtype].x; offset.x++)
+        {
+            for (offset.y = 0; offset.y < Building.Sizes[m_buildingtype].y; offset.y++)
+            {
+                 foreach (var item in Map.CurrentMap.GetPeopleAt(m_MapPos + offset))
+                {
+                    if (item.Skills.Contains(WantedSkill))
+                    {
+                        Skillfound = true;
+                        break;
+                    }
+                }
+                 if (Skillfound)
+                     break;
+            }
+            if (Skillfound)
+                break;
+        }
+        return Skillfound;
+        
+    }
+
+    Person GetNonBusyPersonInBuildingWithSkill(Skill wantedSkill)
+    {
+        Person john = null;
+
+        for (IVec2 offset = new IVec2(); offset.x < Building.Sizes[m_buildingtype].x; offset.x++)
+        {
+            for (offset.y = 0; offset.y < Building.Sizes[m_buildingtype].y; offset.y++)
+            {
+                foreach (var item in Map.CurrentMap.GetPeopleAt(m_MapPos + offset))
+                {
+                    if (item.Skills.Contains(wantedSkill) && item.currentstate == State.Idle)
+                    {
+                        john = item;
+                        break;
+                    }
+                }
+                if (john)
+                    break;
+            }
+            if (john)
+                break;
+        }
+
+        return john;
+
     }
 }

@@ -33,7 +33,7 @@ public class Person : MonoBehaviour {
     
     public IVec2 currentMapPos = new IVec2();
 
-    State currentstate = State.Idle;
+    public State currentstate = State.Idle;
 
     Map CurrentMap = null;
     PathFinder finder = null;
