@@ -16,18 +16,10 @@ public class TaskPlanner : MonoBehaviour {
 
     private string solution = "";
 
-
-
 	// Use this for initialization
 	void Start () 
     {
 	    
-	}
-	
-	// Update is called once per frame
-	void Update () 
-    {
-	
 	}
 
     void RunPlanner()
@@ -44,13 +36,14 @@ public class TaskPlanner : MonoBehaviour {
         ProcessPlanner.WaitForExit();
     }
 
-    void ReadSolution()
+    string ReadSolution()
     {
         var result = File.ReadAllLines(SolutionName).Where(s => s.Contains(":"));
 
         solution = result.ToList()[0].ToString();
 
         File.Delete(SolutionName);
-        
+
+        return solution;
     }
 }
