@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-public enum Resource
+public enum ResourceType
 {
     Wood,
     Timber,
