@@ -130,8 +130,9 @@ public class AStar {
                     continue;
 
                
-                if(PathFinder.CurrentMap.getObject(newPos.x, newPos.y) != null &&
-                   PathFinder.CurrentMap.getObject(newPos.x, newPos.y).isTraversable())
+                if(PathFinder.CurrentMap.getObject(newPos.x, newPos.y) != null &&(
+                   Map.Trees.Contains(PathFinder.CurrentMap.getTile(newPos.x, newPos.y)) ||
+                   Map.Terrain.Contains(PathFinder.CurrentMap.getTile(newPos.x, newPos.y))))
                 {
                     AStarNodes newNode = new AStarNodes();
 

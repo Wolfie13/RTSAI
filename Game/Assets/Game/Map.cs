@@ -137,7 +137,6 @@ public class Map : MonoBehaviour {
 			{
                 mapTiles[i, lineCount] = line[i];
                 entities[i, lineCount] = new MapObject();
-                entities[i, lineCount].setTile(line[i],new ivec2(i,lineCount),getTilePos(i,lineCount));
 			}
 
 			lineCount++;
@@ -182,7 +181,8 @@ public class Map : MonoBehaviour {
 
             foreach (var item in entities)
             {
-                item.Update();
+                //Update Map item tick
+                //item.Update();
             }
         }
 	}
