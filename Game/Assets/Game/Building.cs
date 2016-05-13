@@ -20,22 +20,22 @@ public enum BuildingType
 
 
 
-public class Building : MonoBehaviour {
+public class Building : MapObject {
 
-    public static Dictionary<BuildingType, ivec2> Sizes = new Dictionary<BuildingType, ivec2>()
+    public static Dictionary<BuildingType, IVec2> Sizes = new Dictionary<BuildingType, IVec2>()
     {
-        {BuildingType.none,         new ivec2(1,1)},
-        {BuildingType.turfHut,      new ivec2(2,2)},
-        {BuildingType.House,        new ivec2(2,3)},
-        {BuildingType.School,       new ivec2(5,5)},
-        {BuildingType.Barracks,     new ivec2(5,5)},
-        {BuildingType.Storage,      new ivec2(5,5)},
-        {BuildingType.Mine,         new ivec2(1,1)},
-        {BuildingType.Smelter,      new ivec2(2,2)},
-        {BuildingType.Quarry,       new ivec2(1,1)},
-        {BuildingType.Sawmill,      new ivec2(3,3)},//may change
-        {BuildingType.Blacksmith,   new ivec2(3,3)},//maychange
-        {BuildingType.MarketStall,  new ivec2(1,1)}
+        {BuildingType.none,         new IVec2(1,1)},
+        {BuildingType.turfHut,      new IVec2(2,2)},
+        {BuildingType.House,        new IVec2(2,3)},
+        {BuildingType.School,       new IVec2(5,5)},
+        {BuildingType.Barracks,     new IVec2(5,5)},
+        {BuildingType.Storage,      new IVec2(5,5)},
+        {BuildingType.Mine,         new IVec2(1,1)},
+        {BuildingType.Smelter,      new IVec2(2,2)},
+        {BuildingType.Quarry,       new IVec2(1,1)},
+        {BuildingType.Sawmill,      new IVec2(3,3)},//may change
+        {BuildingType.Blacksmith,   new IVec2(3,3)},//maychange
+        {BuildingType.MarketStall,  new IVec2(1,1)}
 
     };
 
@@ -69,38 +69,16 @@ public class Building : MonoBehaviour {
 
     public BuildingType m_buildingtype;
 
-    ivec2 m_buildingSize;
+    IVec2 m_buildingSize;
 
     [HideInInspector]
-    public ivec2 m_MapPos = new ivec2();
+    public IVec2 m_MapPos = new IVec2();
 
     //returns true if sucsessful
-    public bool Build(BuildingType buildingType, ivec2 mapPos)
+    public bool Build(BuildingType buildingType, IVec2 mapPos)
     {
 
         // create build here
         return true;
-    }
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.GetComponent<Person>())
-            people.Add(other.gameObject.GetComponent<Person>());
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.GetComponent<Person>())
-            people.Remove(other.gameObject.GetComponent<Person>());
     }
 }

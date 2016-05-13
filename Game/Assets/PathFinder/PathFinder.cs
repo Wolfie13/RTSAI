@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class Node
 {
-    public ivec2 MapPos;
+    public IVec2 MapPos;
     public Node NextNode = null;
     public Node PrevNode = null;
     public char MapSymbol;
@@ -18,17 +18,17 @@ public struct path
 };
 
 
-public class ivec2
+public class IVec2
 {
-    public ivec2(){x = 0; y = 0;}
-    public ivec2(int newx, int newy) { x = newx; y = newy; }
-    public ivec2(ivec2 newVec) { x = newVec.x; y = newVec.y; }
+    public IVec2(){x = 0; y = 0;}
+    public IVec2(int newx, int newy) { x = newx; y = newy; }
+    public IVec2(IVec2 newVec) { x = newVec.x; y = newVec.y; }
 
-    public static ivec2 operator +(ivec2 a, ivec2 b) { return new ivec2(a.x + b.x, a.y + b.y); }
-    public static ivec2 operator -(ivec2 a, ivec2 b) { return new ivec2(a.x - b.x, a.y - b.y); }
-    public static ivec2 operator *(ivec2 a, int b) { return new ivec2(a.x * b, a.y * b); }
-    public static bool operator ==(ivec2 a, ivec2 b) { return (a.x==b.x && a.y == b.y);}
-    public static bool operator !=(ivec2 a, ivec2 b) { return !(a==b); }
+    public static IVec2 operator +(IVec2 a, IVec2 b) { return new IVec2(a.x + b.x, a.y + b.y); }
+    public static IVec2 operator -(IVec2 a, IVec2 b) { return new IVec2(a.x - b.x, a.y - b.y); }
+    public static IVec2 operator *(IVec2 a, int b) { return new IVec2(a.x * b, a.y * b); }
+    public static bool operator ==(IVec2 a, IVec2 b) { return (a.x==b.x && a.y == b.y);}
+    public static bool operator !=(IVec2 a, IVec2 b) { return !(a==b); }
 
     public float magnitude() { return Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2)); }
 
@@ -56,7 +56,7 @@ public class PathFinder : MonoBehaviour {
 
 
 
-    public uint GetPath(ivec2 MapPosStart, ivec2 MapPosEnd, float TimePerframe = float.MaxValue, int Maxsteps = int.MaxValue)
+    public uint GetPath(IVec2 MapPosStart, IVec2 MapPosEnd, float TimePerframe = float.MaxValue, int Maxsteps = int.MaxValue)
     {
         if(!CurrentMap)
             return 0;

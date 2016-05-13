@@ -6,7 +6,7 @@ public class pathPlannerTester : MonoBehaviour {
 
     public Vector2 startpos, endpos;
 
-    public ivec2 istartpos = new ivec2(), iendpos = new ivec2();
+    public IVec2 istartpos = new IVec2(), iendpos = new IVec2();
 
     private Map CurrentMap = null;
     private PathFinder finder = null;
@@ -52,7 +52,7 @@ public class pathPlannerTester : MonoBehaviour {
 
                     for (int idx = 0; idx < foundpath.Count; ++idx)
                     {
-                        ivec2 LineStart, LineEnd;
+                        IVec2 LineStart, LineEnd;
 
                         LineStart = foundpath[idx].MapPos;
                         if (foundpath[idx].NextNode != null)

@@ -31,7 +31,7 @@ public class Person : MonoBehaviour {
     [HideInInspector]
     public Dictionary<Resources, int> Resources = new Dictionary<Resources, int>();
     
-    ivec2 currentMapPos = new ivec2();
+    public IVec2 currentMapPos = new IVec2();
 
     State currentstate = State.Idle;
 
@@ -116,7 +116,7 @@ public class Person : MonoBehaviour {
 
 
 
-    public void Move(ivec2 toLocation, WaitOver Callback)
+    public void Move(IVec2 toLocation, WaitOver Callback)
     {
 
         if(PathFinder.Paths.ContainsKey(PathID))
@@ -153,7 +153,7 @@ public class Person : MonoBehaviour {
 
                     for (int idx = 0; idx < foundpath.Count; ++idx)
                     {
-                        ivec2 LineStart, LineEnd;
+                        IVec2 LineStart, LineEnd;
 
                         LineStart = foundpath[idx].MapPos;
                         if (foundpath[idx].NextNode != null)

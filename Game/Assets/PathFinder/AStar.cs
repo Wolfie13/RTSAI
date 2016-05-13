@@ -11,9 +11,9 @@ public class AStar {
        public float Distance2Go;
     }
 
-    private Dictionary<uint, ivec2> EndPos = new Dictionary<uint,ivec2>();
+    private Dictionary<uint, IVec2> EndPos = new Dictionary<uint,IVec2>();
 
-    public IEnumerator GetPath(ivec2 MapPosStart, ivec2 MapPosEnd, int Maxsteps, float TimePerframe, uint ID)
+    public IEnumerator GetPath(IVec2 MapPosStart, IVec2 MapPosEnd, int Maxsteps, float TimePerframe, uint ID)
     {
         List<Node> result = new List<Node>();
 
@@ -103,7 +103,7 @@ public class AStar {
 
 
 
-    private float GetDirectDistance2End(ivec2 point, uint ID)
+    private float GetDirectDistance2End(IVec2 point, uint ID)
     {
         return (point - EndPos[ID]).magnitude();
     }
@@ -113,13 +113,13 @@ public class AStar {
         List<AStarNodes> NextPositions = new List<AStarNodes>();
 
        
-        ivec2 offset = new ivec2(-1,-1);
+        IVec2 offset = new IVec2(-1,-1);
         for (; offset.x <= 1; ++offset.x )
         {
 
             for (offset.y = -1; offset.y <= 1; ++offset.y)
             {
-                ivec2 newPos = CurrentNode.NodeInfo.MapPos + offset;
+                IVec2 newPos = CurrentNode.NodeInfo.MapPos + offset;
 
                 if(newPos.x <0 || 
                     newPos.x > PathFinder.CurrentMap.sizeX)

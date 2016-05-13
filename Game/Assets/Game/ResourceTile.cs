@@ -8,7 +8,7 @@ public class ResourceTile : MapObject {
 
     Building m_Building = null;
 
-    ivec2 m_MapPos;
+    IVec2 m_MapPos;
     Vector3 m_realPos;
 
     char m_rawChar;
@@ -21,7 +21,7 @@ public class ResourceTile : MapObject {
     List<Person> People = new List<Person>();
 
 
-    public void setTile(ResourceType Resource, ivec2 MapPos, Vector3 realPos)
+    public void setTile(ResourceType Resource, IVec2 MapPos, Vector3 realPos)
     {
         m_MapPos = MapPos;
         m_realPos = realPos;

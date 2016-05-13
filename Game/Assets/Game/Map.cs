@@ -28,7 +28,12 @@ public class Map : MonoBehaviour {
     public const int ChunkSize = 32;
 
 
+    private List<Building> Buildings = new List<Building>();
+    private List<Person> People = new List<Person>();
+
+
     public float TimeUnit = 1;
+
     private float timePassed = 0;
 
     //passable
@@ -42,7 +47,7 @@ public class Map : MonoBehaviour {
     //traversable, but not passable from terrain
     public static IList<char> water = new List<char> { 'W' }.AsReadOnly();
 
-    public MapObject getObject(ivec2 pos) { return getObject(pos.x, pos.y); }
+    public MapObject getObject(IVec2 pos) { return getObject(pos.x, pos.y); }
 
 	public MapObject getObject (int x, int y)
 	{
@@ -53,7 +58,7 @@ public class Map : MonoBehaviour {
 		return entities [x, y];
 	}
 
-    public char getTile(ivec2 pos) { return getTile(pos.x, pos.y); }
+    public char getTile(IVec2 pos) { return getTile(pos.x, pos.y); }
 
 	public char getTile(int x, int y)
 	{
@@ -63,7 +68,7 @@ public class Map : MonoBehaviour {
 		return mapTiles [x, y];
 	}
 
-    public void setTile(ivec2 pos, char tile) { setTile(pos.x, pos.y, tile); }
+    public void setTile(IVec2 pos, char tile) { setTile(pos.x, pos.y, tile); }
 
 	public void setTile(int x, int y, char tile)
 	{
@@ -74,7 +79,7 @@ public class Map : MonoBehaviour {
 		}
 	}
 
-    public Vector3 getTilePos(ivec2 pos) { return getTilePos(pos.x, pos.y); }
+    public Vector3 getTilePos(IVec2 pos) { return getTilePos(pos.x, pos.y); }
 
     public Vector3 getTilePos(int x, int y)
     {
@@ -84,11 +89,11 @@ public class Map : MonoBehaviour {
         return new Vector3(xPos, 0, yPos);
     }
 
-    public ivec2 getTileFromPos(Vector3 worldPos)
+    public IVec2 getTileFromPos(Vector3 worldPos)
     {
         //worldPos += new Vector3(0.5f, 0.5f, 0.5f) * MapChunk.TILE_SIZE;
 
-        ivec2 mapPos = new ivec2(Mathf.FloorToInt(worldPos.x / MapChunk.TILE_SIZE), Mathf.FloorToInt(worldPos.z / MapChunk.TILE_SIZE));
+        IVec2 mapPos = new IVec2(Mathf.FloorToInt(worldPos.x / MapChunk.TILE_SIZE), Mathf.FloorToInt(worldPos.z / MapChunk.TILE_SIZE));
 
         return mapPos;
     }
@@ -96,6 +101,57 @@ public class Map : MonoBehaviour {
     public MapObject getobjectFromPos(Vector3 worldPos)
     {
         return getObject(getTileFromPos(worldPos));
+    }
+
+
+    //people
+    public List<Person> GetPeopleWithSkill(Skill wantedSkill)
+    {
+        List<Person> results = new List<Person>();
+
+        foreach (var item in People)
+        {
+            if (item.Skills.Contains(wantedSkill))
+                results.Add(item);
+        }
+        return results;
+    }
+    public List<Person> GetPeople() { return People; }
+    public List<Person> GetPeopleAt(IVec2 MapPos)
+    {
+        List<Person> results = new List<Person>();
+
+        foreach (var item in People)
+        {
+            if (item.currentMapPos == MapPos)
+                results.Add(item);
+        }
+        return results;
+    }
+    public void AddPerson(IVec2 Pos)
+    {
+        // code to creat person here
+    }
+
+    //Buildings
+
+    public List<Building> GetBuildingsOfType(BuildingType type)
+    {
+        List<Building> results = new List<Building>();
+
+        foreach (var item in Buildings)
+        {
+            if (item.m_buildingtype == type)
+                results.Add(item);
+        }
+        return results;
+    }
+
+    public List<Building> GetBuildings() { return Buildings; }
+
+    public void BuildBuilding(BuildingType type, IVec2 Pos)
+    {
+        //code to build building
     }
 
 	// Use this for initialization
