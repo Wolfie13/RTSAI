@@ -32,6 +32,8 @@ public class Map : MonoBehaviour {
     public int startX;
     public int startY;
 
+    public GameObject BuildingTile = null;
+
 
     private List<Building> Buildings = new List<Building>();
     private List<Person> People = new List<Person>();
@@ -191,9 +193,32 @@ public class Map : MonoBehaviour {
 
     public List<Building> GetBuildings() { return Buildings; }
 
-    public void BuildBuilding(BuildingType type, IVec2 Pos)
+    public bool BuildBuilding(BuildingType type, IVec2 Pos)
     {
-        //code to build building
+        bool isBuilding = false;
+
+        if(CanBuild(type,Pos))
+        {
+            Building newBuilding = new Building();
+            isBuilding = newBuilding.Build(type, Pos);
+             if(isBuilding)
+             {
+                 for (IVec2 offset = new IVec2();  offset.x < Building.Sizes[type].x; offset.x++)
+                 {
+                     for (offset.y = 0; offset.y < Building.Sizes[type].y; offset.y++)
+                     {
+                         IVec2 newPos = Pos +offset;
+                         entities[newPos.x, newPos.y] = newBuilding;
+                         Instantiate(BuildingTile, getTilePos(newPos), Quaternion.Euler(Vector3.zero));
+                     }
+                 }
+
+                  
+
+             }
+        }
+
+        return isBuilding;
     }
 
     public bool CanBuild (BuildingType type, IVec2 Pos)
