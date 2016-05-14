@@ -139,6 +139,21 @@ public class Map : MonoBehaviour {
         // code to create person here
     }
 
+    public List<Person> GetPeopleAtBuilding(Building b)
+    {
+        List<Person> result = new List<Person>();
+
+        for (IVec2 offset = new IVec2(); offset.x < Building.Sizes[b.m_buildingtype].x; offset.x++)
+        {
+            for (offset.y = 0; offset.y < Building.Sizes[b.m_buildingtype].y; offset.y++)
+            {
+                result.AddRange(GetPeopleAt(b.m_MapPos + offset));
+            }
+        }
+
+            return result;
+    }
+
     //Buildings
 
     public List<Building> GetBuildingsOfType(BuildingType type)

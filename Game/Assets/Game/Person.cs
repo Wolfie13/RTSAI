@@ -86,9 +86,26 @@ public class Person : MonoBehaviour {
                 switch (ToDoList[0])
                 {
                     case action.Family:
-                        //check for another person 
-                        //check the Building
-                        //set busy time
+                        if (Map.CurrentMap.getObject(currentMapPos) is Building)
+                        {
+                            Building CurrentBuilding = (Building)Map.CurrentMap.getObject(currentMapPos);
+                            //check for another person 
+                            if (CurrentBuilding.GetNonBusyPersonInBuilding() != null)
+                            {
+                                SetBusy(20);
+                                CurrentBuilding.GetNonBusyPersonInBuilding().SetBusy(20);
+                                if (CurrentBuilding.m_buildingtype == BuildingType.turfHut)
+                                {
+                                    Map.CurrentMap.AddPerson(currentMapPos);
+                                }
+                                else if( CurrentBuilding.m_buildingtype == BuildingType.House)
+                                {
+                                    Map.CurrentMap.AddPerson(currentMapPos);
+                                    Map.CurrentMap.AddPerson(currentMapPos);
+                                }
+                            }
+                        }
+
                         break;
                     case action.Educate:
                         //check for another person 

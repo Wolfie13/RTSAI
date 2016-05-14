@@ -247,4 +247,30 @@ public class Building : MapObject {
         return john;
 
     }
+
+    public Person GetNonBusyPersonInBuilding()
+    {
+        Person john = null;
+
+        for (IVec2 offset = new IVec2(); offset.x < Building.Sizes[m_buildingtype].x; offset.x++)
+        {
+            for (offset.y = 0; offset.y < Building.Sizes[m_buildingtype].y; offset.y++)
+            {
+                foreach (var item in Map.CurrentMap.GetPeopleAt(m_MapPos + offset))
+                {
+                    if (item.ToDoList.Count == 0)
+                    {
+                        john = item;
+                        break;
+                    }
+                }
+                if (john)
+                    break;
+            }
+            if (john)
+                break;
+        }
+
+        return john;
+    }
 }
