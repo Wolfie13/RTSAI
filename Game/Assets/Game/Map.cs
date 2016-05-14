@@ -28,6 +28,10 @@ public class Map : MonoBehaviour {
 
     public const int ChunkSize = 32;
 
+    public GameObject Human = null;
+    public int startX;
+    public int startY;
+
 
     private List<Building> Buildings = new List<Building>();
     private List<Person> People = new List<Person>();
@@ -136,7 +140,12 @@ public class Map : MonoBehaviour {
     }
     public void AddPerson(IVec2 Pos)
     {
-        // code to create person here
+        if(Human)
+        {
+            GameObject go = (GameObject)Instantiate(Human, getTilePos(Pos),Quaternion.Euler(Vector3.zero));
+
+            People.Add(go.GetComponent<Person>());
+        }
     }
 
     public Person GetNonBusyPersonAt(IVec2 MapPos)
@@ -212,6 +221,19 @@ public class Map : MonoBehaviour {
 		load (MapName);
 		initChunks ();
         ResetResources();
+
+        IVec2 StartPos = new IVec2(startX,startY);
+        AddPerson(StartPos);
+
+        //first person spawned has all the skills
+        for (Skill i = Skill.Labourer; i <= Skill.Rifleman; i++)
+        {
+            if(!People[0].Skills.Contains(i))
+                People[0].Skills.Add(i);
+        }
+
+        //second is dumb
+        AddPerson(StartPos);
 	}
 
 	void load(string filename)

@@ -42,7 +42,7 @@ public enum action
 
 public class Person : MonoBehaviour {
 
-    [HideInInspector]
+    
     public List<Skill> Skills = new List<Skill>();
     [HideInInspector]
     public Dictionary<ResourceType, int> Resources = new Dictionary<ResourceType, int>();
@@ -71,6 +71,7 @@ public class Person : MonoBehaviour {
             currentMapPos = Map.CurrentMap.getTileFromPos(transform.position);
 
         ResetResources();
+        Skills.Add(Skill.Labourer);
 	}
 	
 	// Update is called once per frame

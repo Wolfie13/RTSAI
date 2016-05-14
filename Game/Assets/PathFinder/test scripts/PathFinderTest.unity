@@ -255,6 +255,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skills: 
+  ToDoList: 
+  currentstate: 0
+  BusyTime: 0
 --- !u!23 &1193448674
 Renderer:
   m_ObjectHideFlags: 0
@@ -342,7 +345,9 @@ MonoBehaviour:
   sizeX: 0
   sizeY: 0
   mapMaterial: {fileID: 2100000, guid: b3de107869eba4645a9a965632578b5e, type: 2}
-  TimeUnit: 1
+  Human: {fileID: 188874, guid: 45960494564f47749802db49d8a0452f, type: 2}
+  startX: 256
+  startY: 256
 --- !u!4 &1303748745
 Transform:
   m_ObjectHideFlags: 0
