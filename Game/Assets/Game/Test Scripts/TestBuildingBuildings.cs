@@ -46,7 +46,10 @@ public class TestBuildingBuildings : MonoBehaviour {
         Map.GlobalResources[ResourceType.Timber] = GlobleTimber;
         Map.GlobalResources[ResourceType.Wood] = GlobleWood;
 
-        Map.CurrentMap.BuildBuilding(type, MapPos);
+        if (!Map.CurrentMap.BuildBuilding(type, MapPos))
+        {
+            Debug.Log("Building couldn't be built");
+        }
 	}
 	
 }

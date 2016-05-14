@@ -65,7 +65,7 @@ public class Person : MonoBehaviour {
 	IEnumerator Start () {
         finder = GameObject.FindGameObjectWithTag("Map").GetComponent<PathFinder>();
 
-        yield return new WaitForSeconds(1f);
+        yield return true;
 
         if (Map.CurrentMap)
             currentMapPos = Map.CurrentMap.getTileFromPos(transform.position);

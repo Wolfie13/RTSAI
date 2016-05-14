@@ -65,65 +65,67 @@ public class Building : MapObject {
     //returns true if sucsessful
     public bool Build(BuildingType type, IVec2 mapPos)
     {
-        bool building = false;
+        bool building = true;
         m_buildingtype = type;
+        m_MapPos = mapPos;
         switch (m_buildingtype)
         {
             case BuildingType.turfHut:
-                building = CheckForSkillWithinBuilding(Skill.Labourer);
+                if(!CheckForSkillWithinBuilding(Skill.Labourer)) return false;
                 break;
             case BuildingType.House:
-                building = CheckResource(ResourceType.Stone);
-                building = CheckResource(ResourceType.Wood);
-                building = CheckForSkillWithinBuilding(Skill.Carpenter);
-                building = CheckForSkillWithinBuilding(Skill.Labourer);
+                if(!CheckResource(ResourceType.Stone)) return false;
+                if(!CheckResource(ResourceType.Wood)) return false;
+                if(!CheckForSkillWithinBuilding(Skill.Carpenter)) return false;
+                if(!CheckForSkillWithinBuilding(Skill.Labourer)) return false;
                 break;
             case BuildingType.School:
-                building = CheckResource(ResourceType.Stone);
-                building = CheckResource(ResourceType.Wood);
-                building = CheckResource(ResourceType.Iron);
-                building = CheckForSkillWithinBuilding(Skill.Carpenter);
-                building = CheckForSkillWithinBuilding(Skill.Labourer);
+                if(!CheckResource(ResourceType.Stone)) return false;
+                if(!CheckResource(ResourceType.Wood)) return false;
+                if(!CheckResource(ResourceType.Iron)) return false;
+                if(!CheckForSkillWithinBuilding(Skill.Carpenter)) return false;
+                if(!CheckForSkillWithinBuilding(Skill.Labourer)) return false;
                 break;
             case BuildingType.Barracks:
-                building = CheckResource(ResourceType.Stone);
-                building = CheckResource(ResourceType.Wood);
-                building = CheckForSkillWithinBuilding(Skill.Carpenter);
-                building = CheckForSkillWithinBuilding(Skill.Labourer);
+                if(!CheckResource(ResourceType.Stone)) return false;
+                if(!CheckResource(ResourceType.Wood)) return false;
+                if(!CheckForSkillWithinBuilding(Skill.Carpenter)) return false;
+                if(!CheckForSkillWithinBuilding(Skill.Labourer)) return false;
                 break;
             case BuildingType.Storage:
-                building = CheckResource(ResourceType.Stone);
-                building = CheckResource(ResourceType.Wood);
-                building = CheckForSkillWithinBuilding(Skill.Carpenter);
-                building = CheckForSkillWithinBuilding(Skill.Labourer);
+                if(!CheckResource(ResourceType.Stone)) return false;
+                if(!CheckResource(ResourceType.Wood)) return false;
+                if(!CheckForSkillWithinBuilding(Skill.Carpenter)) return false;
+                if(!CheckForSkillWithinBuilding(Skill.Labourer)) return false;
                 break;
             case BuildingType.Mine:
-                building = CheckResource(ResourceType.Wood);
-                building = CheckResource(ResourceType.Iron);
-                building = CheckForSkillWithinBuilding(Skill.Blacksmith);
-                building = CheckForSkillWithinBuilding(Skill.Carpenter);
-                building = CheckForSkillWithinBuilding(Skill.Labourer);
+                if(!CheckResource(ResourceType.Wood)) return false;
+                if(!CheckResource(ResourceType.Iron)) return false;
+                if(!CheckForSkillWithinBuilding(Skill.Blacksmith)) return false;
+                if(!CheckForSkillWithinBuilding(Skill.Carpenter)) return false;
+                if(!CheckForSkillWithinBuilding(Skill.Labourer)) return false;
                 break;
             case BuildingType.Smelter:
-                building = CheckResource(ResourceType.Stone);
-                building = CheckForSkillWithinBuilding(Skill.Labourer);
+                if(!CheckResource(ResourceType.Stone)) return false;
+                if(!CheckForSkillWithinBuilding(Skill.Labourer)) return false;
                 break;
             case BuildingType.Quarry:
-                building = CheckForSkillWithinBuilding(Skill.Labourer);
+                if(!CheckForSkillWithinBuilding(Skill.Labourer)) return false;
                 break;
             case BuildingType.Sawmill:
-                building = CheckResource(ResourceType.Stone);
-                building = CheckResource(ResourceType.Iron);
-                building = CheckResource(ResourceType.Timber);
-                building = CheckForSkillWithinBuilding(Skill.Labourer);
+                if(!CheckResource(ResourceType.Stone)) return false;
+                if(!CheckResource(ResourceType.Iron)) return false;
+                if(!CheckResource(ResourceType.Timber)) return false;
+                if(!CheckForSkillWithinBuilding(Skill.Labourer)) return false;
                 break;
             case BuildingType.Blacksmith:
-                building = CheckResource(ResourceType.Stone);
-                building = CheckResource(ResourceType.Iron);
-                building = CheckResource(ResourceType.Timber);
-                building = CheckForSkillWithinBuilding(Skill.Labourer);
+                if(!CheckResource(ResourceType.Stone)) return false;
+                if(!CheckResource(ResourceType.Iron)) return false;
+                if(!CheckResource(ResourceType.Timber)) return false;
+                if(!CheckForSkillWithinBuilding(Skill.Labourer)) return false;
                 break;
             default:
+                building = false;
                 break;
         }
         if (building)

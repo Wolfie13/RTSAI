@@ -84,6 +84,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 617725212}
   - 114: {fileID: 617725211}
+  - 114: {fileID: 617725213}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -103,17 +104,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GlobleWood: 1
-  GlobleTimber: 0
+  GlobleTimber: 1
   GlobleStone: 1
-  GlobleOre: 0
+  GlobleOre: 1
   GlobleIron: 1
-  GlobleCoal: 0
+  GlobleCoal: 1
   BuildX: 256
   BuildY: 256
-  NumberOfPeople: 3
+  NumberOfPeople: 0
   PeopleSkils: 01000000
   DelayTime: 1
-  type: 3
+  type: 2
 --- !u!4 &617725212
 Transform:
   m_ObjectHideFlags: 0
@@ -126,6 +127,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!114 &617725213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 617725210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 720160c23ea2a314d8c397df150916d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobleWood: 0
+  GlobleTimber: 0
+  GlobleStone: 0
+  GlobleOre: 0
+  GlobleIron: 0
+  GlobleCoal: 0
+  SpawnX: 256
+  SpawnY: 256
+  NumberOfPeople: 0
+  PeopleSkils: 
+  DelayTime: 5
+  ActToDo: 000000000000000000000000
 --- !u!1 &1078487764
 GameObject:
   m_ObjectHideFlags: 0
