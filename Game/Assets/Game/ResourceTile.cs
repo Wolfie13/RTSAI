@@ -18,10 +18,11 @@ public class ResourceTile : MapObject {
     List<Person> People = new List<Person>();
 
 
-    public void setTile(ResourceType Resource, IVec2 MapPos)
+    public void setTile(ResourceType Resource, IVec2 MapPos, int amount = 5)
     {
         m_MapPos = MapPos;
         m_resource = Resource;
+        m_AvaliableResource = amount;
     }
 
     //should be called from the Map UpdateLoop every time unit

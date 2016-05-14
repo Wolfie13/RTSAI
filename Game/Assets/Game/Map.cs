@@ -236,6 +236,13 @@ public class Map : MonoBehaviour {
         return Buildable;
     }
 
+    //used only for testing 
+    public void setResourcetile(ResourceType type, int ResourceAmount, IVec2 MapPos)
+    {
+        ResourceTile t = new ResourceTile();
+        t.setTile(type, MapPos,ResourceAmount);
+    }
+
 	// Use this for initialization
 	void Start () {
 

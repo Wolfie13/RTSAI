@@ -36,7 +36,11 @@ public class TestBuildingBuildings : MonoBehaviour {
         }
         foreach (var item in Map.CurrentMap.GetPeopleAt(MapPos))
         {
-            item.Skills.AddRange(PeopleSkils);
+            if (NumberOfPeople > 0)
+            {
+                item.Skills.AddRange(PeopleSkils);
+                NumberOfPeople--;
+            }
         }
 
         Map.GlobalResources[ResourceType.Coal] = GlobleCoal;
