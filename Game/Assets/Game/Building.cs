@@ -57,9 +57,6 @@ public class Building : MapObject {
 
     };
 
-    [HideInInspector]
-    public Dictionary<Resources, int> Resources = new Dictionary<Resources, int>();
-
     public BuildingType m_buildingtype;
 
     IVec2 m_buildingSize;

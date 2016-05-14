@@ -143,7 +143,7 @@ public class Map : MonoBehaviour {
     {
         foreach (var item in GetPeopleAt(MapPos))
         {
-            if (item.ToDoList.Count == 0)
+            if (item.ToDoList.Count == 0 && item.BusyTime == 0)
                 return item;
         }
         return null;

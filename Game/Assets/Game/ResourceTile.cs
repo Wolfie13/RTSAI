@@ -47,4 +47,14 @@ public class ResourceTile : MapObject {
         return temp;
     }
 
+   public int GatherResource(ResourceType Resource)
+   {
+       if (Resource == m_resource && m_AvaliableResource > 0)
+       {
+           m_AvaliableResource--;
+           return 1;
+       }
+       return 0;
+   }
+
 }
