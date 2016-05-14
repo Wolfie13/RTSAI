@@ -108,30 +108,18 @@ public class CameraControl : MonoBehaviour {
 	
 	}
 
-    void onGUI()
+    void OnGUI()
     {
         ////object info
-        if (selectedObject)
+      
+        int CurrentLine = 0;
+        GUI.BeginGroup(new Rect(Screen.width * UIPos.x, Screen.height * UIPos.y, Screen.width - Screen.width * UIPos.x, Screen.height - Screen.height * UIPos.y));
+        foreach (var item in Map.GlobalResources)
         {
-            int CurrentLine = 0;
-            GUI.BeginGroup(new Rect(Screen.width * UIPos.x, Screen.height * UIPos.y, Screen.width - Screen.width * UIPos.x, Screen.height - Screen.height * UIPos.y));
-            if (selectedObject.GetComponent<Person>())
-            {
-                foreach (var item in selectedObject.GetComponent<Person>().Resources)
-                {
-                    AddLable(item.Key.ToString() + ": " + item.Value.ToString(), ref CurrentLine);
-                }
-                foreach (var item in selectedObject.GetComponent<Person>().Skills)
-                {
-                    AddLable(item.ToString(), ref CurrentLine);
-                }
-            }
-            GUI.EndGroup();
-
-
-        }
-
-
+            AddLable(item.Key.ToString() + ": " + item.Value.ToString(), ref CurrentLine);
+        } 
+           
+        GUI.EndGroup();
     }
 
     void AddLable(string Text, ref int CurrentLine)

@@ -250,7 +250,7 @@ MonoBehaviour:
   Scroll_Shift_Speed: 5
   Camera_Zoom_Step: 5
   UI_size: {x: 128, y: 50}
-  UIPos: {x: 0, y: 0}
+  UIPos: {x: .100000001, y: .100000001}
   UI_Distance: 10
   Min_Zoom_Dist: 2
   Max_Zoom_Dist: 75
