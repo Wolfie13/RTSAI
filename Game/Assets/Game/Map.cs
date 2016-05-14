@@ -42,7 +42,7 @@ public class Map : MonoBehaviour {
     public static Dictionary<ResourceType, int> GlobalResources = new Dictionary<ResourceType, int>();
 
     [Range(0,1)]
-    public float ResourceChance = 0;
+    public float ResourceChance = 0.5f;
 
     public static float TimeUnit = 1;
 

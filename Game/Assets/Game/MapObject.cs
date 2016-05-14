@@ -6,6 +6,6 @@ public class MapObject{
 
     public IVec2 m_MapPos = new IVec2();
 
-    public void Update() { }
+    public virtual void Update() { }
   
 }
