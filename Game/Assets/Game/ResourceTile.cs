@@ -18,14 +18,14 @@ public class ResourceTile : MapObject {
     List<Person> People = new List<Person>();
 
 
-    public void setTile(ResourceType Resource, IVec2 MapPos, Vector3 realPos)
+    public void setTile(ResourceType Resource, IVec2 MapPos)
     {
         m_MapPos = MapPos;
         m_resource = Resource;
     }
 
     //should be called from the Map UpdateLoop every time unit
-    public void Update()
+    public override void Update()
     {
         if (m_resource == ResourceType.Timber)
         {

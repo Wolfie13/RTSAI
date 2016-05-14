@@ -41,6 +41,8 @@ public class Map : MonoBehaviour {
     //resources
     public static Dictionary<ResourceType, int> GlobalResources = new Dictionary<ResourceType, int>();
 
+    [Range(0,1)]
+    public float ResourceChance = 0;
 
     public static float TimeUnit = 1;
 
@@ -268,7 +270,24 @@ public class Map : MonoBehaviour {
 			for (int i = 0; i < line.Length; i++)
 			{
                 mapTiles[i, lineCount] = line[i];
-                entities[i, lineCount] = new MapObject();
+                if (Trees.Contains(mapTiles[i, lineCount]))
+                {
+                    entities[i, lineCount] = new ResourceTile();
+                    ((ResourceTile)entities[i, lineCount]).setTile(ResourceType.Timber, new IVec2(i, lineCount));
+                }
+                else if (Terrain.Contains(mapTiles[i, lineCount]))
+                {
+                    if (UnityEngine.Random.Range(0, 1) < ResourceChance)
+                    {
+                        ResourceType t = (Mathf.FloorToInt(UnityEngine.Random.value) % 2 == 0) ? ResourceType.Iron : ResourceType.Coal;
+                        entities[i, lineCount] = new ResourceTile();
+                        ((ResourceTile)entities[i, lineCount]).setTile(t, new IVec2(i, lineCount));
+                    }
+                }
+                else
+                {
+                    entities[i, lineCount] = new MapObject();
+                }
 			}
 
 			lineCount++;
@@ -323,7 +342,7 @@ public class Map : MonoBehaviour {
             foreach (var item in entities)
             {
                 //Update Map item tick
-                //item.Update();
+                item.Update();
             }
         }
 	}
