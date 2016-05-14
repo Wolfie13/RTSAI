@@ -21,8 +21,35 @@ public enum State
     move
 }
 
-public delegate void WaitOver();
+public delegate void actfunc();
 
+
+public enum action
+{
+    Family,
+    Educate,
+    Train,
+    CutTree,
+    Mine,
+    Store,
+    Move,
+    Smelt,
+    Quarry,
+    SawWood,
+    MakeTool,
+    Combat
+}
+
+public struct DoAction
+{
+    DoAction(action a, actfunc cb)
+    {
+        todo = a;
+        act = cb;
+    }
+    action todo;
+    actfunc act;
+}
 
 public class Person : MonoBehaviour {
 
@@ -30,6 +57,8 @@ public class Person : MonoBehaviour {
     public List<Skill> Skills = new List<Skill>();
     [HideInInspector]
     public Dictionary<Resources, int> Resources = new Dictionary<Resources, int>();
+
+    public List<DoAction> ToDoList = new List<DoAction>();
     
     public IVec2 currentMapPos = new IVec2();
 
@@ -40,83 +69,28 @@ public class Person : MonoBehaviour {
 
     uint PathID = 0;
     float actionStartTime = 0;
-    WaitOver MoveCallback;
-
-
+  
     int actiontime = 0;
-    WaitOver busyCallback;
 
 	// Use this for initialization
 	void Start () {
-        CurrentMap = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>();
         finder = GameObject.FindGameObjectWithTag("Map").GetComponent<PathFinder>();
 
-        if (CurrentMap)
-            currentMapPos = CurrentMap.getTileFromPos(transform.position);
+        if (Map.CurrentMap)
+            currentMapPos = Map.CurrentMap.getTileFromPos(transform.position);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (!CurrentMap)
-            return;
 
-        switch (currentstate)
-        {
-            case State.Idle:
-                break;
-            case State.action:
-                float actiontimeTime = (Time.time - actionStartTime) / CurrentMap.TimeUnit;
-
-                if(Mathf.Approximately(actiontimeTime,actiontime))
-                {
-                    busyCallback();
-                    currentstate = State.Idle;
-                }
-                break;
-            case State.move:
-                if (PathID != 0)
-                {
-                    if(PathFinder.Paths[PathID].isPathFound)
-                    {
-                        if(PathFinder.Paths[PathID].FoundPath.Count > 0)
-                        {
-                           // Vector3 world_offset = new Vector3(0.5f, 0.5f, 0.5f) * MapChunk.TILE_SIZE;
-                            Vector3 targetLocation = CurrentMap.getTilePos(PathFinder.Paths[PathID].FoundPath[0].MapPos);
-                            float travelTime = (Time.time - actionStartTime) / CurrentMap.TimeUnit;
-                            transform.position = Vector3.Lerp(CurrentMap.getTilePos(currentMapPos), targetLocation, travelTime);
-
-                            if (travelTime>1)
-                            {
-                                actionStartTime = Time.time;
-
-                                currentMapPos = PathFinder.Paths[PathID].FoundPath[0].MapPos;
-
-                                PathFinder.Paths[PathID].FoundPath.RemoveAt(0);
-
-                            }
-
-                            if(PathFinder.Paths[PathID].FoundPath.Count == 0)
-                            {
-                                Debug.Log(currentMapPos);
-                                MoveCallback();
-                            }
-                        }
-
-
-
-                    }
-                }
-                break;
-            default:
-                break;
-        }
+       
 	
 	}
 
 
 
-    public void Move(IVec2 toLocation, WaitOver Callback)
+    public void Move(IVec2 toLocation, actfunc Callback)
     {
 
         if(PathFinder.Paths.ContainsKey(PathID))
@@ -129,10 +103,10 @@ public class Person : MonoBehaviour {
         PathID = finder.GetPath(currentMapPos, toLocation, 0.01f);
 
         actionStartTime = Time.time;
-        MoveCallback = Callback;
+       
     }
 
-    public void SetBusy(int timeUnits,WaitOver waitcallback)
+    public void SetBusy(int timeUnits, actfunc waitcallback)
     {
         currentstate = State.action;
         actionStartTime = Time.time;
