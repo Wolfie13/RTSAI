@@ -134,36 +134,36 @@ public class Building : MapObject {
             
             //Spend Resource and set Busy timers
             //all require a labourer
-            GetNonBusyPersonInBuildingWithSkill(Skill.Labourer).SetBusy(BuildTime[m_buildingtype], () => { });
+            GetNonBusyPersonInBuildingWithSkill(Skill.Labourer).SetBusy(BuildTime[m_buildingtype]);
 
             switch (m_buildingtype)
             {
                 case BuildingType.House:
                     Map.GlobalResources[ResourceType.Stone]--;
                     Map.GlobalResources[ResourceType.Wood]--;
-                    GetNonBusyPersonInBuildingWithSkill(Skill.Carpenter).SetBusy(BuildTime[m_buildingtype], () => { });
+                    GetNonBusyPersonInBuildingWithSkill(Skill.Carpenter).SetBusy(BuildTime[m_buildingtype]);
                     break;
                 case BuildingType.School:
                     Map.GlobalResources[ResourceType.Stone]--;
                     Map.GlobalResources[ResourceType.Wood]--;
                     Map.GlobalResources[ResourceType.Iron]--;
-                    GetNonBusyPersonInBuildingWithSkill(Skill.Carpenter).SetBusy(BuildTime[m_buildingtype], () => { });
+                    GetNonBusyPersonInBuildingWithSkill(Skill.Carpenter).SetBusy(BuildTime[m_buildingtype]);
                     break;
                 case BuildingType.Barracks:
                     Map.GlobalResources[ResourceType.Stone]--;
                     Map.GlobalResources[ResourceType.Wood]--;
-                    GetNonBusyPersonInBuildingWithSkill(Skill.Carpenter).SetBusy(BuildTime[m_buildingtype], () => { });
+                    GetNonBusyPersonInBuildingWithSkill(Skill.Carpenter).SetBusy(BuildTime[m_buildingtype]);
                     break;
                 case BuildingType.Storage:
                     Map.GlobalResources[ResourceType.Stone]--;
                     Map.GlobalResources[ResourceType.Wood]--;
-                    GetNonBusyPersonInBuildingWithSkill(Skill.Carpenter).SetBusy(BuildTime[m_buildingtype], () => { });
+                    GetNonBusyPersonInBuildingWithSkill(Skill.Carpenter).SetBusy(BuildTime[m_buildingtype]);
                     break;
                 case BuildingType.Mine:
                     Map.GlobalResources[ResourceType.Wood]--;
                     Map.GlobalResources[ResourceType.Iron]--;
-                    GetNonBusyPersonInBuildingWithSkill(Skill.Carpenter).SetBusy(BuildTime[m_buildingtype], () => { });
-                    GetNonBusyPersonInBuildingWithSkill(Skill.Blacksmith).SetBusy(BuildTime[m_buildingtype], () => { });
+                    GetNonBusyPersonInBuildingWithSkill(Skill.Carpenter).SetBusy(BuildTime[m_buildingtype]);
+                    GetNonBusyPersonInBuildingWithSkill(Skill.Blacksmith).SetBusy(BuildTime[m_buildingtype]);
                     break;
                 case BuildingType.Smelter:
                     Map.GlobalResources[ResourceType.Stone]--;
@@ -231,7 +231,7 @@ public class Building : MapObject {
             {
                 foreach (var item in Map.CurrentMap.GetPeopleAt(m_MapPos + offset))
                 {
-                    if (item.Skills.Contains(wantedSkill) && item.currentstate == State.Idle)
+                    if (item.Skills.Contains(wantedSkill) && item.ToDoList.Count == 0)
                     {
                         john = item;
                         break;

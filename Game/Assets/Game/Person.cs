@@ -40,17 +40,6 @@ public enum action
     Combat
 }
 
-public struct DoAction
-{
-    DoAction(action a, actfunc cb)
-    {
-        todo = a;
-        act = cb;
-    }
-    action todo;
-    actfunc act;
-}
-
 public class Person : MonoBehaviour {
 
     [HideInInspector]
@@ -58,7 +47,7 @@ public class Person : MonoBehaviour {
     [HideInInspector]
     public Dictionary<Resources, int> Resources = new Dictionary<Resources, int>();
 
-    public List<DoAction> ToDoList = new List<DoAction>();
+    public List<action> ToDoList = new List<action>();
     
     public IVec2 currentMapPos = new IVec2();
 
@@ -68,9 +57,9 @@ public class Person : MonoBehaviour {
     PathFinder finder = null;
 
     uint PathID = 0;
-    float actionStartTime = 0;
+    int BusyTime = 0;
   
-    int actiontime = 0;
+    float time = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -82,10 +71,83 @@ public class Person : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        time += Time.deltaTime;
 
-
-       
-	
+        if(time > Map.TimeUnit)
+        {
+            time = 0;
+            if(BusyTime >0)
+            {
+                BusyTime--;
+                return;
+            }
+            if(ToDoList.Count >0)
+            {
+                switch (ToDoList[0])
+                {
+                    case action.Family:
+                        //check for another person 
+                        //check the Building
+                        //set busy time
+                        break;
+                    case action.Educate:
+                        //check for another person 
+                        //check the Building
+                        //set busy time
+                        break;
+                    case action.Train:
+                        //check for another person 
+                        //check the Building
+                        //set busy time
+                        break;
+                    case action.CutTree:
+                        //check for Tree resource 
+                        //check the Skill
+                        //set busy time
+                        break;
+                    case action.Mine:
+                        //check for resource 
+                        //check the Skill
+                        //set busy time
+                        break;
+                    case action.Store:
+                        //check for resource 
+                        //set busy time
+                        break;
+                    case action.Move:
+                        //move
+                        //set busy time
+                        break;
+                    case action.Smelt:
+                        //check for resource 
+                        //check the Skill
+                        //set busy time
+                        break;
+                    case action.Quarry:
+                        //check the Skill
+                        //set busy time
+                        break;
+                    case action.SawWood:
+                        //check for resource 
+                        //check the Skill
+                        //set busy time
+                        break;
+                    case action.MakeTool:
+                        //check for resource 
+                        //check the Skill
+                        //set busy time
+                        break;
+                    case action.Combat:
+                        //check the Skill
+                        //Check chance
+                        //set busy time
+                        //Kill person?
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
 	}
 
 
@@ -101,16 +163,12 @@ public class Person : MonoBehaviour {
         currentstate = State.move;
 
         PathID = finder.GetPath(currentMapPos, toLocation, 0.01f);
-
-        actionStartTime = Time.time;
        
     }
 
-    public void SetBusy(int timeUnits, actfunc waitcallback)
+    public void SetBusy(int timeUnits)
     {
-        currentstate = State.action;
-        actionStartTime = Time.time;
-        actiontime = timeUnits;
+        BusyTime = timeUnits;
     }
 
 

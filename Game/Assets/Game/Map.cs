@@ -38,7 +38,7 @@ public class Map : MonoBehaviour {
     public static Dictionary<ResourceType, int> GlobalResources = new Dictionary<ResourceType, int>();
 
 
-    public float TimeUnit = 1;
+    public static float TimeUnit = 1;
 
     private float timePassed = 0;
 
