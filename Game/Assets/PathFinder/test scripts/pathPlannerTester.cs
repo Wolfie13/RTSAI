@@ -30,7 +30,7 @@ public class pathPlannerTester : MonoBehaviour {
     {
         if(pathID == 0)
         {
-            pathID = finder.GetPath(istartpos, iendpos, 16);
+            pathID = finder.GetPath(istartpos, iendpos);
         }
                    
 	}

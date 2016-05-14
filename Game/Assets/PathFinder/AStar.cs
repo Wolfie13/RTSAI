@@ -13,7 +13,7 @@ public class AStar {
 
     private Dictionary<uint, IVec2> EndPos = new Dictionary<uint,IVec2>();
 
-    public IEnumerator GetPath(IVec2 MapPosStart, IVec2 MapPosEnd, int Maxsteps, float TimePerframe, uint ID)
+    public IEnumerator GetPath(IVec2 MapPosStart, IVec2 MapPosEnd, int Maxsteps, float TimePerframe, uint ID, Person jim)
     {
         List<Node> result = new List<Node>();
 
@@ -31,7 +31,7 @@ public class AStar {
         EndPos.Add(ID, MapPosEnd);
         startNode.NodeInfo = new Node();
         startNode.NodeInfo.MapPos = MapPosStart;
-        startNode.NodeInfo.MapSymbol = PathFinder.CurrentMap.getTile(MapPosStart.x, MapPosStart.y);
+        startNode.NodeInfo.MapSymbol = Map.CurrentMap.getTile(MapPosStart.x, MapPosStart.y);
         startNode.DistanceGone = 0;
         startNode.Distance2Go = GetDirectDistance2End(MapPosStart,ID);
         openQueue.Add(startNode);
@@ -74,9 +74,9 @@ public class AStar {
             openQueue.Sort((AStarNodes a, AStarNodes b) => (a.Distance2Go + a.DistanceGone).CompareTo(b.Distance2Go + b.DistanceGone));
 
 
-            //Debug.Log("OpenQueue size: " + openQueue.Count);
+            Debug.Log("OpenQueue size: " + openQueue.Count);
 
-            //Debug.Log("close list size: " + CloseList.Count);
+            Debug.Log("close list size: " + CloseList.Count);
         }
 
         while(EndNode != null)
@@ -98,6 +98,14 @@ public class AStar {
             theWay.FoundPath = result;
             theWay.isPathFound = result.Count > 0;
             PathFinder.Paths[ID] = theWay;
+            if (jim)
+            {
+                for (int i = 0; i < result.Count; i++)
+                {
+                    jim.ToDoList.Add(action.Move);
+                }
+            }
+            
         }
     }
 
@@ -112,9 +120,7 @@ public class AStar {
     {
         List<AStarNodes> NextPositions = new List<AStarNodes>();
 
-       
-        IVec2 offset = new IVec2(-1,-1);
-        for (; offset.x <= 1; ++offset.x )
+        for (IVec2 offset = new IVec2(-1, -1); offset.x <= 1; ++offset.x)
         {
 
             for (offset.y = -1; offset.y <= 1; ++offset.y)
@@ -122,17 +128,17 @@ public class AStar {
                 IVec2 newPos = CurrentNode.NodeInfo.MapPos + offset;
 
                 if(newPos.x <0 || 
-                    newPos.x > PathFinder.CurrentMap.sizeX)
+                    newPos.x > Map.CurrentMap.sizeX)
                      break;
 
                 if (newPos.y < 0 || newPos == CurrentNode.NodeInfo.MapPos ||
-                    newPos.y > PathFinder.CurrentMap.sizeY)
+                    newPos.y > Map.CurrentMap.sizeY ||
+                    offset == new IVec2(0,0))
                     continue;
 
                
-                if(PathFinder.CurrentMap.getObject(newPos.x, newPos.y) != null &&(
-                   Map.Trees.Contains(PathFinder.CurrentMap.getTile(newPos.x, newPos.y)) ||
-                   Map.Terrain.Contains(PathFinder.CurrentMap.getTile(newPos.x, newPos.y))))
+                if(Map.Trees.Contains(Map.CurrentMap.getTile(newPos.x, newPos.y)) ||
+                   Map.Terrain.Contains(Map.CurrentMap.getTile(newPos.x, newPos.y)))
                 {
                     AStarNodes newNode = new AStarNodes();
 

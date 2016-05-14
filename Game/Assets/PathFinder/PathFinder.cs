@@ -43,22 +43,28 @@ public class PathFinder : MonoBehaviour {
     // this is a bridge class to call the Path Finding Functions 
    static private AStar AStar = new AStar();
 
-   public static Map CurrentMap = null;
-
     public static Dictionary<uint,path> Paths = new Dictionary<uint,path>();
 
     private static uint count = 1;
 
     void Start () {
-        CurrentMap = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>();
         DontDestroyOnLoad(this);
 	}
 
 
-
-    public uint GetPath(IVec2 MapPosStart, IVec2 MapPosEnd, float TimePerframe = float.MaxValue, int Maxsteps = int.MaxValue)
+    public uint GetPath(IVec2 MapPosStart, IVec2 MapPosEnd, float TimePerframe, Person jim)
     {
-        if(!CurrentMap)
+        return GetPath(MapPosStart, MapPosEnd, TimePerframe, int.MaxValue, jim);
+    }
+
+    public uint GetPath(IVec2 MapPosStart, IVec2 MapPosEnd, Person jim )
+    {
+        return GetPath(MapPosStart, MapPosEnd, float.MaxValue, int.MaxValue, jim);
+    }
+
+    public uint GetPath(IVec2 MapPosStart, IVec2 MapPosEnd, float TimePerframe = float.MaxValue, int Maxsteps = int.MaxValue, Person jim = null)
+    {
+        if(!Map.CurrentMap)
             return 0;
         
         // returns 0 if failed returns an ID for you path if success
@@ -69,7 +75,7 @@ public class PathFinder : MonoBehaviour {
         temp.isPathFound = false;
         Paths.Add(ID,temp);
 
-        StartCoroutine(AStar.GetPath(MapPosStart, MapPosEnd, Maxsteps, TimePerframe, ID));
+        StartCoroutine(AStar.GetPath(MapPosStart, MapPosEnd, Maxsteps, TimePerframe, ID, jim));
 
         return ID;
     }

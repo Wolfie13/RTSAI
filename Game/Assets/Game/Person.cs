@@ -62,8 +62,10 @@ public class Person : MonoBehaviour {
     float time = 0;
 
 	// Use this for initialization
-	void Start () {
+	IEnumerator Start () {
         finder = GameObject.FindGameObjectWithTag("Map").GetComponent<PathFinder>();
+
+        yield return new WaitForSeconds(1f);
 
         if (Map.CurrentMap)
             currentMapPos = Map.CurrentMap.getTileFromPos(transform.position);
@@ -318,7 +320,7 @@ public class Person : MonoBehaviour {
 
         currentstate = State.move;
 
-        PathID = finder.GetPath(currentMapPos, toLocation, 0.01f);
+        PathID = finder.GetPath(currentMapPos, toLocation, 0.01f,this);
        
     }
 
