@@ -139,6 +139,16 @@ public class Map : MonoBehaviour {
         // code to create person here
     }
 
+    public Person GetNonBusyPersonAt(IVec2 MapPos)
+    {
+        foreach (var item in GetPeopleAt(MapPos))
+        {
+            if (item.ToDoList.Count == 0)
+                return item;
+        }
+        return null;
+    }
+
     public List<Person> GetPeopleAtBuilding(Building b)
     {
         List<Person> result = new List<Person>();

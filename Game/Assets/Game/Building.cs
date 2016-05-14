@@ -258,7 +258,7 @@ public class Building : MapObject {
             {
                 foreach (var item in Map.CurrentMap.GetPeopleAt(m_MapPos + offset))
                 {
-                    if (item.ToDoList.Count == 0)
+                    if (item.ToDoList.Count == 0 && item.BusyTime == 0)
                     {
                         john = item;
                         break;

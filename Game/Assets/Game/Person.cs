@@ -57,7 +57,7 @@ public class Person : MonoBehaviour {
     PathFinder finder = null;
 
     uint PathID = 0;
-    int BusyTime = 0;
+    public int BusyTime = 0;
   
     float time = 0;
 
@@ -108,14 +108,63 @@ public class Person : MonoBehaviour {
 
                         break;
                     case action.Educate:
-                        //check for another person 
-                        //check the Building
-                        //set busy time
+                        if (Map.CurrentMap.getObject(currentMapPos) is Building)
+                        {
+                            Building CurrentBuilding = (Building)Map.CurrentMap.getObject(currentMapPos);
+
+                            if (Skills.Contains(Skill.Rifleman)
+                                && CurrentBuilding.m_buildingtype == BuildingType.Barracks
+                                && CurrentBuilding.GetNonBusyPersonInBuilding() != null)
+                            {
+                                var other = CurrentBuilding.GetNonBusyPersonInBuilding();
+                                SetBusy(30);
+                                other.SetBusy(30);
+                                other.Skills.Add(Skill.Rifleman);
+                            }
+                        }
+                        else
+                        {
+                            Person other = Map.CurrentMap.GetNonBusyPersonAt(currentMapPos);
+                            if (other == null)
+                                break;
+
+                            foreach (var item in Skills)
+                            {
+                                if(!other.Skills.Contains(item))
+                                {
+                                    other.SetBusy(100);
+                                    SetBusy(100);
+                                    other.Skills.Add(item);
+                                    break;
+                                }
+                            }
+                        }
                         break;
                     case action.Train:
-                        //check for another person 
-                        //check the Building
-                        //set busy time
+                        if (Map.CurrentMap.getObject(currentMapPos) is Building)
+                        {
+                            Building CurrentBuilding = (Building)Map.CurrentMap.getObject(currentMapPos);
+
+                            if (CurrentBuilding.m_buildingtype == BuildingType.School)
+                            {
+                                var other = CurrentBuilding.GetNonBusyPersonInBuilding();
+                                while (other != null)
+                                {
+                                    foreach (var item in Skills)
+                                    {
+                                        if (!other.Skills.Contains(item))
+                                        {
+                                            other.SetBusy(50);
+                                            SetBusy(50);
+                                            other.Skills.Add(item);
+                                            break;
+                                        }
+                                    }
+                                    other = CurrentBuilding.GetNonBusyPersonInBuilding();
+                                }
+                            }
+                            
+                        }
                         break;
                     case action.CutTree:
                         //check for Tree resource 
@@ -188,7 +237,7 @@ public class Person : MonoBehaviour {
         BusyTime = timeUnits;
     }
 
-
+    
 
     void OnDrawGizmos()
     {
