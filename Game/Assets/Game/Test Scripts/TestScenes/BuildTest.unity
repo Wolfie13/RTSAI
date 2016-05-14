@@ -85,6 +85,7 @@ GameObject:
   - 4: {fileID: 617725212}
   - 114: {fileID: 617725211}
   - 114: {fileID: 617725213}
+  - 114: {fileID: 617725214}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -114,7 +115,7 @@ MonoBehaviour:
   NumberOfPeople: 0
   PeopleSkils: 01000000
   DelayTime: 1
-  type: 2
+  type: 0
 --- !u!4 &617725212
 Transform:
   m_ObjectHideFlags: 0
@@ -146,10 +147,26 @@ MonoBehaviour:
   GlobleCoal: 0
   SpawnX: 256
   SpawnY: 256
-  NumberOfPeople: 0
-  PeopleSkils: 
-  DelayTime: 5
-  ActToDo: 000000000000000000000000
+  NumberOfPeople: 1
+  PeopleSkils: 05000000
+  DelayTime: 2
+  ActToDo: 030000000300000003000000
+--- !u!114 &617725214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 617725210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 897b51eb5da473949b479145e2756067, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceAmount: 0
+  type: 1
+  SpawnX: 256
+  SpawnY: 256
+  DelayTime: 1
 --- !u!1 &1078487764
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,7 +267,7 @@ MonoBehaviour:
   Scroll_Shift_Speed: 5
   Camera_Zoom_Step: 5
   UI_size: {x: 128, y: 50}
-  UIPos: {x: .100000001, y: .100000001}
+  UIPos: {x: 0, y: 0}
   UI_Distance: 10
   Min_Zoom_Dist: 2
   Max_Zoom_Dist: 75
