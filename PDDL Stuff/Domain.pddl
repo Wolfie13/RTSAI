@@ -158,7 +158,7 @@
 	(:action storeTimber
 			:parameters(?person - person ?storage - place)
 			:precondition(and(at ?person ?storage) (has-storage ?storage) (has-timber ?person))
-			:effect(store-timber ?storage)
+			:effect(stored-timber ?storage)
 	)
 			
 )	
