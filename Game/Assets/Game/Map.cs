@@ -229,7 +229,8 @@ public class Map : MonoBehaviour {
         {
             for (offset.y = 0; offset.y < Building.Sizes[type].y; offset.y++)
             {
-                if(!Terrain.Contains(getTile(Pos + offset)))
+                IVec2 newPos = Pos + offset;
+                if (!Terrain.Contains(getTile(newPos)) || getObject(newPos) is Building)
                     Buildable = false;
             }
         }
