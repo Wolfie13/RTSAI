@@ -27,6 +27,7 @@
 		(has-coal ?person - person)
 		(has-ore ?person - person)
 		(has-iron ?person - person)
+		(has-stone ?person - person)
 
 		(is-carpenter ?person - person)
 		(is-blacksmith ?person - person)
@@ -119,13 +120,17 @@
 			:precondition(and(is-miner ?miner) (at ?miner ?mine) (has-coalmine ?mine))
 			:effect(has-coal ?miner)
 	)
-	
-	;; ----- Quarry Quarryable Stone ------ ;;
+
+	(:action cutStone
+			:parameters(?stonecutter - person ?quarry - place)
+			:precondition(and(at ?stonecutter ?quarry) (has-quarry ?quarry))
+			:effect(has-stone ?stonecutter)
+	)
 	
 	
 	(:action produceWood
 			:parameters(?person - person ?sawmill - place)
-			:precondition(and(has-timber ?person) (at ?person ?sawmill) (has-sawmill ?place))
+			:precondition(and(has-timber ?person) (at ?person ?sawmill) (has-sawmill ?sawmill))
 			:effect(has-wood ?person)
 	)
 	
