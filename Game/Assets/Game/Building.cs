@@ -61,10 +61,13 @@ public class Building : MapObject {
 
     IVec2 m_buildingSize;
 
+    public int teamID;
+
 
     //returns true if sucsessful
-    public bool Build(BuildingType type, IVec2 mapPos)
+    public bool Build(BuildingType type, IVec2 mapPos, int ID)
     {
+        teamID = ID;
         bool building = true;
         m_buildingtype = type;
         m_MapPos = mapPos;
@@ -134,48 +137,48 @@ public class Building : MapObject {
             //Spend Resource and set Busy timers
             //all require a labourer
             GetNonBusyPersonInBuildingWithSkill(Skill.Labourer).SetBusy(BuildTime[m_buildingtype]);
-
+            PlayerData CurrentTeamData = Map.CurrentMap.GetTeamData(teamID);
             switch (m_buildingtype)
             {
                 case BuildingType.House:
-                    Map.GlobalResources[ResourceType.Stone]--;
-                    Map.GlobalResources[ResourceType.Wood]--;
+                    CurrentTeamData.Resources[ResourceType.Stone]--;
+                    CurrentTeamData.Resources[ResourceType.Wood]--;
                     GetNonBusyPersonInBuildingWithSkill(Skill.Carpenter).SetBusy(BuildTime[m_buildingtype]);
                     break;
                 case BuildingType.School:
-                    Map.GlobalResources[ResourceType.Stone]--;
-                    Map.GlobalResources[ResourceType.Wood]--;
-                    Map.GlobalResources[ResourceType.Iron]--;
+                    CurrentTeamData.Resources[ResourceType.Stone]--;
+                    CurrentTeamData.Resources[ResourceType.Wood]--;
+                    CurrentTeamData.Resources[ResourceType.Iron]--;
                     GetNonBusyPersonInBuildingWithSkill(Skill.Carpenter).SetBusy(BuildTime[m_buildingtype]);
                     break;
                 case BuildingType.Barracks:
-                    Map.GlobalResources[ResourceType.Stone]--;
-                    Map.GlobalResources[ResourceType.Wood]--;
+                    CurrentTeamData.Resources[ResourceType.Stone]--;
+                    CurrentTeamData.Resources[ResourceType.Wood]--;
                     GetNonBusyPersonInBuildingWithSkill(Skill.Carpenter).SetBusy(BuildTime[m_buildingtype]);
                     break;
                 case BuildingType.Storage:
-                    Map.GlobalResources[ResourceType.Stone]--;
-                    Map.GlobalResources[ResourceType.Wood]--;
+                    CurrentTeamData.Resources[ResourceType.Stone]--;
+                    CurrentTeamData.Resources[ResourceType.Wood]--;
                     GetNonBusyPersonInBuildingWithSkill(Skill.Carpenter).SetBusy(BuildTime[m_buildingtype]);
                     break;
                 case BuildingType.Mine:
-                    Map.GlobalResources[ResourceType.Wood]--;
-                    Map.GlobalResources[ResourceType.Iron]--;
+                    CurrentTeamData.Resources[ResourceType.Wood]--;
+                    CurrentTeamData.Resources[ResourceType.Iron]--;
                     GetNonBusyPersonInBuildingWithSkill(Skill.Carpenter).SetBusy(BuildTime[m_buildingtype]);
                     GetNonBusyPersonInBuildingWithSkill(Skill.Blacksmith).SetBusy(BuildTime[m_buildingtype]);
                     break;
                 case BuildingType.Smelter:
-                    Map.GlobalResources[ResourceType.Stone]--;
+                    CurrentTeamData.Resources[ResourceType.Stone]--;
                     break;
                 case BuildingType.Sawmill:
-                    Map.GlobalResources[ResourceType.Stone]--;
-                    Map.GlobalResources[ResourceType.Iron]--;
-                    Map.GlobalResources[ResourceType.Timber]--;
+                    CurrentTeamData.Resources[ResourceType.Stone]--;
+                    CurrentTeamData.Resources[ResourceType.Iron]--;
+                    CurrentTeamData.Resources[ResourceType.Timber]--;
                     break;
                 case BuildingType.Blacksmith:
-                    Map.GlobalResources[ResourceType.Stone]--;
-                    Map.GlobalResources[ResourceType.Iron]--;
-                    Map.GlobalResources[ResourceType.Timber]--;
+                    CurrentTeamData.Resources[ResourceType.Stone]--;
+                    CurrentTeamData.Resources[ResourceType.Iron]--;
+                    CurrentTeamData.Resources[ResourceType.Timber]--;
 
                     break;
                 default:
@@ -187,7 +190,7 @@ public class Building : MapObject {
 
     bool CheckResource(ResourceType type)
     {
-          if (Map.GlobalResources[type] > 0)
+          if (Map.CurrentMap.GetTeamData(teamID).Resources[type] > 0)
           {
               return true;
           }
@@ -204,7 +207,7 @@ public class Building : MapObject {
             {
                  foreach (var item in Map.CurrentMap.GetPeopleAt(m_MapPos + offset))
                 {
-                    if (item.Skills.Contains(WantedSkill))
+                    if (item.Skills.Contains(WantedSkill) && item.teamID == teamID)
                     {
                         Skillfound = true;
                         break;
@@ -230,7 +233,7 @@ public class Building : MapObject {
             {
                 foreach (var item in Map.CurrentMap.GetPeopleAt(m_MapPos + offset))
                 {
-                    if (item.Skills.Contains(wantedSkill) && item.ToDoList.Count == 0)
+                    if (item.Skills.Contains(wantedSkill) && item.ToDoList.Count == 0 && item.teamID == teamID)
                     {
                         john = item;
                         break;
@@ -257,7 +260,7 @@ public class Building : MapObject {
             {
                 foreach (var item in Map.CurrentMap.GetPeopleAt(m_MapPos + offset))
                 {
-                    if (item.ToDoList.Count == 0 && item.BusyTime == 0)
+                    if (item.ToDoList.Count == 0 && item.BusyTime == 0 && item.teamID == teamID)
                     {
                         john = item;
                         break;

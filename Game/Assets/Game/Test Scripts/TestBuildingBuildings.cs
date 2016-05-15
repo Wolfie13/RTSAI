@@ -19,6 +19,7 @@ public class TestBuildingBuildings : MonoBehaviour {
     public float DelayTime = 1f;
 
     public BuildingType type;
+    public int teamID = 0;
 
 
 
@@ -32,25 +33,25 @@ public class TestBuildingBuildings : MonoBehaviour {
 
         for (int i = 0; i < NumberOfPeople; i++)
         {
-             Map.CurrentMap.AddPerson(MapPos);
+             Map.CurrentMap.AddPerson(MapPos, teamID);
         }
         foreach (var item in Map.CurrentMap.GetPeopleAt(MapPos))
         {
-            if (NumberOfPeople > 0)
+            if (NumberOfPeople > 0 && item.teamID == teamID)
             {
                 item.Skills.AddRange(PeopleSkils);
                 NumberOfPeople--;
             }
         }
 
-        Map.GlobalResources[ResourceType.Coal] = GlobleCoal;
-        Map.GlobalResources[ResourceType.Iron] = GlobleIron;
-        Map.GlobalResources[ResourceType.Ore] = GlobleOre;
-        Map.GlobalResources[ResourceType.Stone] = GlobleStone;
-        Map.GlobalResources[ResourceType.Timber] = GlobleTimber;
-        Map.GlobalResources[ResourceType.Wood] = GlobleWood;
+        Map.CurrentMap.GetTeamData(teamID).Resources[ResourceType.Coal] = GlobleCoal;
+        Map.CurrentMap.GetTeamData(teamID).Resources[ResourceType.Iron] = GlobleIron;
+        Map.CurrentMap.GetTeamData(teamID).Resources[ResourceType.Ore] = GlobleOre;
+        Map.CurrentMap.GetTeamData(teamID).Resources[ResourceType.Stone] = GlobleStone;
+        Map.CurrentMap.GetTeamData(teamID).Resources[ResourceType.Timber] = GlobleTimber;
+        Map.CurrentMap.GetTeamData(teamID).Resources[ResourceType.Wood] = GlobleWood;
 
-        if (!Map.CurrentMap.BuildBuilding(type, MapPos))
+        if (!Map.CurrentMap.BuildBuilding(type, MapPos, teamID))
         {
             Debug.Log("Building couldn't be built");
         }

@@ -20,6 +20,8 @@ public class TestAction : MonoBehaviour {
 
     public List<action> ActToDo = new List<action>();
 
+    public int teamID = 0;
+
 
 
 
@@ -32,19 +34,20 @@ public class TestAction : MonoBehaviour {
 
         for (int i = 0; i < NumberOfPeople; i++)
         {
-            Map.CurrentMap.AddPerson(MapPos);
+            Map.CurrentMap.AddPerson(MapPos, teamID);
         }
         foreach (var item in Map.CurrentMap.GetPeopleAt(MapPos))
         {
-            item.Skills.AddRange(PeopleSkils);
+            if(item.teamID == teamID)
+                item.Skills.AddRange(PeopleSkils);
         }
 
-        Map.GlobalResources[ResourceType.Coal] = GlobleCoal;
-        Map.GlobalResources[ResourceType.Iron] = GlobleIron;
-        Map.GlobalResources[ResourceType.Ore] = GlobleOre;
-        Map.GlobalResources[ResourceType.Stone] = GlobleStone;
-        Map.GlobalResources[ResourceType.Timber] = GlobleTimber;
-        Map.GlobalResources[ResourceType.Wood] = GlobleWood;
+        Map.CurrentMap.GetTeamData(teamID).Resources[ResourceType.Coal] = GlobleCoal;
+        Map.CurrentMap.GetTeamData(teamID).Resources[ResourceType.Iron] = GlobleIron;
+        Map.CurrentMap.GetTeamData(teamID).Resources[ResourceType.Ore] = GlobleOre;
+        Map.CurrentMap.GetTeamData(teamID).Resources[ResourceType.Stone] = GlobleStone;
+        Map.CurrentMap.GetTeamData(teamID).Resources[ResourceType.Timber] = GlobleTimber;
+        Map.CurrentMap.GetTeamData(teamID).Resources[ResourceType.Wood] = GlobleWood;
 
         Map.CurrentMap.GetPeopleAt(MapPos)[0].ToDoList.AddRange(ActToDo);
     }
