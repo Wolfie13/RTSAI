@@ -28,6 +28,9 @@
 		(has-ore ?person - person)
 		(has-iron ?person - person)
 		(has-stone ?person - person)
+		(has-axe ?person - person)
+		
+		(stored-timber ?storage - place)
 
 		(is-carpenter ?person - person)
 		(is-blacksmith ?person - person)
@@ -139,4 +142,23 @@
 			:precondition(and(has-coal ?person) (has-ore ?person) (at ?person ?smelter) (has-smelter ?smelter))
 			:effect(has-iron ?person)
 	)
+	
+	(:action makeTool
+			:parameters(?blacksmith - person ?place - place)
+			:precondition(and(at ?blacksmith ?place) (is-blacksmith ?blacksmith) (has-smelter ?place))
+			:effect(has-axe ?blacksmith)
+	)
+	
+	;; --------- Build Building ---------- ;;
+	
+	
+	
+	;; --------- Store Resource ---------- ;;
+	
+	(:action storeTimber
+			:parameters(?person - person ?storage - place)
+			:precondition(and(at ?person ?storage) (has-storage ?storage) (has-timber ?person))
+			:effect(store-timber ?storage)
+	)
+			
 )	
