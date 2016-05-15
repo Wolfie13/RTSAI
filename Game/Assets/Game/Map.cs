@@ -38,10 +38,9 @@ public class Map : MonoBehaviour {
     private List<Building> Buildings = new List<Building>();
     private List<Person> People = new List<Person>();
 
-    public static Map CurrentMap = null;
+    private List<PlayerData> Players = new List<PlayerData>();
 
-    //resources
-    public static Dictionary<ResourceType, int> GlobalResources = new Dictionary<ResourceType, int>();
+    public static Map CurrentMap = null;
 
     [Range(0,1)]
     public float ResourceChance = 0.5f;
@@ -49,6 +48,8 @@ public class Map : MonoBehaviour {
     public static float TimeUnit = 1;
 
     private float timePassed = 0;
+
+    public int NumberOfPlayers = 2;
 
     //passable
     public static IList<char> Terrain = new List<char>{ '.', 'G' }.AsReadOnly();
@@ -142,13 +143,14 @@ public class Map : MonoBehaviour {
         }
         return results;
     }
-    public void AddPerson(IVec2 Pos)
+    public void AddPerson(IVec2 Pos, int TeamID)
     {
         if(Human)
         {
             GameObject go = (GameObject)Instantiate(Human, getTilePos(Pos),Quaternion.Euler(Vector3.zero));
-
+            go.GetComponent<Person>().teamID = TeamID;
             People.Add(go.GetComponent<Person>());
+            Players[TeamID].People.Add(go.GetComponent<Person>());
         }
     }
 
@@ -193,14 +195,14 @@ public class Map : MonoBehaviour {
 
     public List<Building> GetBuildings() { return Buildings; }
 
-    public bool BuildBuilding(BuildingType type, IVec2 Pos)
+    public bool BuildBuilding(BuildingType type, IVec2 Pos, int teamID)
     {
         bool isBuilding = false;
 
         if(CanBuild(type,Pos))
         {
             Building newBuilding = new Building();
-            isBuilding = newBuilding.Build(type, Pos);
+            isBuilding = newBuilding.Build(type, Pos, teamID);
              if(isBuilding)
              {
                  for (IVec2 offset = new IVec2();  offset.x < Building.Sizes[type].x; offset.x++)
@@ -244,6 +246,14 @@ public class Map : MonoBehaviour {
         t.setTile(type, MapPos,ResourceAmount);
     }
 
+    public PlayerData GetTeamData(int TeamID)
+    {
+        if (TeamID < 0 || TeamID >= Players.Count)
+            return null;
+
+        return Players[TeamID];
+    }
+
 	// Use this for initialization
 	void Start () {
 
@@ -255,20 +265,21 @@ public class Map : MonoBehaviour {
 
 		load (MapName);
 		initChunks ();
-        ResetResources();
 
         IVec2 StartPos = new IVec2(startX,startY);
-        AddPerson(StartPos);
 
-        //first person spawned has all the skills
-        for (Skill i = Skill.Labourer; i <= Skill.Rifleman; i++)
-        {
-            if(!People[0].Skills.Contains(i))
-                People[0].Skills.Add(i);
-        }
-
-        //second is dumb
-        AddPerson(StartPos);
+        for (int i = 0; i < NumberOfPlayers; i++)
+		{
+			PlayerData player = new PlayerData(Players.Count);
+            Players.Add(player);
+            AddPerson(StartPos, player.TeamID);
+            for (Skill s = Skill.Labourer; s <= Skill.Rifleman; s++)
+            {
+                if(!player.People[0].Skills.Contains(s))
+                    player.People[0].Skills.Add(s);
+            }
+            AddPerson(StartPos, player.TeamID);
+		}
 	}
 
 	void load(string filename)
@@ -351,14 +362,7 @@ public class Map : MonoBehaviour {
 		}
 	}
 
-    private void ResetResources()
-    {
-        GlobalResources.Clear();
-        for (ResourceType i = ResourceType.Wood; i < ResourceType.NumOfResourcetypes; i++)
-        {
-            GlobalResources.Add(i, 0);
-        }
-    }
+    
 
 	public bool isLoaded() {
 		return mapTiles != null;

@@ -61,6 +61,8 @@ public class Person : MonoBehaviour {
   
     float time = 0;
 
+    public int teamID;
+
 	// Use this for initialization
 	IEnumerator Start () {
         finder = GameObject.FindGameObjectWithTag("Map").GetComponent<PathFinder>();
@@ -88,6 +90,7 @@ public class Person : MonoBehaviour {
             }
             if(ToDoList.Count >0)
             {
+                PlayerData CurrentTeamData = Map.CurrentMap.GetTeamData(teamID);
                 switch (ToDoList[0])
                 {
                     case action.Family:
@@ -95,18 +98,19 @@ public class Person : MonoBehaviour {
                         {
                             Building CurrentBuilding = (Building)Map.CurrentMap.getObject(currentMapPos);
                             //check for another person 
-                            if (CurrentBuilding.GetNonBusyPersonInBuilding() != null)
+                            var other = CurrentBuilding.GetNonBusyPersonInBuilding();
+                            if (CurrentBuilding.teamID == teamID && other != null && other.teamID == teamID)
                             {
                                 SetBusy(20);
                                 CurrentBuilding.GetNonBusyPersonInBuilding().SetBusy(20);
                                 if (CurrentBuilding.m_buildingtype == BuildingType.turfHut)
                                 {
-                                    Map.CurrentMap.AddPerson(currentMapPos);
+                                    Map.CurrentMap.AddPerson(currentMapPos,teamID);
                                 }
                                 else if( CurrentBuilding.m_buildingtype == BuildingType.House)
                                 {
-                                    Map.CurrentMap.AddPerson(currentMapPos);
-                                    Map.CurrentMap.AddPerson(currentMapPos);
+                                    Map.CurrentMap.AddPerson(currentMapPos, teamID);
+                                    Map.CurrentMap.AddPerson(currentMapPos, teamID);
                                 }
                             }
                         }
@@ -117,11 +121,15 @@ public class Person : MonoBehaviour {
                         {
                             Building CurrentBuilding = (Building)Map.CurrentMap.getObject(currentMapPos);
 
+                            var other = CurrentBuilding.GetNonBusyPersonInBuilding();
+
                             if (Skills.Contains(Skill.Rifleman)
                                 && CurrentBuilding.m_buildingtype == BuildingType.Barracks
-                                && CurrentBuilding.GetNonBusyPersonInBuilding() != null)
+                                && CurrentBuilding.teamID == teamID
+                                && other != null
+                                && other.teamID == teamID)
                             {
-                                var other = CurrentBuilding.GetNonBusyPersonInBuilding();
+                           
                                 SetBusy(30);
                                 other.SetBusy(30);
                                 other.Skills.Add(Skill.Rifleman);
@@ -130,7 +138,7 @@ public class Person : MonoBehaviour {
                         else
                         {
                             Person other = Map.CurrentMap.GetNonBusyPersonAt(currentMapPos);
-                            if (other == null)
+                            if (other == null || other.teamID != teamID)
                                 break;
 
                             foreach (var item in Skills)
@@ -150,10 +158,11 @@ public class Person : MonoBehaviour {
                         {
                             Building CurrentBuilding = (Building)Map.CurrentMap.getObject(currentMapPos);
 
-                            if (CurrentBuilding.m_buildingtype == BuildingType.School)
+                            if (CurrentBuilding.m_buildingtype == BuildingType.School
+                                && CurrentBuilding.teamID == teamID)
                             {
                                 var other = CurrentBuilding.GetNonBusyPersonInBuilding();
-                                while (other != null)
+                                while (other != null && other.teamID == teamID)
                                 {
                                     foreach (var item in Skills)
                                     {
@@ -189,7 +198,8 @@ public class Person : MonoBehaviour {
                             Building CurrentBuilding = (Building)Map.CurrentMap.getObject(currentMapPos);
 
                             if (Skills.Contains(Skill.Miner)
-                                && CurrentBuilding.m_buildingtype == BuildingType.Mine)
+                                && CurrentBuilding.m_buildingtype == BuildingType.Mine
+                                && CurrentBuilding.teamID == teamID)
                             {
                                 SetBusy(5);   
                                 //random chance to get coal or ore
@@ -219,12 +229,13 @@ public class Person : MonoBehaviour {
                         {
                             Building CurrentBuilding = (Building)Map.CurrentMap.getObject(currentMapPos);
 
-                            if (CurrentBuilding.m_buildingtype == BuildingType.Storage)
+                            if (CurrentBuilding.m_buildingtype == BuildingType.Storage
+                                && CurrentBuilding.teamID == teamID)
                             {
                                 SetBusy(1);
                                 foreach (var item in Resources)
                                 {
-                                    Map.GlobalResources[item.Key] += item.Value;
+                                    Map.CurrentMap.GetTeamData(teamID).Resources[item.Key] += item.Value;
                                     Resources[item.Key] = 0;
                                 }
                             }
@@ -251,13 +262,14 @@ public class Person : MonoBehaviour {
                             Building CurrentBuilding = (Building)Map.CurrentMap.getObject(currentMapPos);
 
                             if (CurrentBuilding.m_buildingtype == BuildingType.Smelter
+                                && CurrentBuilding.teamID == teamID
                                 && Skills.Contains(Skill.Labourer)
-                                && Map.GlobalResources[ResourceType.Ore] > 0
-                                && Map.GlobalResources[ResourceType.Coal] > 0)
+                                && CurrentTeamData.Resources[ResourceType.Ore] > 0
+                                && CurrentTeamData.Resources[ResourceType.Coal] > 0)
                             {
                                 SetBusy(5);
-                                Map.GlobalResources[ResourceType.Ore]--;
-                                Map.GlobalResources[ResourceType.Coal]--;
+                                CurrentTeamData.Resources[ResourceType.Ore]--;
+                                CurrentTeamData.Resources[ResourceType.Coal]--;
 
                                 Resources[ResourceType.Iron]++;
                             }
@@ -269,6 +281,7 @@ public class Person : MonoBehaviour {
                             Building CurrentBuilding = (Building)Map.CurrentMap.getObject(currentMapPos);
 
                             if (CurrentBuilding.m_buildingtype == BuildingType.Quarry
+                                && CurrentBuilding.teamID == teamID
                                 && Skills.Contains(Skill.Labourer))
                             {
                                 SetBusy(5);
@@ -282,11 +295,12 @@ public class Person : MonoBehaviour {
                             Building CurrentBuilding = (Building)Map.CurrentMap.getObject(currentMapPos);
 
                             if (CurrentBuilding.m_buildingtype == BuildingType.Sawmill
+                                && CurrentBuilding.teamID == teamID
                                 && Skills.Contains(Skill.Labourer)
-                                 && Map.GlobalResources[ResourceType.Timber] > 0)
+                                && CurrentTeamData.Resources[ResourceType.Timber] > 0)
                             {
                                 SetBusy(10);
-                                Map.GlobalResources[ResourceType.Timber]--;
+                                CurrentTeamData.Resources[ResourceType.Timber]--;
                                 Resources[ResourceType.Wood]++;
                             }
                         }

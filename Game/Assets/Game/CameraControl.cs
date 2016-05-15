@@ -112,14 +112,14 @@ public class CameraControl : MonoBehaviour {
     {
         ////object info
       
-        int CurrentLine = 0;
-        GUI.BeginGroup(new Rect(Screen.width * UIPos.x, Screen.height * UIPos.y, Screen.width - Screen.width * UIPos.x, Screen.height - Screen.height * UIPos.y));
-        foreach (var item in Map.GlobalResources)
-        {
-            AddLable(item.Key.ToString() + ": " + item.Value.ToString(), ref CurrentLine);
-        } 
+        //int CurrentLine = 0;
+        //GUI.BeginGroup(new Rect(Screen.width * UIPos.x, Screen.height * UIPos.y, Screen.width - Screen.width * UIPos.x, Screen.height - Screen.height * UIPos.y));
+        //foreach (var item in Map.GlobalResources)
+        //{
+        //    AddLable(item.Key.ToString() + ": " + item.Value.ToString(), ref CurrentLine);
+        //} 
            
-        GUI.EndGroup();
+        //GUI.EndGroup();
     }
 
     void AddLable(string Text, ref int CurrentLine)
