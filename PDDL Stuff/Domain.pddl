@@ -14,12 +14,20 @@
 		(has-smelter ?p - place)
 		(has-school ?p - place)
 		(has-storage ?p - place)
-		(has-mine ?p - place)
-		(has-quary ?p - place)
+		(has-oremine ?p - place)
+		(has-coalmine ?p - place)
+		(has-quarry ?p - place)
 		(has-blacksmith ?p - place)
 		(has-barracks ?p - place)
 		(has-skill ?person - person)
 		(has-riflemanskill ?person - person)
+		
+		(has-timber ?person - person)
+		(has-wood ?person - person)
+		(has-coal ?person - person)
+		(has-ore ?person - person)
+		(has-iron ?person - person)
+		(has-stone ?person - person)
 
 		(is-carpenter ?person - person)
 		(is-blacksmith ?person - person)
@@ -89,7 +97,46 @@
 	
 	(:action trainRifleman
 			:parameters(?person - person)
-			:precondition(and(has-riflemanskill ?person) (not(is-rifleman ? person)))
+			:precondition(and(has-riflemanskill ?person) (not(is-rifleman ?person)))
 			:effect(and (is-rifleman ?person) (not(has-riflemanskill ?person)))
+	)
+	
+	;; --------- Acquire Resource --------- ;;
+	
+	(:action cutTree
+			:parameters(?lumberjack - person ?tree - forest)
+			:precondition(and(is-lumberjack ?lumberjack) (at ?lumberjack ?tree))
+			:effect(has-timber ?lumberjack)
+	)
+	
+	(:action mineOre
+			:parameters(?miner - person ?mine - place)
+			:precondition(and(is-miner ?miner) (at ?miner ?mine) (has-oremine ?mine))
+			:effect(has-ore ?miner)
+	)
+	
+	(:action mineCoal
+			:parameters(?miner - person ?mine - place)
+			:precondition(and(is-miner ?miner) (at ?miner ?mine) (has-coalmine ?mine))
+			:effect(has-coal ?miner)
+	)
+
+	(:action cutStone
+			:parameters(?stonecutter - person ?quarry - place)
+			:precondition(and(at ?stonecutter ?quarry) (has-quarry ?quarry))
+			:effect(has-stone ?stonecutter)
+	)
+	
+	
+	(:action produceWood
+			:parameters(?person - person ?sawmill - place)
+			:precondition(and(has-timber ?person) (at ?person ?sawmill) (has-sawmill ?sawmill))
+			:effect(has-wood ?person)
+	)
+	
+	(:action produceIron
+			:parameters(?person - person ?smelter - place)
+			:precondition(and(has-coal ?person) (has-ore ?person) (at ?person ?smelter) (has-smelter ?smelter))
+			:effect(has-iron ?person)
 	)
 )	
