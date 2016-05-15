@@ -1,10 +1,19 @@
 (define (domain ai_game)
-	(:requirements :strips :typing)
+	(:requirements :strips :typing :fluents)
 	(:types 	
 		place - object		 
 		person - object
 		building - place
 		forest - place
+	)
+	
+	(:functions
+		(wood)
+		(timber)
+		(iron)
+		(ore)
+		(stone)
+		(time)
 	)
 	
 	(:predicates
@@ -53,13 +62,13 @@
 	(:action simpleEducate
 			:parameters(?person - person ?student - person ?place - place)
 			:precondition(and(at ?person ?place) (at ?student ?place) (not(has-skill ?student)))
-			:effect(and (has-skill ?student))
+			:effect(and (has-skill ?student) (increase (time) 100))
 	)
 	
 	(:action schoolEducate
 			:parameters(?student - person ?teacher - person ?place - place)
 			:precondition(and(at ?student ?place) (at ?teacher ?place) (is-teacher ?teacher) (has-school ?place))
-			:effect(and (has-skill ?student))
+			:effect(and (has-skill ?student) (increase (time) 50))
 	)
 	
 	(:action barracksEducate
@@ -158,7 +167,7 @@
 	(:action storeTimber
 			:parameters(?person - person ?storage - place)
 			:precondition(and(at ?person ?storage) (has-storage ?storage) (has-timber ?person))
-			:effect(stored-timber ?storage)
+			:effect(and (stored-timber ?storage) (increase (wood) 1))
 	)
 			
 )	
