@@ -35,6 +35,16 @@ public class IVec2
     public override string ToString() { return "(" + x + ", " + y + ")"; }
 
     public int x, y;
+
+	public override bool Equals(System.Object o)
+	{
+		return o.GetType ().Equals (this.GetType ()) && (o as IVec2) == this;
+	}
+
+	public override int GetHashCode ()
+	{
+		return base.GetHashCode ();
+	}
 }
 
 
@@ -62,7 +72,12 @@ public class PathFinder : MonoBehaviour {
         return GetPath(MapPosStart, MapPosEnd, float.MaxValue, int.MaxValue, jim);
     }
 
-    public uint GetPath(IVec2 MapPosStart, IVec2 MapPosEnd, float TimePerframe = float.MaxValue, int Maxsteps = int.MaxValue, Person jim = null)
+	public uint GetPath(IVec2 MapPosStart, IVec2 MapPosEnd)
+	{
+		return GetPath (MapPosStart, MapPosEnd, float.MaxValue, int.MaxValue, null);
+	}
+
+    public uint GetPath(IVec2 MapPosStart, IVec2 MapPosEnd, float TimePerframe, int Maxsteps, Person jim)
     {
         if(!Map.CurrentMap)
             return 0;

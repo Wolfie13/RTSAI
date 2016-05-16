@@ -4,19 +4,10 @@ using System.Collections;
 public class MapChunk : MonoBehaviour {
 	public Map parent;
 	public int chunkX, chunkY;
-	private bool dirty = true;
     public const float TILE_SIZE = 2.5f;
 
 	// Use this for initialization
-	void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (dirty) {
-			Generate();
-			dirty = false;
-		}
+	void Awake () {
 	}
 
 	public void Position() {

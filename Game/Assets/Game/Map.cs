@@ -19,7 +19,7 @@ public enum ResourceType
 
 public class Map : MonoBehaviour {
 	[SerializeField]
-	private string MapName;
+	private string MapName = "";
 	private MapObject[,] entities;
 	private char[,] mapTiles;
 	public int sizeX;

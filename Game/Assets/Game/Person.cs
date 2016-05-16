@@ -77,7 +77,7 @@ public class Person : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void NUpdate () {
         time += Time.deltaTime;
 
         if(time > Map.TimeUnit)

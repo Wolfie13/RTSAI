@@ -17,8 +17,12 @@ public class ResourceTile : MapObject {
     //list of people on the tile;
     List<Person> People = new List<Person>();
 
+	public void setTile(ResourceType Resource, IVec2 MapPos)
+	{
+		setTile (Resource, MapPos, 5);
+	}
 
-    public void setTile(ResourceType Resource, IVec2 MapPos, int amount = 5)
+    public void setTile(ResourceType Resource, IVec2 MapPos, int amount)
     {
         m_MapPos = MapPos;
         m_resource = Resource;
