@@ -5,6 +5,7 @@
 		person - object
 		building - place
 		forest - place
+		resource - place		
 	)
 	
 	(:functions
@@ -32,6 +33,9 @@
 		(has-barracks ?p - place)
 		(has-skill ?person - person)
 		(has-riflemanskill ?person - person)
+		
+		(ore_resource ?p - place)
+		(coal_resource ?p - place)
 		
 		(has-turfhut ?p - place)
 		
@@ -174,20 +178,34 @@
 			:parameters(?carpenter - person ?person - person ?place - place)
 			:precondition(and(at ?carpenter ?place) (at ?person ?place) (is-carpenter ?carpenter) (not(has-house ?place)) (not(has-building ?place)) (not(= ?person ?carpenter))
 						  (or(has-wood ?carpenter) (has-wood ?person)))
-			:effect(and(has-house ?place) (has-building ?place))
+			:effect(and(has-house ?place) (has-building ?place) (not(has-wood ?carpenter)) (not(has-wood ?person)))
 	)
 	
 	(:action buildSmelter
 			:parameters(?person - person ?place - place)
 			:precondition(and(at ?person ?place) (has-stone ?person) (not(has-smelter ?place)) (not(has-building ?place)))
-			:effect(and(has-smelter ?place) (has-building ?place))
+			:effect(and(has-smelter ?place) (has-building ?place) (not(has-stone ?person)))
 	)
 	
 	(:action buildSchool
 			:parameters(?carpenter - person ?person - person ?place - place)
 			:precondition(and(at ?person ?place) (at ?carpenter ?place) (is-carpenter ?carpenter) (not(has-school ?place)) (not(has-building ?place)) (not(= ?person ?carpenter))
-						  (or(has-wood ?carpenter) (has-iron ?person)))
+						  (or(has-wood ?carpenter) (has-wood ?person))
+						  (or(has-iron ?carpenter) (has-iron ?person)))
 			:effect(and(has-school ?place) (has-building ?place))
+	)
+	
+	(:action buildSawMill
+			:parameters(?person - person ?place - place)
+			:precondition(and(at ?person ?place) (has-timber ?person) (has-stone ?person) (has-iron ?person) (not(has-building ?place)) (not(has-sawmill ?place)))
+			:effect(and(has-sawmill ?place) (has-building ?place) (not(has-timber ?person)) (not(has-stone ?person)) (not(has-iron ?person)))
+	)
+	
+	(:action buildOreMine
+			:parameters(?carpenter - person ?blacksmith - person ?person - person ?resource - resource)
+			:precondition(and(is-carpenter ?carpenter) (is-blacksmith ?blacksmith) (at ?carpenter ?resource) (at ?blacksmith ?resource) (not(= ?carpenter ?blacksmith)) (not(has-oremine ?resource))
+						)
+			:effect(and(has-oremine ?resource))
 	)
 	
 	
