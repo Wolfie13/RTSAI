@@ -13,6 +13,7 @@
 		quarry - place		
 		coalmine - place
 		oreresource - resource
+		coalresource - resource
 
 		forest1 - forest
 	)
@@ -22,16 +23,19 @@
 		(at person1 place1)
 		(at person2 place2)	
 		(has-quarry quarry)					
-		(has-coalmine coalmine)
-		(has-building coalmine)
 		(has-building quarry)
+		(ore_resource oreresource)
+		(coal_resource coalresource)
+		(has-building oreresource)
+		(has-building coalresource)
 		(= (time) 0)		
 	)
 	
 	(:goal
 		
 		(and
-			(has-school place3)			
+			(has-school place3)	
+			(has-school place2)
 		)
 	)
 )

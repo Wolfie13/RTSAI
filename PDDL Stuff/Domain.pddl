@@ -151,13 +151,13 @@
 	(:action produceWood
 			:parameters(?person - person ?sawmill - place)
 			:precondition(and(has-timber ?person) (at ?person ?sawmill) (has-sawmill ?sawmill))
-			:effect(has-wood ?person)
+			:effect(and(has-wood ?person) (not(has-timber ?person)))
 	)
 	
 	(:action produceIron
 			:parameters(?person - person ?smelter - place)
 			:precondition(and(has-coal ?person) (has-ore ?person) (at ?person ?smelter) (has-smelter ?smelter))
-			:effect(has-iron ?person)
+			:effect(and(has-iron ?person) (not(has-coal ?person)) (not(has-ore ?person)))
 	)
 	
 	(:action makeTool
@@ -192,7 +192,7 @@
 			:precondition(and(at ?person ?place) (at ?carpenter ?place) (is-carpenter ?carpenter) (not(has-school ?place)) (not(has-building ?place)) (not(= ?person ?carpenter))
 						  (or(has-wood ?carpenter) (has-wood ?person))
 						  (or(has-iron ?carpenter) (has-iron ?person)))
-			:effect(and(has-school ?place) (has-building ?place))
+			:effect(and(has-school ?place) (has-building ?place) (not(has-wood ?person)) (not(has-wood ?carpenter)) (not(has-iron ?person)) (not(has-iron ?carpenter)))
 	)
 	
 	(:action buildSawMill
@@ -203,10 +203,18 @@
 	
 	(:action buildOreMine
 			:parameters(?carpenter - person ?blacksmith - person ?person - person ?resource - resource)
-			:precondition(and(is-carpenter ?carpenter) (is-blacksmith ?blacksmith) (at ?carpenter ?resource) (at ?blacksmith ?resource) (not(= ?carpenter ?blacksmith)) (not(has-oremine ?resource))
+			:precondition(and(is-carpenter ?carpenter) (is-blacksmith ?blacksmith) (at ?carpenter ?resource) (at ?blacksmith ?resource) (ore_resource ?resource) (not(= ?carpenter ?blacksmith)) (not(has-oremine ?resource))
 						(or(has-timber ?carpenter) (has-timber ?person)))
-			:effect(and(has-oremine ?resource))
+			:effect(and(has-oremine ?resource) (has-building ?resource))
 	)
+	
+	(:action buildCoalMine
+			:parameters(?carpenter - person ?blacksmith - person ?person - person ?resource - resource)
+			:precondition(and(is-carpenter ?carpenter) (is-blacksmith ?blacksmith) (at ?carpenter ?resource) (at ?blacksmith ?resource) (coal_resource ?resource) (not (= ?carpenter ?blacksmith)) (not(has-coalmine ?resource))
+						(or(has-timber ?carpenter) (has-timber ?blacksmith) (has-timber ?person)))
+			:effect(and(has-coalmine ?resource) (has-building ?resource))
+	)
+			
 	
 	
 		
