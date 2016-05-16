@@ -73,10 +73,6 @@ public class AStar {
 
             openQueue.Sort((AStarNodes a, AStarNodes b) => (a.Distance2Go + a.DistanceGone).CompareTo(b.Distance2Go + b.DistanceGone));
 
-
-            Debug.Log("OpenQueue size: " + openQueue.Count);
-
-            Debug.Log("close list size: " + CloseList.Count);
         }
 
         while(EndNode != null)
@@ -89,7 +85,7 @@ public class AStar {
             EndNode = EndNode.PrevNode;
         }
 
-        Debug.Log("AStarStopped path size: " + result.Count);
+       // Debug.Log("AStarStopped path size: " + result.Count);
 
         //output
         if (PathFinder.Paths.ContainsKey(ID))
