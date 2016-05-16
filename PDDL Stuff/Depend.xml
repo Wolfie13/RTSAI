@@ -2,13 +2,13 @@
 <Durative-FF-Depend>
 <Operator>
 <Name>
-(MOVE PERSON2 PLACE2 FOREST1)</Name>
+(MOVE PERSON1 PLACE1 FOREST1)</Name>
 
 </Operator>
 
 <Operator>
 <Name>
-(MOVE PERSON1 PLACE1 QUARRY)</Name>
+(MOVE PERSON2 PLACE2 FOREST1)</Name>
 
 </Operator>
 
@@ -22,58 +22,6 @@
  
 <Name>
 (MOVE PERSON2 PLACE2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(SIMPLEEDUCATE PERSON2 PERSON1 QUARRY)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON1 PLACE1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 QUARRY)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON1 PLACE1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 QUARRY)
 </Name>
 
 </On_Operator>
@@ -102,41 +50,7 @@
 
 <Operator>
 <Name>
-(MOVE PERSON1 QUARRY PLACE3)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON1 PLACE1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE PERSON2 PERSON1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 QUARRY)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(MOVE PERSON2 QUARRY PLACE3)</Name>
+(MOVE PERSON2 QUARRY FOREST1)</Name>
 
 <Depend>
  
@@ -144,22 +58,6 @@
  
 <Name>
 (MOVE PERSON2 FOREST1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE PERSON2 PERSON1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 QUARRY)
 </Name>
 
 </On_Operator>
@@ -178,32 +76,14 @@
 
 <Operator>
 <Name>
-(TRAINLUMBERJACK PERSON2)</Name>
+(SIMPLEEDUCATE PERSON2 PERSON1 FOREST1)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 QUARRY)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 PLACE3)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 QUARRY)
+(MOVE PERSON1 PLACE1 FOREST1)
 </Name>
 
 </On_Operator>
@@ -211,36 +91,10 @@
 <On_Operator>
  
 <Name>
-(MOVE PERSON1 QUARRY PLACE3)
+(MOVE PERSON2 PLACE2 FOREST1)
 </Name>
 
 </On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 QUARRY PLACE3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(TRAINLUMBERJACK PERSON2)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(MOVE PERSON2 PLACE3 FOREST1)</Name>
-
-<Depend>
  
 <On_Operator>
  
@@ -253,7 +107,25 @@
 <On_Operator>
  
 <Name>
-(MOVE PERSON2 QUARRY PLACE3)
+(MOVE PERSON2 QUARRY FOREST1)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(MOVE PERSON1 FOREST1 QUARRY)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 PLACE1 FOREST1)
 </Name>
 
 </On_Operator>
@@ -261,7 +133,55 @@
 <On_Operator>
  
 <Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 PLACE3)
+(SIMPLEEDUCATE PERSON2 PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(CUTSTONE PERSON1 QUARRY)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 QUARRY)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(SIMPLEMINECOAL PERSON1 COALRESOURCE)</Name>
+
+</Operator>
+
+<Operator>
+<Name>
+(SIMPLEMINEORE PERSON1 ORERESOURCE)</Name>
+
+</Operator>
+
+<Operator>
+<Name>
+(TRAINLUMBERJACK PERSON1)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEEDUCATE PERSON2 PERSON1 FOREST1)
 </Name>
 
 </On_Operator>
@@ -303,7 +223,7 @@
 <On_Operator>
  
 <Name>
-(MOVE PERSON2 PLACE3 FOREST1)
+(MOVE PERSON2 QUARRY FOREST1)
 </Name>
 
 </On_Operator>
@@ -314,7 +234,981 @@
 
 <Operator>
 <Name>
-(CUTTREE PERSON2 FOREST1)</Name>
+(MOVE PERSON1 QUARRY FOREST1)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEEDUCATE PERSON2 PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 QUARRY)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTSTONE PERSON1 QUARRY)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(SIMPLEEDUCATE PERSON1 PERSON2 FOREST1)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 PLACE1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON2 PLACE2 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON2 FOREST1 QUARRY)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON2 QUARRY FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 QUARRY)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 QUARRY FOREST1)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(CUTTREE PERSON1 FOREST1)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 PLACE1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 QUARRY)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(TRAINLUMBERJACK PERSON1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 QUARRY FOREST1)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(PRODUCEIRON PERSON1 FOREST1)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 PLACE1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 QUARRY)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEMINECOAL PERSON1 COALRESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEMINEORE PERSON1 ORERESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDSMELTER PERSON2 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 QUARRY FOREST1)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(MOVE PERSON1 FOREST1 COALMINE)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 PLACE1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEEDUCATE PERSON2 PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 QUARRY)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 QUARRY FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEEDUCATE PERSON1 PERSON2 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEIRON PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(BUILDSAWMILL PERSON1 COALMINE)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTSTONE PERSON1 QUARRY)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEIRON PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(MOVE PERSON1 COALMINE FOREST1)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEEDUCATE PERSON2 PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 QUARRY)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEEDUCATE PERSON1 PERSON2 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEIRON PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDSAWMILL PERSON1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(CUTTREE PERSON1 FOREST1)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 PLACE1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 QUARRY)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(TRAINLUMBERJACK PERSON1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 QUARRY FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDSAWMILL PERSON1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 COALMINE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(MOVE PERSON1 FOREST1 COALMINE)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 PLACE1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEEDUCATE PERSON2 PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 QUARRY)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 QUARRY FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEEDUCATE PERSON1 PERSON2 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEIRON PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDSAWMILL PERSON1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 COALMINE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(PRODUCEWOOD PERSON1 COALMINE)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDSAWMILL PERSON1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 COALMINE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(SIMPLEMINECOAL PERSON1 COALRESOURCE)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEMINECOAL PERSON1 COALRESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEIRON PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(SIMPLEMINEORE PERSON1 ORERESOURCE)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEMINEORE PERSON1 ORERESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEIRON PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(MOVE PERSON1 COALMINE FOREST1)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEEDUCATE PERSON2 PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 QUARRY)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEEDUCATE PERSON1 PERSON2 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEIRON PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDSAWMILL PERSON1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 COALMINE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEWOOD PERSON1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(PRODUCEIRON PERSON1 FOREST1)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 PLACE1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 QUARRY)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEMINECOAL PERSON1 COALRESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEMINEORE PERSON1 ORERESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDSMELTER PERSON2 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 QUARRY FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEIRON PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDSAWMILL PERSON1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 COALMINE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEMINECOAL PERSON1 COALRESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEMINEORE PERSON1 ORERESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 COALMINE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(MOVE PERSON1 FOREST1 PLACE3)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 PLACE1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEEDUCATE PERSON2 PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 QUARRY)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 QUARRY FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEEDUCATE PERSON1 PERSON2 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEIRON PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 COALMINE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 COALMINE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEIRON PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(MOVE PERSON2 FOREST1 PLACE3)</Name>
 
 <Depend>
  
@@ -337,7 +1231,7 @@
 <On_Operator>
  
 <Name>
-(TRAINLUMBERJACK PERSON2)
+(MOVE PERSON2 QUARRY FOREST1)
 </Name>
 
 </On_Operator>
@@ -345,73 +1239,7 @@
 <On_Operator>
  
 <Name>
-(MOVE PERSON2 PLACE3 FOREST1)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(MOVE PERSON2 FOREST1 QUARRY)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 PLACE2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE PERSON2 PERSON1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(CUTSTONE PERSON2 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 QUARRY PLACE3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 PLACE3 FOREST1)
+(SIMPLEEDUCATE PERSON2 PERSON1 FOREST1)
 </Name>
 
 </On_Operator>
@@ -427,7 +1255,7 @@
 <On_Operator>
  
 <Name>
-(CUTTREE PERSON2 FOREST1)
+(SIMPLEEDUCATE PERSON1 PERSON2 FOREST1)
 </Name>
 
 </On_Operator>
@@ -438,30 +1266,14 @@
 
 <Operator>
 <Name>
-(TRAINMINER PERSON2)</Name>
+(TRAINCARPENTER PERSON2)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(TRAINLUMBERJACK PERSON2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 PLACE3)
+(SIMPLEEDUCATE PERSON1 PERSON2 FOREST1)
 </Name>
 
 </On_Operator>
@@ -472,14 +1284,14 @@
 
 <Operator>
 <Name>
-(MOVE PERSON1 PLACE3 COALRESOURCE)</Name>
+(BUILDSCHOOL PERSON2 PERSON1 PLACE3)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE PERSON1 QUARRY PLACE3)
+(PRODUCEIRON PERSON1 FOREST1)
 </Name>
 
 </On_Operator>
@@ -487,7 +1299,47 @@
 <On_Operator>
  
 <Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 PLACE3)
+(BUILDSAWMILL PERSON1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEWOOD PERSON1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEIRON PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 PLACE3)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON2 FOREST1 PLACE3)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(TRAINCARPENTER PERSON2)
 </Name>
 
 </On_Operator>
@@ -498,14 +1350,14 @@
 
 <Operator>
 <Name>
-(CUTSTONE PERSON2 QUARRY)</Name>
+(SIMPLEEDUCATE PERSON2 PERSON1 PLACE3)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE PERSON2 FOREST1 QUARRY)
+(SIMPLEEDUCATE PERSON2 PERSON1 FOREST1)
 </Name>
 
 </On_Operator>
@@ -513,7 +1365,7 @@
 <On_Operator>
  
 <Name>
-(MOVE PERSON2 QUARRY PLACE3)
+(TRAINLUMBERJACK PERSON1)
 </Name>
 
 </On_Operator>
@@ -521,7 +1373,7 @@
 <On_Operator>
  
 <Name>
-(BUILDSMELTER PERSON2 FOREST1)
+(MOVE PERSON1 FOREST1 PLACE3)
 </Name>
 
 </On_Operator>
@@ -529,1837 +1381,7 @@
 <On_Operator>
  
 <Name>
-(MOVE PERSON2 FOREST1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(MOVE PERSON2 QUARRY COALRESOURCE)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE PERSON2 PERSON1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(CUTSTONE PERSON2 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 QUARRY PLACE3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(CUTSTONE PERSON2 QUARRY)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(TRAINCARPENTER PERSON1)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE PERSON2 PERSON1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 COALRESOURCE)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(TRAINLUMBERJACK PERSON2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 PLACE3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(TRAINMINER PERSON2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON1 PLACE3 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 QUARRY COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(TRAINBLACKSMITH PERSON2)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(TRAINLUMBERJACK PERSON2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 PLACE3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(TRAINMINER PERSON2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(BUILDCOALMINE PERSON1 PERSON2 PERSON3 COALRESOURCE)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(CUTTREE PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON1 PLACE3 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 QUARRY COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(TRAINCARPENTER PERSON1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(TRAINBLACKSMITH PERSON2)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(MOVE PERSON1 COALRESOURCE ORERESOURCE)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON1 PLACE3 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDCOALMINE PERSON1 PERSON2 PERSON3 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(MOVE PERSON2 COALRESOURCE ORERESOURCE)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 QUARRY COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDCOALMINE PERSON1 PERSON2 PERSON3 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(BUILDOREMINE PERSON1 PERSON2 PERSON2 ORERESOURCE)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(CUTTREE PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(TRAINCARPENTER PERSON1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(TRAINBLACKSMITH PERSON2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON1 COALRESOURCE ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(MINEORE PERSON2 ORERESOURCE)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(TRAINMINER PERSON2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDOREMINE PERSON1 PERSON2 PERSON2 ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(MOVE PERSON2 ORERESOURCE COALRESOURCE)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDCOALMINE PERSON1 PERSON2 PERSON3 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDOREMINE PERSON1 PERSON2 PERSON2 ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINEORE PERSON2 ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(MINECOAL PERSON2 COALRESOURCE)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(TRAINMINER PERSON2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 QUARRY COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDCOALMINE PERSON1 PERSON2 PERSON3 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 ORERESOURCE COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(MOVE PERSON2 COALRESOURCE FOREST1)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSMELTER PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(CUTTREE PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 QUARRY COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDCOALMINE PERSON1 PERSON2 PERSON3 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 ORERESOURCE COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINECOAL PERSON2 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(PRODUCEIRON PERSON2 FOREST1)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 PLACE2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 PLACE3 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSMELTER PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINEORE PERSON2 ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINECOAL PERSON2 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE FOREST1)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(MOVE PERSON2 FOREST1 COALMINE)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 PLACE2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 PLACE3 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSMELTER PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(CUTTREE PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEIRON PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(BUILDSAWMILL PERSON2 COALMINE)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(CUTSTONE PERSON2 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSMELTER PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(CUTTREE PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(CUTSTONE PERSON2 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDCOALMINE PERSON1 PERSON2 PERSON3 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDOREMINE PERSON1 PERSON2 PERSON2 ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEIRON PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 COALMINE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(MOVE PERSON2 COALMINE COALRESOURCE)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDCOALMINE PERSON1 PERSON2 PERSON3 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINECOAL PERSON2 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSAWMILL PERSON2 COALMINE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(MINECOAL PERSON2 COALRESOURCE)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(TRAINMINER PERSON2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 QUARRY COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDCOALMINE PERSON1 PERSON2 PERSON3 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 ORERESOURCE COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEIRON PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALMINE COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(MOVE PERSON2 COALRESOURCE ORERESOURCE)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 QUARRY COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDCOALMINE PERSON1 PERSON2 PERSON3 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDOREMINE PERSON1 PERSON2 PERSON2 ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINEORE PERSON2 ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 ORERESOURCE COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINECOAL PERSON2 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALMINE COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINECOAL PERSON2 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(MINEORE PERSON2 ORERESOURCE)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(TRAINMINER PERSON2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDOREMINE PERSON1 PERSON2 PERSON2 ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 ORERESOURCE COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEIRON PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(MOVE PERSON2 ORERESOURCE FOREST1)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSMELTER PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(CUTTREE PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDOREMINE PERSON1 PERSON2 PERSON2 ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINEORE PERSON2 ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 ORERESOURCE COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEIRON PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINEORE PERSON2 ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(CUTTREE PERSON2 FOREST1)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 PLACE2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(TRAINLUMBERJACK PERSON2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 PLACE3 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDCOALMINE PERSON1 PERSON2 PERSON3 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDOREMINE PERSON1 PERSON2 PERSON2 ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSAWMILL PERSON2 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 ORERESOURCE FOREST1)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(PRODUCEIRON PERSON2 FOREST1)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 PLACE2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 PLACE3 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSMELTER PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINEORE PERSON2 ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINECOAL PERSON2 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEIRON PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSAWMILL PERSON2 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINECOAL PERSON2 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINEORE PERSON2 ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 ORERESOURCE FOREST1)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(MOVE PERSON2 FOREST1 COALMINE)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 PLACE2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 PLACE3 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSMELTER PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(CUTTREE PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEIRON PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSAWMILL PERSON2 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALMINE COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 ORERESOURCE FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(CUTTREE PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEIRON PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(PRODUCEWOOD PERSON2 COALMINE)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(CUTTREE PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDCOALMINE PERSON1 PERSON2 PERSON3 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDOREMINE PERSON1 PERSON2 PERSON2 ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSAWMILL PERSON2 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALMINE COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(CUTTREE PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 COALMINE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(MOVE PERSON2 COALMINE PLACE3)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 PLACE3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 PLACE3 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSAWMILL PERSON2 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALMINE COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEWOOD PERSON2 COALMINE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(MOVE PERSON1 ORERESOURCE PLACE3)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 PLACE3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON1 PLACE3 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON1 COALRESOURCE ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDOREMINE PERSON1 PERSON2 PERSON2 ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(BUILDSCHOOL PERSON1 PERSON2 PLACE3)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON1 QUARRY PLACE3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 QUARRY PLACE3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 PLACE3 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON1 PLACE3 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(TRAINCARPENTER PERSON1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEIRON PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSAWMILL PERSON2 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEIRON PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEWOOD PERSON2 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALMINE PLACE3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON1 ORERESOURCE PLACE3)
+(MOVE PERSON2 FOREST1 PLACE3)
 </Name>
 
 </On_Operator>
@@ -2377,7 +1399,7 @@
 <On_Operator>
  
 <Name>
-(MOVE PERSON2 QUARRY PLACE3)
+(MOVE PERSON2 FOREST1 PLACE3)
 </Name>
 
 </On_Operator>
@@ -2385,7 +1407,7 @@
 <On_Operator>
  
 <Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 PLACE3)
+(BUILDSCHOOL PERSON2 PERSON1 PLACE3)
 </Name>
 
 </On_Operator>
@@ -2393,79 +1415,7 @@
 <On_Operator>
  
 <Name>
-(MOVE PERSON2 PLACE3 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDCOALMINE PERSON1 PERSON2 PERSON3 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINECOAL PERSON2 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINECOAL PERSON2 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALMINE PLACE3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSCHOOL PERSON1 PERSON2 PLACE3)
+(SIMPLEEDUCATE PERSON2 PERSON1 PLACE3)
 </Name>
 
 </On_Operator>
@@ -2476,14 +1426,14 @@
 
 <Operator>
 <Name>
-(MINECOAL PERSON2 COALRESOURCE)</Name>
+(TRAINBLACKSMITH PERSON1)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(TRAINMINER PERSON2)
+(SIMPLEEDUCATE PERSON2 PERSON1 FOREST1)
 </Name>
 
 </On_Operator>
@@ -2491,7 +1441,7 @@
 <On_Operator>
  
 <Name>
-(MOVE PERSON2 QUARRY COALRESOURCE)
+(TRAINLUMBERJACK PERSON1)
 </Name>
 
 </On_Operator>
@@ -2499,7 +1449,25 @@
 <On_Operator>
  
 <Name>
-(BUILDCOALMINE PERSON1 PERSON2 PERSON3 COALRESOURCE)
+(SIMPLEEDUCATE PERSON2 PERSON1 PLACE3)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(MOVE PERSON1 PLACE3 FOREST1)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEEDUCATE PERSON2 PERSON1 FOREST1)
 </Name>
 
 </On_Operator>
@@ -2507,7 +1475,7 @@
 <On_Operator>
  
 <Name>
-(MOVE PERSON2 COALRESOURCE ORERESOURCE)
+(MOVE PERSON1 FOREST1 QUARRY)
 </Name>
 
 </On_Operator>
@@ -2515,7 +1483,7 @@
 <On_Operator>
  
 <Name>
-(MOVE PERSON2 ORERESOURCE COALRESOURCE)
+(SIMPLEEDUCATE PERSON1 PERSON2 FOREST1)
 </Name>
 
 </On_Operator>
@@ -2523,7 +1491,7 @@
 <On_Operator>
  
 <Name>
-(MOVE PERSON2 COALRESOURCE FOREST1)
+(CUTTREE PERSON1 FOREST1)
 </Name>
 
 </On_Operator>
@@ -2531,7 +1499,7 @@
 <On_Operator>
  
 <Name>
-(PRODUCEIRON PERSON2 FOREST1)
+(PRODUCEIRON PERSON1 FOREST1)
 </Name>
 
 </On_Operator>
@@ -2539,7 +1507,7 @@
 <On_Operator>
  
 <Name>
-(MOVE PERSON2 COALMINE COALRESOURCE)
+(MOVE PERSON1 FOREST1 COALMINE)
 </Name>
 
 </On_Operator>
@@ -2547,7 +1515,7 @@
 <On_Operator>
  
 <Name>
-(MOVE PERSON2 COALRESOURCE ORERESOURCE)
+(CUTTREE PERSON1 FOREST1)
 </Name>
 
 </On_Operator>
@@ -2555,7 +1523,317 @@
 <On_Operator>
  
 <Name>
-(PRODUCEIRON PERSON2 FOREST1)
+(MOVE PERSON1 FOREST1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEIRON PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 PLACE3)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDSCHOOL PERSON2 PERSON1 PLACE3)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEEDUCATE PERSON2 PERSON1 PLACE3)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(CUTTREE PERSON1 FOREST1)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 PLACE1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 QUARRY)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(TRAINLUMBERJACK PERSON1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 QUARRY FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDSAWMILL PERSON1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 COALMINE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEWOOD PERSON1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 COALMINE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 PLACE3)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 PLACE3 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(MOVE PERSON1 FOREST1 COALRESOURCE)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 PLACE1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEEDUCATE PERSON2 PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 QUARRY)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 QUARRY FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEEDUCATE PERSON1 PERSON2 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEIRON PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 COALMINE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 COALMINE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEIRON PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 PLACE3)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 PLACE3 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(SIMPLEEDUCATE PERSON2 PERSON1 COALRESOURCE)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEEDUCATE PERSON2 PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(TRAINLUMBERJACK PERSON1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEEDUCATE PERSON2 PERSON1 PLACE3)
 </Name>
 
 </On_Operator>
@@ -2564,6 +1842,104 @@
  
 <Name>
 (MOVE PERSON2 PLACE3 COALRESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(TRAINBLACKSMITH PERSON1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALRESOURCE)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(BUILDCOALMINE PERSON2 PERSON1 PERSON3 COALRESOURCE)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDSAWMILL PERSON1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEWOOD PERSON1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(TRAINCARPENTER PERSON2)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON2 PLACE3 COALRESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(TRAINBLACKSMITH PERSON1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALRESOURCE)
 </Name>
 
 </On_Operator>
@@ -2581,118 +1957,6 @@
 <On_Operator>
  
 <Name>
-(MOVE PERSON2 QUARRY COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDCOALMINE PERSON1 PERSON2 PERSON3 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDOREMINE PERSON1 PERSON2 PERSON2 ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINEORE PERSON2 ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 ORERESOURCE COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINECOAL PERSON2 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALMINE COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINECOAL PERSON2 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINEORE PERSON2 ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 ORERESOURCE FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
 (MOVE PERSON2 PLACE3 COALRESOURCE)
 </Name>
 
@@ -2701,7 +1965,15 @@
 <On_Operator>
  
 <Name>
-(MINECOAL PERSON2 COALRESOURCE)
+(SIMPLEEDUCATE PERSON2 PERSON1 COALRESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDCOALMINE PERSON2 PERSON1 PERSON3 COALRESOURCE)
 </Name>
 
 </On_Operator>
@@ -2712,14 +1984,14 @@
 
 <Operator>
 <Name>
-(MINEORE PERSON2 ORERESOURCE)</Name>
+(TRAINMINER PERSON1)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(TRAINMINER PERSON2)
+(SIMPLEEDUCATE PERSON2 PERSON1 FOREST1)
 </Name>
 
 </On_Operator>
@@ -2727,7 +1999,7 @@
 <On_Operator>
  
 <Name>
-(MOVE PERSON2 COALRESOURCE ORERESOURCE)
+(TRAINLUMBERJACK PERSON1)
 </Name>
 
 </On_Operator>
@@ -2735,7 +2007,7 @@
 <On_Operator>
  
 <Name>
-(BUILDOREMINE PERSON1 PERSON2 PERSON2 ORERESOURCE)
+(SIMPLEEDUCATE PERSON2 PERSON1 PLACE3)
 </Name>
 
 </On_Operator>
@@ -2743,7 +2015,7 @@
 <On_Operator>
  
 <Name>
-(MOVE PERSON2 ORERESOURCE COALRESOURCE)
+(TRAINBLACKSMITH PERSON1)
 </Name>
 
 </On_Operator>
@@ -2751,39 +2023,7 @@
 <On_Operator>
  
 <Name>
-(PRODUCEIRON PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 ORERESOURCE FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEIRON PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE ORERESOURCE)
+(SIMPLEEDUCATE PERSON2 PERSON1 COALRESOURCE)
 </Name>
 
 </On_Operator>
@@ -2794,14 +2034,596 @@
 
 <Operator>
 <Name>
-(MOVE PERSON2 ORERESOURCE FOREST1)</Name>
+(MINECOAL PERSON1 COALRESOURCE)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE PERSON2 FOREST1 QUARRY)
+(PRODUCEIRON PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEIRON PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALRESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDCOALMINE PERSON2 PERSON1 PERSON3 COALRESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(TRAINMINER PERSON1)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(MOVE PERSON1 COALRESOURCE ORERESOURCE)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALRESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEEDUCATE PERSON2 PERSON1 COALRESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDCOALMINE PERSON2 PERSON1 PERSON3 COALRESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MINECOAL PERSON1 COALRESOURCE)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(BUILDOREMINE PERSON2 PERSON1 PERSON1 ORERESOURCE)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDSAWMILL PERSON1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEWOOD PERSON1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(TRAINCARPENTER PERSON2)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(TRAINBLACKSMITH PERSON1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON2 COALRESOURCE ORERESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 COALRESOURCE ORERESOURCE)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(MINEORE PERSON1 ORERESOURCE)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEIRON PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEIRON PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(TRAINMINER PERSON1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 COALRESOURCE ORERESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDOREMINE PERSON2 PERSON1 PERSON1 ORERESOURCE)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(MOVE PERSON1 ORERESOURCE COALMINE)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDSAWMILL PERSON1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 COALMINE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEWOOD PERSON1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 COALMINE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 COALRESOURCE ORERESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDOREMINE PERSON2 PERSON1 PERSON1 ORERESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MINEORE PERSON1 ORERESOURCE)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(PRODUCEWOOD PERSON1 COALMINE)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDSAWMILL PERSON1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 COALMINE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEWOOD PERSON1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 COALMINE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDSCHOOL PERSON2 PERSON1 PLACE3)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDCOALMINE PERSON2 PERSON1 PERSON3 COALRESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDOREMINE PERSON2 PERSON1 PERSON1 ORERESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 ORERESOURCE COALMINE)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(MOVE PERSON1 COALMINE FOREST1)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEEDUCATE PERSON2 PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 QUARRY)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEEDUCATE PERSON1 PERSON2 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEIRON PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDSAWMILL PERSON1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 COALMINE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEWOOD PERSON1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 COALMINE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEIRON PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 PLACE3)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALRESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 ORERESOURCE COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEWOOD PERSON1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(PRODUCEIRON PERSON1 FOREST1)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 PLACE1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 QUARRY)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEMINECOAL PERSON1 COALRESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEMINEORE PERSON1 ORERESOURCE)
 </Name>
 
 </On_Operator>
@@ -2817,7 +2639,7 @@
 <On_Operator>
  
 <Name>
-(CUTTREE PERSON2 FOREST1)
+(MOVE PERSON1 QUARRY FOREST1)
 </Name>
 
 </On_Operator>
@@ -2825,7 +2647,307 @@
 <On_Operator>
  
 <Name>
-(MOVE PERSON2 FOREST1 QUARRY)
+(PRODUCEIRON PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDSAWMILL PERSON1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 COALMINE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEMINECOAL PERSON1 COALRESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEMINEORE PERSON1 ORERESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 COALMINE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEIRON PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 PLACE3)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDSCHOOL PERSON2 PERSON1 PLACE3)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 PLACE3 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALRESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MINECOAL PERSON1 COALRESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MINEORE PERSON1 ORERESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 COALMINE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(MOVE PERSON1 FOREST1 PLACE2)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 PLACE1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEEDUCATE PERSON2 PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 QUARRY)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 QUARRY FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEEDUCATE PERSON1 PERSON2 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEIRON PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 COALMINE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALMINE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 COALMINE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEIRON PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 PLACE3)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 PLACE3 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 FOREST1 COALRESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 COALMINE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEIRON PERSON1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
+(MOVE PERSON2 ORERESOURCE PLACE2)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON2 PLACE2 FOREST1)
 </Name>
 
 </On_Operator>
@@ -2841,103 +2963,7 @@
 <On_Operator>
  
 <Name>
-(BUILDOREMINE PERSON1 PERSON2 PERSON2 ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINEORE PERSON2 ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 ORERESOURCE COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEIRON PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINEORE PERSON2 ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 ORERESOURCE FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(CUTTREE PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEIRON PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINEORE PERSON2 ORERESOURCE)
+(BUILDOREMINE PERSON2 PERSON1 PERSON1 ORERESOURCE)
 </Name>
 
 </On_Operator>
@@ -2948,7 +2974,7 @@
 
 <Operator>
 <Name>
-(CUTTREE PERSON2 FOREST1)</Name>
+(BUILDSCHOOL PERSON2 PERSON1 PLACE2)</Name>
 
 <Depend>
  
@@ -2963,7 +2989,7 @@
 <On_Operator>
  
 <Name>
-(MOVE PERSON2 FOREST1 QUARRY)
+(PRODUCEIRON PERSON1 FOREST1)
 </Name>
 
 </On_Operator>
@@ -2971,7 +2997,7 @@
 <On_Operator>
  
 <Name>
-(TRAINLUMBERJACK PERSON2)
+(BUILDSAWMILL PERSON1 COALMINE)
 </Name>
 
 </On_Operator>
@@ -2979,7 +3005,7 @@
 <On_Operator>
  
 <Name>
-(MOVE PERSON2 PLACE3 FOREST1)
+(PRODUCEWOOD PERSON1 COALMINE)
 </Name>
 
 </On_Operator>
@@ -2987,7 +3013,7 @@
 <On_Operator>
  
 <Name>
-(MOVE PERSON2 FOREST1 QUARRY)
+(PRODUCEIRON PERSON1 FOREST1)
 </Name>
 
 </On_Operator>
@@ -2995,7 +3021,7 @@
 <On_Operator>
  
 <Name>
-(BUILDCOALMINE PERSON1 PERSON2 PERSON3 COALRESOURCE)
+(TRAINCARPENTER PERSON2)
 </Name>
 
 </On_Operator>
@@ -3003,7 +3029,7 @@
 <On_Operator>
  
 <Name>
-(BUILDOREMINE PERSON1 PERSON2 PERSON2 ORERESOURCE)
+(BUILDSCHOOL PERSON2 PERSON1 PLACE3)
 </Name>
 
 </On_Operator>
@@ -3011,7 +3037,7 @@
 <On_Operator>
  
 <Name>
-(MOVE PERSON2 COALRESOURCE FOREST1)
+(PRODUCEWOOD PERSON1 COALMINE)
 </Name>
 
 </On_Operator>
@@ -3019,7 +3045,7 @@
 <On_Operator>
  
 <Name>
-(MOVE PERSON2 FOREST1 COALMINE)
+(PRODUCEIRON PERSON1 FOREST1)
 </Name>
 
 </On_Operator>
@@ -3027,7 +3053,7 @@
 <On_Operator>
  
 <Name>
-(BUILDSAWMILL PERSON2 COALMINE)
+(MOVE PERSON1 FOREST1 PLACE2)
 </Name>
 
 </On_Operator>
@@ -3035,715 +3061,7 @@
 <On_Operator>
  
 <Name>
-(MOVE PERSON2 ORERESOURCE FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEWOOD PERSON2 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 ORERESOURCE FOREST1)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(PRODUCEIRON PERSON2 FOREST1)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 PLACE2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 PLACE3 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSMELTER PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINEORE PERSON2 ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINECOAL PERSON2 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEIRON PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSAWMILL PERSON2 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINECOAL PERSON2 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINEORE PERSON2 ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 ORERESOURCE FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEIRON PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSCHOOL PERSON1 PERSON2 PLACE3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINECOAL PERSON2 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MINEORE PERSON2 ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 ORERESOURCE FOREST1)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(MOVE PERSON2 FOREST1 COALMINE)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 PLACE2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 PLACE3 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSMELTER PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(CUTTREE PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALRESOURCE FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEIRON PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSAWMILL PERSON2 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALMINE COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 ORERESOURCE FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(CUTTREE PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEIRON PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEWOOD PERSON2 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALMINE PLACE3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 ORERESOURCE FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(CUTTREE PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEIRON PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(PRODUCEWOOD PERSON2 COALMINE)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(CUTTREE PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDCOALMINE PERSON1 PERSON2 PERSON3 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDOREMINE PERSON1 PERSON2 PERSON2 ORERESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSAWMILL PERSON2 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALMINE COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(CUTTREE PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEWOOD PERSON2 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALMINE PLACE3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSCHOOL PERSON1 PERSON2 PLACE3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(CUTTREE PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 COALMINE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(MOVE PERSON2 COALMINE PLACE2)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 PLACE2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSAWMILL PERSON2 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALMINE COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEWOOD PERSON2 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALMINE PLACE3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 FOREST1 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEWOOD PERSON2 COALMINE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(MOVE PERSON1 PLACE3 PLACE2)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON1 QUARRY PLACE3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE PERSON1 PERSON2 PLACE3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON1 PLACE3 COALRESOURCE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON1 ORERESOURCE PLACE3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSCHOOL PERSON1 PERSON2 PLACE3)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(BUILDSCHOOL PERSON1 PERSON2 PLACE2)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 PLACE2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(TRAINCARPENTER PERSON1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEIRON PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSAWMILL PERSON2 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEIRON PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEWOOD PERSON2 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSCHOOL PERSON1 PERSON2 PLACE3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEIRON PERSON2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEWOOD PERSON2 COALMINE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON2 COALMINE PLACE2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE PERSON1 PLACE3 PLACE2)
+(MOVE PERSON2 ORERESOURCE PLACE2)
 </Name>
 
 </On_Operator>

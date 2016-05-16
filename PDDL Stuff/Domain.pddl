@@ -1,5 +1,5 @@
 (define (domain ai_game)
-	(:requirements :strips :typing :fluents)
+	(:requirements :strips :typing :fluents :conditional-effects)
 	(:types 	
 		place - object		 
 		person - object
@@ -12,7 +12,9 @@
 		(wood)
 		(timber)
 		(iron)
-		(ore)
+		(ore ?p - place)
+		(coal ?p - place)
+		(min_resource)
 		(stone)
 		(time)
 	)
@@ -128,6 +130,19 @@
 			:precondition(and(is-lumberjack ?lumberjack) (at ?lumberjack ?tree))
 			:effect(has-timber ?lumberjack)
 	)
+	
+	(:action simpleMineOre
+			:parameters(?person - person ?resource - resource)
+			:precondition(and(>= (ore ?resource) (min_resource)))
+			:effect(and(has-ore ?person) (decrease (ore ?resource) 1))
+	)
+	
+	(:action simpleMineCoal
+			:parameters(?person - person ?resource - resource)
+			:precondition(and(>= (coal ?resource) (min_resource)))
+			:effect(and(has-coal ?person) (decrease (coal ?resource) 1))
+	)
+	
 	
 	(:action mineOre
 			:parameters(?miner - person ?mine - place)

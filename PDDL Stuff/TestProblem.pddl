@@ -28,7 +28,11 @@
 		(coal_resource coalresource)
 		(has-building oreresource)
 		(has-building coalresource)
-		(= (time) 0)		
+		(= (time) 0)
+		(= (min_resource) 0)
+		(= (ore oreresource) 1)
+		(= (coal coalresource) 1)
+			
 	)
 	
 	(:goal
