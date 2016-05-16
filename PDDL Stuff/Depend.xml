@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?><!DOCTYPE Durative-FF-Depend SYSTEM "Depend.dtd">
+<Durative-FF-Depend>
+<Operator>
+<Name>
+(TRAINLUMBERJACK PERSON1)</Name>
+
+</Operator>
+
+<Operator>
+<Name>
+(MOVE PERSON1 PLACE1 FOREST1)</Name>
+
+</Operator>
+
+<Operator>
+<Name>
+(CUTTREE PERSON1 FOREST1)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(TRAINLUMBERJACK PERSON1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE PERSON1 PLACE1 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+
+</Durative-FF-Depend>

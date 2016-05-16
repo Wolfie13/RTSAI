@@ -31,6 +31,8 @@
 		(has-skill ?person - person)
 		(has-riflemanskill ?person - person)
 		
+		(is-turfhut ?p - place)
+		
 		(has-timber ?person - person)
 		(has-wood ?person - person)
 		(has-coal ?person - person)
@@ -160,6 +162,11 @@
 	
 	;; --------- Build Building ---------- ;;
 	
+	(:action buildTurfHut
+			:parameters(?person - person ?place - place)
+			:precondition(and(at ?person ?place) (not(is-turfhut ?place)))
+			:effect(is-turfhut ?place)
+	)
 	
 	
 	;; --------- Store Resource ---------- ;;

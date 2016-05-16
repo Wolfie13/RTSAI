@@ -1,0 +1,8 @@
+; Time 0.00
+; ParsingTime
+; NrActions 3
+; MakeSpan 2
+; MetricValue 
+0: (TRAINLUMBERJACK PERSON1 ) [1]
+0: (MOVE PERSON1 PLACE1 FOREST1 ) [1]
+1: (CUTTREE PERSON1 FOREST1 ) [1]
