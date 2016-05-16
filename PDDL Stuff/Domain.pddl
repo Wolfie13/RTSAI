@@ -204,7 +204,7 @@
 	(:action buildOreMine
 			:parameters(?carpenter - person ?blacksmith - person ?person - person ?resource - resource)
 			:precondition(and(is-carpenter ?carpenter) (is-blacksmith ?blacksmith) (at ?carpenter ?resource) (at ?blacksmith ?resource) (not(= ?carpenter ?blacksmith)) (not(has-oremine ?resource))
-						)
+						(or(has-timber ?carpenter) (has-timber ?person)))
 			:effect(and(has-oremine ?resource))
 	)
 	
