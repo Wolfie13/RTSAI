@@ -18,7 +18,9 @@
 	
 	(:predicates
 		(at ?person - person ?p - place)
+		(has-building ?p - place)
 		
+		(has-house ?p - place)
 		(has-sawmill ?p - place)
 		(has-smelter ?p - place)
 		(has-school ?p - place)
@@ -31,7 +33,7 @@
 		(has-skill ?person - person)
 		(has-riflemanskill ?person - person)
 		
-		(is-turfhut ?p - place)
+		(has-turfhut ?p - place)
 		
 		(has-timber ?person - person)
 		(has-wood ?person - person)
@@ -63,13 +65,13 @@
 	
 	(:action simpleEducate
 			:parameters(?person - person ?student - person ?place - place)
-			:precondition(and(at ?person ?place) (at ?student ?place) (not(has-skill ?student)))
+			:precondition(and(at ?person ?place) (at ?student ?place) (not(has-skill ?student)) (not(= ?person ?student)))
 			:effect(and (has-skill ?student) (increase (time) 100))
 	)
 	
 	(:action schoolEducate
 			:parameters(?student - person ?teacher - person ?place - place)
-			:precondition(and(at ?student ?place) (at ?teacher ?place) (is-teacher ?teacher) (has-school ?place))
+			:precondition(and(at ?student ?place) (at ?teacher ?place) (is-teacher ?teacher) (has-school ?place) (not(has-skill ?student)))
 			:effect(and (has-skill ?student) (increase (time) 50))
 	)
 	
@@ -164,10 +166,32 @@
 	
 	(:action buildTurfHut
 			:parameters(?person - person ?place - place)
-			:precondition(and(at ?person ?place) (not(is-turfhut ?place)))
-			:effect(is-turfhut ?place)
+			:precondition(and(at ?person ?place) (not(has-turfhut ?place)) (not(has-building ?place)))
+			:effect(and(has-turfhut ?place) (has-building ?place))
 	)
 	
+	(:action buildHouse
+			:parameters(?carpenter - person ?person - person ?place - place)
+			:precondition(and(at ?carpenter ?place) (at ?person ?place) (is-carpenter ?carpenter) (not(has-house ?place)) (not(has-building ?place)) (not(= ?person ?carpenter))
+						  (or(has-wood ?carpenter) (has-wood ?person)))
+			:effect(and(has-house ?place) (has-building ?place))
+	)
+	
+	(:action buildSmelter
+			:parameters(?person - person ?place - place)
+			:precondition(and(at ?person ?place) (has-stone ?person) (not(has-smelter ?place)) (not(has-building ?place)))
+			:effect(and(has-smelter ?place) (has-building ?place))
+	)
+	
+	(:action buildSchool
+			:parameters(?carpenter - person ?person - person ?place - place)
+			:precondition(and(at ?person ?place) (at ?carpenter ?place) (is-carpenter ?carpenter) (not(has-school ?place)) (not(has-building ?place)) (not(= ?person ?carpenter))
+						  (or(has-wood ?carpenter) (has-iron ?person)))
+			:effect(and(has-school ?place) (has-building ?place))
+	)
+	
+	
+		
 	
 	;; --------- Store Resource ---------- ;;
 	

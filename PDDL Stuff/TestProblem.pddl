@@ -8,6 +8,10 @@
 		
 		place1 - place
 		place2 - place	
+		place3 - place
+		quarry - place
+		oremine - place
+		coalmine - place
 
 		forest1 - forest
 	)
@@ -16,13 +20,16 @@
 		
 		(at person1 place1)
 		(at person2 place2)	
-		(has-skill person1)		
+		(has-quarry quarry)
+		(has-oremine oremine)
+		(has-coalmine coalmine)
+		(= (time) 0)		
 	)
 	
 	(:goal
 		
 		(and
-			(has-timber person1)			
+			(has-school place3)			
 		)
 	)
 )
