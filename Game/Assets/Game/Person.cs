@@ -63,6 +63,8 @@ public class Person : MonoBehaviour {
 
     public int teamID;
 
+    public Material BusyTexture, FreeTexture;
+
 	// Use this for initialization
 	void Start () {
         finder = GameObject.FindGameObjectWithTag("Map").GetComponent<PathFinder>();
@@ -87,9 +89,11 @@ public class Person : MonoBehaviour {
             time = 0;
             if(BusyTime >0)
             {
+                renderer.material = BusyTexture;
                 BusyTime--;
                 return;
             }
+            renderer.material = FreeTexture;
             if(ToDoList.Count >0)
             {
                 PlayerData CurrentTeamData = Map.CurrentMap.GetTeamData(teamID);

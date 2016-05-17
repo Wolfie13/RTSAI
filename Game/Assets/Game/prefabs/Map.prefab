@@ -1,14 +1,77 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &194236
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 494236}
+  - 114: {fileID: 11494234}
+  - 114: {fileID: 11494236}
+  m_Layer: 0
+  m_Name: Map
+  m_TagString: Map
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &494236
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194236}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11494234
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cefe65b3cb29974fa73eb8bf45bb295, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MapName: plaguelands.map
+  sizeX: 0
+  sizeY: 0
+  mapMaterial: {fileID: 2100000, guid: b3de107869eba4645a9a965632578b5e, type: 2}
+  Human: {fileID: 188874, guid: 45960494564f47749802db49d8a0452f, type: 2}
+  player1startX: 256
+  player1startY: 256
+  player2startX: 300
+  player2startY: 300
+  BuildingTile: {fileID: 129396, guid: a067f6c4764ca4041ab576d0cc42a0c3, type: 2}
+  ResourceChance: .5
+  NumberOfPlayers: 2
+--- !u!114 &11494236
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a554f16af2782f348919dee8ecb1266d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &100100000
 Prefab:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 0}
+  m_RootGameObject: {fileID: 194236}
   m_IsPrefabParent: 1
   m_IsExploded: 1
