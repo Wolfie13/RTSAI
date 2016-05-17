@@ -33,8 +33,8 @@ public class Building : MapObject {
         {BuildingType.Mine,         new IVec2(1,1)},
         {BuildingType.Smelter,      new IVec2(2,2)},
         {BuildingType.Quarry,       new IVec2(1,1)},
-        {BuildingType.Sawmill,      new IVec2(3,3)},//may change
-        {BuildingType.Blacksmith,   new IVec2(3,3)}//maychange
+        {BuildingType.Sawmill,      new IVec2(2,2)},
+        {BuildingType.Blacksmith,   new IVec2(2,2)}
         //,{BuildingType.MarketStall,  new IVec2(1,1)}
 
     };
@@ -136,6 +136,7 @@ public class Building : MapObject {
             
             //Spend Resource and set Busy timers
             //all require a labourer
+            Debug.Log("can build?");
             GetNonBusyPersonInBuildingWithSkill(Skill.Labourer).SetBusy(BuildTime[m_buildingtype]);
             PlayerData CurrentTeamData = Map.CurrentMap.GetTeamData(teamID);
             switch (m_buildingtype)

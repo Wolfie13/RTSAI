@@ -64,18 +64,20 @@ public class Person : MonoBehaviour {
     public int teamID;
 
 	// Use this for initialization
-	IEnumerator Start () {
+	void Start () {
         finder = GameObject.FindGameObjectWithTag("Map").GetComponent<PathFinder>();
-
-        yield return true;
-
-        if (Map.CurrentMap)
-            currentMapPos = Map.CurrentMap.getTileFromPos(transform.position);
 
         ResetResources();
         Skills.Add(Skill.Labourer);
 	}
 	
+    public void SetMapPosition(IVec2 mapPos)
+    {
+        currentMapPos = mapPos;
+
+        transform.position = Map.CurrentMap.getTilePos(mapPos);
+    }
+
 	// Update is called once per frame
 	void NUpdate () {
         time += Time.deltaTime;
@@ -311,10 +313,45 @@ public class Person : MonoBehaviour {
                         //set busy time
                         break;
                     case action.Combat://may drop
-                        //check the Skill
-                        //Check chance
-                        //set busy time
-                        //Kill person?
+                        if (Skills.Contains(Skill.Rifleman))
+                        {
+                            List<Person> others = new List<Person>();
+                            for(IVec2 offset = new IVec2(-5,-5); offset.x < 6;++offset.x)
+                            {
+                                for(offset.y = -5; offset.y < 6;++offset.y)
+                                {
+                                    if(offset.magnitude() <= 5)
+                                    {
+                                        others.AddRange(Map.CurrentMap.GetPeopleAt(currentMapPos + offset));
+                                    }
+                                }
+                            }
+                            Person other = null;
+                            foreach (var item in others)
+                            {
+                                if(item.teamID != teamID)
+                                {
+                                    other = item;
+                                    break;
+                                }
+                            }
+
+                            if(other)
+                            {
+                                if(other.Skills.Contains(Skill.Rifleman) && Random.Range(0,100) < 70)
+                                {
+                                    Map.CurrentMap.KillPerson(this);
+                                }
+                                else
+                                {
+                                    Map.CurrentMap.KillPerson(other);
+                                    SetBusy(1);
+                                }
+
+                            }
+                            
+
+                        }
                         break;
                     default:
                         break;
@@ -343,6 +380,8 @@ public class Person : MonoBehaviour {
     {
         BusyTime = timeUnits;
     }
+
+
 
     
 
