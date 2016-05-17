@@ -17,7 +17,7 @@ public struct path
     public bool isPathFound{get;set;}
 };
 
-
+[System.Serializable]
 public class IVec2
 {
     public IVec2(){x = 0; y = 0;}

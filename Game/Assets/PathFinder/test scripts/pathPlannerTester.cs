@@ -40,9 +40,9 @@ public class pathPlannerTester : MonoBehaviour {
         if (CurrentMap)
         {
             Gizmos.color = Color.blue;
-            Gizmos.DrawSphere(CurrentMap.getTilePos(istartpos.x, istartpos.y), 10);
+			Gizmos.DrawSphere(Map.getTilePos(istartpos.x, istartpos.y), 10);
             Gizmos.color = Color.yellow;
-            Gizmos.DrawSphere(CurrentMap.getTilePos(iendpos.x, iendpos.y), 10);
+			Gizmos.DrawSphere(Map.getTilePos(iendpos.x, iendpos.y), 10);
             Gizmos.color = Color.red;
             if (pathID > 0)
             {
@@ -60,8 +60,8 @@ public class pathPlannerTester : MonoBehaviour {
                             LineEnd = foundpath[idx].NextNode.MapPos;
 
                             Vector3 realstart, realEnd;
-                            realstart = CurrentMap.getTilePos(LineStart.x, LineStart.y);
-                            realEnd = CurrentMap.getTilePos(LineEnd.x, LineEnd.y);
+							realstart = Map.getTilePos(LineStart.x, LineStart.y);
+							realEnd = Map.getTilePos(LineEnd.x, LineEnd.y);
                             // realstart.y += 10;
                             //realEnd.y += 10;
                             Gizmos.DrawLine(realstart, realEnd);

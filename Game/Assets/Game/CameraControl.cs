@@ -73,12 +73,12 @@ public class CameraControl : MonoBehaviour {
             Vector3 MouseRawPos = Input.mousePosition;
             Vector3 mouserealPos = camera.ScreenToWorldPoint(MouseRawPos);
             if (CurrentMap)
-                MapPosClick = new IVec2(CurrentMap.getTileFromPos(mouserealPos));
+				MapPosClick = new IVec2(Map.getTileFromPos(mouserealPos));
 
             Debug.Log("click location: " + mouserealPos);
             Debug.Log("map location: " + MapPosClick.ToString());
 
-            Debug.Log("thought location: " + CurrentMap.getTilePos(MapPosClick));
+            Debug.Log("thought location: " + Map.getTilePos(MapPosClick));
 
 
             if(selectedObject)

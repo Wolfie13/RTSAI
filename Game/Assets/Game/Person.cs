@@ -77,7 +77,7 @@ public class Person : MonoBehaviour {
     {
         currentMapPos = mapPos;
 
-        transform.position = Map.CurrentMap.getTilePos(mapPos);
+        transform.position = Map.getTilePos(mapPos);
     }
 
 	// Update is called once per frame
@@ -254,7 +254,7 @@ public class Person : MonoBehaviour {
                                 && PathFinder.Paths[PathID].FoundPath.Count >0)
                             {
                                 currentMapPos = PathFinder.Paths[PathID].FoundPath[0].MapPos;
-                                transform.position = Map.CurrentMap.getTilePos(currentMapPos);
+                                transform.position = Map.getTilePos(currentMapPos);
 
                                 PathFinder.Paths[PathID].FoundPath.RemoveAt(0);
                             }
@@ -405,8 +405,8 @@ public class Person : MonoBehaviour {
                             LineEnd = foundpath[idx].NextNode.MapPos;
 
                             Vector3 realstart, realEnd;
-                            realstart = CurrentMap.getTilePos(LineStart.x, LineStart.y);
-                            realEnd = CurrentMap.getTilePos(LineEnd.x, LineEnd.y);
+                            realstart = Map.getTilePos(LineStart.x, LineStart.y);
+							realEnd = Map.getTilePos(LineEnd.x, LineEnd.y);
                             // realstart.y += 10;
                             //realEnd.y += 10;
                             Gizmos.DrawLine(realstart, realEnd);

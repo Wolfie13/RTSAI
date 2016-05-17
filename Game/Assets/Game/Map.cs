@@ -29,9 +29,7 @@ public class Map : MonoBehaviour {
     public const int ChunkSize = 32;
 
     public GameObject Human = null;
-    public int player1startX, player1startY,
-               player2startX, player2startY;
-
+	public IVec2 player1Start, player2Start;
 
     public GameObject BuildingTile = null;
 
@@ -95,9 +93,9 @@ public class Map : MonoBehaviour {
 		}
 	}
 
-    public Vector3 getTilePos(IVec2 pos) { return getTilePos(pos.x, pos.y); }
+    public static Vector3 getTilePos(IVec2 pos) { return getTilePos(pos.x, pos.y); }
 
-    public Vector3 getTilePos(int x, int y)
+    public static Vector3 getTilePos(int x, int y)
     {
         float xPos = MapChunk.TILE_SIZE * x;
         float yPos = MapChunk.TILE_SIZE * y;
@@ -105,7 +103,7 @@ public class Map : MonoBehaviour {
         return new Vector3(xPos, 0, yPos);
     }
 
-    public IVec2 getTileFromPos(Vector3 worldPos)
+    public static IVec2 getTileFromPos(Vector3 worldPos)
     {
         //worldPos += new Vector3(0.5f, 0.5f, 0.5f) * MapChunk.TILE_SIZE;
 
@@ -313,37 +311,37 @@ public class Map : MonoBehaviour {
         load(MapName);
         initChunks();
 
-        IVec2 Start1Pos = new IVec2(player1startX, player1startY);
-        IVec2 Start2Pos = new IVec2(player2startX, player2startY);
+		//Init the entity array.
+		entities = new MapObject[this.sizeX, this.sizeY];
 
         {/////////////////////player 1/////////////////////////
             PlayerData player = new PlayerData(Players.Count);
             Players.Add(player);
-            AddPerson(Start1Pos, player.TeamID);
+            AddPerson(player1Start, player.TeamID);
             for (Skill s = Skill.Labourer; s <= Skill.Rifleman; s++)
             {
                 if (!player.People[0].Skills.Contains(s))
                     player.People[0].Skills.Add(s);
             }
-            AddPerson(Start1Pos, player.TeamID);
+			AddPerson(player1Start, player.TeamID);
             Players[Players.Count-1].Resources[ResourceType.Stone]++;
             Players[Players.Count - 1].Resources[ResourceType.Wood]++;
-            BuildBuilding(BuildingType.Storage, Start1Pos, player.TeamID);
+			BuildBuilding(BuildingType.Storage, player1Start, player.TeamID);
             
         }
         {///////////////////////////player2/////////////////////////
             PlayerData player = new PlayerData(Players.Count);
             Players.Add(player);
-            AddPerson(Start2Pos, player.TeamID);
+            AddPerson(player2Start, player.TeamID);
             for (Skill s = Skill.Labourer; s <= Skill.Rifleman; s++)
             {
                 if (!player.People[0].Skills.Contains(s))
                     player.People[0].Skills.Add(s);
             }
-            AddPerson(Start2Pos, player.TeamID);
+			AddPerson(player2Start, player.TeamID);
             Players[Players.Count - 1].Resources[ResourceType.Stone]++;
             Players[Players.Count - 1].Resources[ResourceType.Wood]++;
-            BuildBuilding(BuildingType.Storage, Start2Pos, player.TeamID);
+			BuildBuilding(BuildingType.Storage, player2Start, player.TeamID);
         }
 
         foreach (var item in People)
@@ -351,6 +349,8 @@ public class Map : MonoBehaviour {
             item.SetBusy(0);
         }
 
+		//Position the camera
+		//Camera.main.transform.position = getTilePos (player1Start) + new Vector3 (0, 100, 0);
     }
 
 	void load(string filename)
@@ -447,11 +447,9 @@ public class Map : MonoBehaviour {
         {
             timePassed = 0;
 
-            foreach (var item in entities)
-            {
-                //Update Map item tick
-                item.Update();
-            }
+            foreach (Building b in Buildings) {
+				b.Update();
+			}
         }
 	}
 }
