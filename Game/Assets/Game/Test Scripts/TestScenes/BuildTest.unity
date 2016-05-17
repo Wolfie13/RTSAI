@@ -75,7 +75,7 @@ NavMeshSettings:
     heightInaccuracy: 10
     tileSizeHint: 0
   m_NavMesh: {fileID: 0}
---- !u!1001 &386962671
+--- !u!1001 &137152868
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -113,6 +113,22 @@ Prefab:
     - target: {fileID: 494236, guid: 5f14cdf4866ed4c44a5d658a2eb53656, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11494234, guid: 5f14cdf4866ed4c44a5d658a2eb53656, type: 2}
+      propertyPath: player1Start.x
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 11494234, guid: 5f14cdf4866ed4c44a5d658a2eb53656, type: 2}
+      propertyPath: player1Start.y
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 11494234, guid: 5f14cdf4866ed4c44a5d658a2eb53656, type: 2}
+      propertyPath: player2Start.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 11494234, guid: 5f14cdf4866ed4c44a5d658a2eb53656, type: 2}
+      propertyPath: player2Start.y
+      value: 300
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5f14cdf4866ed4c44a5d658a2eb53656, type: 2}
@@ -321,7 +337,7 @@ MonoBehaviour:
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 194236, guid: 5f14cdf4866ed4c44a5d658a2eb53656, type: 2}
-  m_PrefabInternal: {fileID: 386962671}
+  m_PrefabInternal: {fileID: 137152868}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1303748745}
@@ -339,7 +355,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11494234, guid: 5f14cdf4866ed4c44a5d658a2eb53656,
     type: 2}
-  m_PrefabInternal: {fileID: 386962671}
+  m_PrefabInternal: {fileID: 137152868}
   m_GameObject: {fileID: 1303748743}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -351,18 +367,22 @@ MonoBehaviour:
   sizeY: 0
   mapMaterial: {fileID: 2100000, guid: b3de107869eba4645a9a965632578b5e, type: 2}
   Human: {fileID: 188874, guid: 45960494564f47749802db49d8a0452f, type: 2}
-  player1startX: 256
-  player1startY: 256
-  player2startX: 300
-  player2startY: 300
+  player1Start:
+    x: 256
+    y: 256
+  player2Start:
+    x: 300
+    y: 300
   BuildingTile: {fileID: 129396, guid: a067f6c4764ca4041ab576d0cc42a0c3, type: 2}
-  ResourceChance: .5
+  CoalTile: {fileID: 142140, guid: e5bb32bd090e6904c8ab4f41e375ad47, type: 2}
+  OreTile: {fileID: 189756, guid: 2eabb8cb43911e5429022008192c0b64, type: 2}
+  ResourceChance: .0500000007
   NumberOfPlayers: 2
 --- !u!4 &1303748745
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 494236, guid: 5f14cdf4866ed4c44a5d658a2eb53656, type: 2}
-  m_PrefabInternal: {fileID: 386962671}
+  m_PrefabInternal: {fileID: 137152868}
   m_GameObject: {fileID: 1303748743}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -375,7 +395,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11494236, guid: 5f14cdf4866ed4c44a5d658a2eb53656,
     type: 2}
-  m_PrefabInternal: {fileID: 386962671}
+  m_PrefabInternal: {fileID: 137152868}
   m_GameObject: {fileID: 1303748743}
   m_Enabled: 1
   m_EditorHideFlags: 0
