@@ -51,7 +51,7 @@ public class IVec2
 public class PathFinder : MonoBehaviour {
 
     // this is a bridge class to call the Path Finding Functions 
-   static private AStar AStar = new AStar();
+   static private AStar m_AStar = new AStar();
 
     public static Dictionary<uint,path> Paths = new Dictionary<uint,path>();
 
@@ -90,7 +90,7 @@ public class PathFinder : MonoBehaviour {
         temp.isPathFound = false;
         Paths.Add(ID,temp);
 
-        StartCoroutine(AStar.GetPath(MapPosStart, MapPosEnd, Maxsteps, TimePerframe, ID, jim));
+        StartCoroutine(m_AStar.GetPath(MapPosStart, MapPosEnd, Maxsteps, TimePerframe, ID, jim));
 
         return ID;
     }

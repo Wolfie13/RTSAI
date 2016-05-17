@@ -240,7 +240,19 @@ public class Map : MonoBehaviour {
             {
                 IVec2 newPos = Pos + offset;
                 if (!Terrain.Contains(getTile(newPos)) || getObject(newPos) is Building)
+                {
                     Buildable = false;
+                }
+                else if(type == BuildingType.Mine)
+                {
+                    ResourceTile t = getObject(newPos) as ResourceTile;
+                    if(t == null || (t.m_resource != ResourceType.Coal 
+                                 && t.m_resource != ResourceType.Ore))
+                    {
+                        Buildable = false;
+                    }
+                }
+
             }
         }
         return Buildable;
