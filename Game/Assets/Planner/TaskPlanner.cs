@@ -12,10 +12,11 @@ public class TaskPlanner : MonoBehaviour {
     private string working_directory;
 
     private string PDDLDomainName = "Domain";
-    private string PDDLProblemName = "TeamProblem";
+    private string PDDLProblemName = "TeamProblemTest";
     private string SolutionName = "/ffSolution.soln";
 
-    private string solution = "";
+    private List<string> solution;
+    private string task = "";
     
     private Map map;
 
@@ -23,8 +24,7 @@ public class TaskPlanner : MonoBehaviour {
 	void Start () 
     {
         map = GetComponent<Map>();
-        working_directory = Application.dataPath;
-        UnityEngine.Debug.Log(working_directory);
+        working_directory = Application.dataPath;        
 	}
 
     void Update()
@@ -34,6 +34,12 @@ public class TaskPlanner : MonoBehaviour {
             RunPlanner(1);
             ReadSolution();
             UnityEngine.Debug.Log(solution);
+            ProcessSolution();
+        }
+
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            CreateProblem(1);
         }
     }
 
@@ -51,16 +57,110 @@ public class TaskPlanner : MonoBehaviour {
         ProcessPlanner.WaitForExit();
     }
 
-    string ReadSolution()
+    List<string> ReadSolution()
     {
         var result = File.ReadAllLines(working_directory + "/Planner" + SolutionName).Where(s => s.Contains(":"));
 
         //TO DO: add functionality for reading all actions and assigning tasks to population
-        solution = result.ToList()[1].ToString();       
+        solution = result.ToList();       
         
 
         File.Delete(working_directory + "/Planner" + SolutionName);
 
         return solution;
+    }
+
+    void ProcessSolution()
+    {
+        foreach(string task in solution)
+        {
+            
+          
+
+            
+           
+        }
+    }
+
+    void CreateProblem(int TeamID)
+    {
+        PlayerData team_data = map.GetTeamData(TeamID);
+
+        List<Person> people = team_data.GetPeople();
+        List<Building> buildings = team_data.GetBuildings();
+
+        //Write Start Problem - define domain
+        List<string> lines = new List<string>();    
+        
+        lines.Add("(define (problem team_problem)");
+        lines.Add("(:domain ai_game)");
+
+        //Add Lines for (:objects)
+        lines.Add("(:objects");          
+        lines.Add("forest1 - forest");        
+
+        foreach (Person person in people)
+        {
+            lines.Add(person.name + " - person");
+            lines.Add(person.name + "place - place");
+
+            //New place
+        }
+
+        foreach (Building building in buildings)
+        {
+            lines.Add(building.m_buildingtype + " -place");
+        }
+
+        //Add lines for finding new resources
+        lines.Add("oreresource - resource");
+        lines.Add("coalresource - resource");
+        lines.Add(")");
+
+        //Add Lines for (:init)
+
+        lines.Add("(:init");
+
+        foreach(Person person in people)
+        {
+            lines.Add("(at " + person.name + " " + person.name + "place)");
+        }
+
+        foreach(Building building in buildings)
+        {
+            lines.Add("(has-building " + building.m_buildingtype);
+        }
+
+        lines.Add("(ore_resource oreresource)");
+        lines.Add("(coal_resource coalresource)");
+
+        lines.Add("(has-building oreresource)");
+        lines.Add("(has-building coalresource)");
+
+        //Add Initial Amounts Data
+        lines.Add("(= (time) 0)");
+        lines.Add("(= (min_resource) 0)");
+        lines.Add("(= (ore oreresource) 5)");
+        lines.Add("(= (coal coalresource) 5)");
+
+        lines.Add(")");
+
+        //Add Lines for (:goal)
+        lines.Add("(:goal");
+
+        lines.Add("(and");
+
+        //Add Desired Goal State
+        lines.Add("(has-wood human1)");
+
+        lines.Add(")");
+
+        lines.Add(")");
+
+        //End Problem File
+        lines.Add(")");
+        System.IO.File.WriteAllLines(working_directory + "/Planner/TeamProblemTest" + TeamID + ".pddl", lines.ToArray());
+
+        
     }
 }

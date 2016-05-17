@@ -38,8 +38,7 @@
 	(:goal
 		
 		(and
-			(has-school place3)	
-			(has-school place2)
+			(has-timber person1)			
 		)
 	)
 )
