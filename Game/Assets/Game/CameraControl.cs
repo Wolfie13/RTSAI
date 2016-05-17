@@ -76,7 +76,12 @@ public class CameraControl : MonoBehaviour {
             Vector3 MouseRawPos = Input.mousePosition;
             Vector3 mouserealPos = camera.ScreenToWorldPoint(MouseRawPos);
             if (CurrentMap)
-                MapPosClick = CurrentMap.getTileFromPos(mouserealPos);
+                MapPosClick = new IVec2(CurrentMap.getTileFromPos(mouserealPos));
+
+            Debug.Log("click location: " + mouserealPos);
+            Debug.Log("map location: " + MapPosClick.ToString());
+
+            Debug.Log("thought location: " + CurrentMap.getTilePos(MapPosClick));
 
 
             if(selectedObject)
@@ -91,17 +96,9 @@ public class CameraControl : MonoBehaviour {
                         interactobject = info.transform.gameObject;
 
                     display_context_menu = true;
-                    selectedObject.GetComponent<Person>().Move(MapPosClick, ()=>{});
+                    selectedObject.GetComponent<Person>().Move(MapPosClick);
                 }
             }
-
-            Debug.Log("click location: " + mouserealPos);
-            Debug.Log("map location: " + MapPosClick.ToString());
-
-            Debug.Log("thought location: " + CurrentMap.getTilePos(MapPosClick));
-
-
-
         }
 
 

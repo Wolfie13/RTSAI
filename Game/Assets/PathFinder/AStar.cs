@@ -13,7 +13,7 @@ public class AStar {
 
     private Dictionary<uint, IVec2> EndPos = new Dictionary<uint,IVec2>();
 
-    public IEnumerator GetPath(IVec2 MapPosStart, IVec2 MapPosEnd, int Maxsteps, float TimePerframe, uint ID, Person jim)
+    public IEnumerator GetPath(IVec2 MapPosStart, IVec2 MapPosEnd, int Maxsteps, int TimePerframe, uint ID, Person jim)
     {
         List<Node> result = new List<Node>();
 
@@ -48,6 +48,7 @@ public class AStar {
             // do stuff and Yeild on Timeperframe
             if(myTimer.ElapsedMilliseconds > TimePerframe)
             {
+                Debug.Log("yield");
                 myTimer.Reset();
                 yield return true;
                 myTimer.Start();
@@ -85,7 +86,7 @@ public class AStar {
             EndNode = EndNode.PrevNode;
         }
 
-       // Debug.Log("AStarStopped path size: " + result.Count);
+        Debug.Log("AStarStopped path size: " + result.Count);
 
         //output
         if (PathFinder.Paths.ContainsKey(ID))
