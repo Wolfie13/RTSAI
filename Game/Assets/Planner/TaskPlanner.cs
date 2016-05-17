@@ -139,6 +139,9 @@ public class TaskPlanner : MonoBehaviour {
 
         //Add Initial Amounts Data
         lines.Add("(= (time) 0)");
+        lines.Add("(= (wood) 0)");
+        lines.Add("(= (iron) 0)");
+        lines.Add("(= (timber) 0)");
         lines.Add("(= (min_resource) 0)");
         lines.Add("(= (ore oreresource) 5)");
         lines.Add("(= (coal coalresource) 5)");

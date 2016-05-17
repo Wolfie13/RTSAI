@@ -12,6 +12,8 @@
 		(wood)
 		(timber)
 		(iron)
+		(stored-ore)
+		(stored-iron)
 		(ore ?p - place)
 		(coal ?p - place)
 		(min_resource)
@@ -49,7 +51,12 @@
 		(has-stone ?person - person)
 		(has-axe ?person - person)
 		
-		(stored-timber ?storage - place)
+		(stored-timber ?p - place)
+		(stored-wood ?p - place)
+		(stored-coal ?p - place)
+		(stored-ore ?p - place)
+		(stored-iron ?p - place)
+		(stored-stone ?p - place)
 
 		(is-carpenter ?person - person)
 		(is-blacksmith ?person - person)
@@ -165,8 +172,8 @@
 	
 	(:action produceWood
 			:parameters(?person - person ?sawmill - place)
-			:precondition(and(has-timber ?person) (at ?person ?sawmill) (has-sawmill ?sawmill))
-			:effect(and(has-wood ?person) (not(has-timber ?person)))
+			:precondition(and(has-timber ?person) (at ?person ?sawmill) (has-sawmill ?sawmill) (>= (timber) 1))
+			:effect(and(has-wood ?person) (not(has-timber ?person)) (decrease (timber) 1))
 	)
 	
 	(:action produceIron
@@ -212,8 +219,8 @@
 	
 	(:action buildSawMill
 			:parameters(?person - person ?place - place)
-			:precondition(and(at ?person ?place) (has-timber ?person) (has-stone ?person) (has-iron ?person) (not(has-building ?place)) (not(has-sawmill ?place)))
-			:effect(and(has-sawmill ?place) (has-building ?place) (not(has-timber ?person)) (not(has-stone ?person)) (not(has-iron ?person)))
+			:precondition(and(at ?person ?place) (has-stone ?person) (has-iron ?person) (not(has-building ?place)) (not(has-sawmill ?place)) (>= (timber) 1))
+			:effect(and(has-sawmill ?place) (has-building ?place) (not(has-timber ?person)) (not(has-stone ?person)) (not(has-iron ?person)) (decrease (timber) 1))
 	)
 	
 	(:action buildOreMine
@@ -239,7 +246,18 @@
 	(:action storeTimber
 			:parameters(?person - person ?storage - place)
 			:precondition(and(at ?person ?storage) (has-storage ?storage) (has-timber ?person))
-			:effect(and (stored-timber ?storage) (increase (wood) 1))
+			:effect(and (stored-timber ?storage) (increase (timber) 1) (not(has-timber ?person)))
 	)
-			
+
+	(:action storeWood
+			:parameters(?person - person ?storage - place)
+			:precondition(and(at ?person ?storage) (has-storage ?storage) (has-wood ?person))
+			:effect(and (stored-wood ?storage) (increase (wood) 1) (not(has-wood ?person)))
+	)
+	
+	(:action storeOre
+			:parameters(?person - person ?storage - place)
+			:precondition(and(at ?person ?storage) (has-storage ?storage) (has-ore ?person))
+			:effect(and (increase (stored-ore) 1) (not(has-ore ?person)))
+	)
 )	

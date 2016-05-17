@@ -9,6 +9,7 @@ human2place - place
 oreresource - resource
 coalresource - resource
 quarry - place
+storage - place
 )
 (:init
 (at human1 human1place)
@@ -18,14 +19,21 @@ quarry - place
 (has-building oreresource)
 (has-building coalresource)
 (has-quarry quarry)
+(has-storage storage)
 (= (time) 0)
+(= (wood) 0)
+(= (timber) 0)
+(= (stored-ore) 0)
+(= (stored-iron) 0)
 (= (min_resource) 0)
 (= (ore oreresource) 5)
 (= (coal coalresource) 5)
 )
 (:goal
 (and
-(has-wood human1)
+(= (wood) 5)
+(= (timber) 10)
+(= (stored-ore) 5)
 )
 )
 )
