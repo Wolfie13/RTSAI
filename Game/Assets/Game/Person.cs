@@ -315,7 +315,7 @@ public class Person : MonoBehaviour {
                         //check the Skill
                         //set busy time
                         break;
-                    case action.Combat://may drop
+                    case action.Combat:
                         if (Skills.Contains(Skill.Rifleman))
                         {
                             List<Person> others = new List<Person>();

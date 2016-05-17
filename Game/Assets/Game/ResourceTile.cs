@@ -6,16 +6,11 @@ public class ResourceTile : MapObject {
 
     int m_AvaliableResource = 0;
 
-    Building m_Building = null;
-
     char m_rawChar;
 
     uint TimeUnitsPassed = 0;
 
     public ResourceType m_resource;
-
-    //list of people on the tile;
-    List<Person> People = new List<Person>();
 
 	public void setTile(ResourceType Resource, IVec2 MapPos)
 	{

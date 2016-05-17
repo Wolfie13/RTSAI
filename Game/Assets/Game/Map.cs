@@ -254,6 +254,43 @@ public class Map : MonoBehaviour {
         ResourceTile t = new ResourceTile();
         t.setTile(type, MapPos,ResourceAmount);
     }
+    //
+    public ResourceTile GetNearestResourceTile(IVec2 Pos, ResourceType type)
+    {
+        ResourceTile nearestTile = null;
+
+        for (IVec2 offset = new IVec2(); offset.x < sizeX; offset.x++)
+        {
+            for (offset.y = 0; offset.y <= offset.x; offset.y++)
+            {
+                if (getObject(Pos + offset) is ResourceTile && (getObject(Pos + offset) as ResourceTile).m_resource == type)
+                {
+                    ResourceTile t = getObject(Pos + offset) as ResourceTile;
+                   if(t.m_resource == type)
+                   {
+                       nearestTile = t;
+                       break;
+                   }
+                }
+
+                if (getObject(Pos - offset) is ResourceTile && (getObject(Pos - offset) as ResourceTile).m_resource == type)
+                {
+                    ResourceTile t = getObject(Pos - offset) as ResourceTile;
+                    if (t.m_resource == type)
+                    {
+                        nearestTile = t;
+                        break;
+                    }
+                }
+            }
+            if (nearestTile != null)
+                break;
+        }
+        return nearestTile;
+
+    }
+    //
+
 
     public PlayerData GetTeamData(int TeamID)
     {
@@ -307,6 +344,11 @@ public class Map : MonoBehaviour {
             Players[Players.Count - 1].Resources[ResourceType.Stone]++;
             Players[Players.Count - 1].Resources[ResourceType.Wood]++;
             BuildBuilding(BuildingType.Storage, Start2Pos, player.TeamID);
+        }
+
+        foreach (var item in People)
+        {
+            item.SetBusy(0);
         }
 
     }
