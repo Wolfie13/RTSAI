@@ -63,6 +63,8 @@ public class Person : MonoBehaviour {
 
     public int teamID;
 
+    public Material BusyTexture, FreeTexture;
+
 	// Use this for initialization
 	void Start () {
         finder = GameObject.FindGameObjectWithTag("Map").GetComponent<PathFinder>();
@@ -79,7 +81,7 @@ public class Person : MonoBehaviour {
     }
 
 	// Update is called once per frame
-	void NUpdate () {
+	void Update () {
         time += Time.deltaTime;
 
         if(time > Map.TimeUnit)
@@ -87,9 +89,11 @@ public class Person : MonoBehaviour {
             time = 0;
             if(BusyTime >0)
             {
+                renderer.material = BusyTexture;
                 BusyTime--;
                 return;
             }
+            renderer.material = FreeTexture;
             if(ToDoList.Count >0)
             {
                 PlayerData CurrentTeamData = Map.CurrentMap.GetTeamData(teamID);
@@ -249,7 +253,6 @@ public class Person : MonoBehaviour {
                             if(PathFinder.Paths[PathID].isPathFound
                                 && PathFinder.Paths[PathID].FoundPath.Count >0)
                             {
-                                SetBusy(1);
                                 currentMapPos = PathFinder.Paths[PathID].FoundPath[0].MapPos;
                                 transform.position = Map.CurrentMap.getTilePos(currentMapPos);
 
@@ -312,7 +315,7 @@ public class Person : MonoBehaviour {
                         //check the Skill
                         //set busy time
                         break;
-                    case action.Combat://may drop
+                    case action.Combat:
                         if (Skills.Contains(Skill.Rifleman))
                         {
                             List<Person> others = new List<Person>();
@@ -335,7 +338,6 @@ public class Person : MonoBehaviour {
                                     break;
                                 }
                             }
-
                             if(other)
                             {
                                 if(other.Skills.Contains(Skill.Rifleman) && Random.Range(0,100) < 70)
@@ -347,22 +349,20 @@ public class Person : MonoBehaviour {
                                     Map.CurrentMap.KillPerson(other);
                                     SetBusy(1);
                                 }
-
                             }
-                            
-
                         }
                         break;
                     default:
                         break;
                 }
+                ToDoList.RemoveAt(0);
             }
         }
 	}
 
 
 
-    public void Move(IVec2 toLocation, actfunc Callback)
+    public void Move(IVec2 toLocation)
     {
 
         if(PathFinder.Paths.ContainsKey(PathID))
@@ -372,7 +372,7 @@ public class Person : MonoBehaviour {
 
         currentstate = State.move;
 
-        PathID = finder.GetPath(currentMapPos, toLocation, 0.01f,this);
+        PathID = finder.GetPath(currentMapPos, toLocation, 10,this);
        
     }
 

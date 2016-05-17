@@ -14,9 +14,7 @@ public class CameraControl : MonoBehaviour {
 
     public float Min_Zoom_Dist = 2, Max_Zoom_Dist = 75;
 
-    GameObject selectedObject = null, interactobject = null;
-
-    bool display_context_menu = false;
+    GameObject selectedObject = null;
 
     IVec2 MapPosClick = new IVec2();
 
@@ -66,7 +64,6 @@ public class CameraControl : MonoBehaviour {
 
             Debug.Log("Object selected: " + selectedObject.name);
             }
-            interactobject = null;
         }
 
         //select object
@@ -76,24 +73,7 @@ public class CameraControl : MonoBehaviour {
             Vector3 MouseRawPos = Input.mousePosition;
             Vector3 mouserealPos = camera.ScreenToWorldPoint(MouseRawPos);
             if (CurrentMap)
-                MapPosClick = CurrentMap.getTileFromPos(mouserealPos);
-
-
-            if(selectedObject)
-            {
-                if(selectedObject.GetComponent<Person>())
-                {
-                     Ray mouseRay = camera.ScreenPointToRay(MouseRawPos);
-
-                    RaycastHit info;
-                    Physics.Raycast(mouseRay,out info);
-                    if (info.transform)
-                        interactobject = info.transform.gameObject;
-
-                    display_context_menu = true;
-                    selectedObject.GetComponent<Person>().Move(MapPosClick, ()=>{});
-                }
-            }
+                MapPosClick = new IVec2(CurrentMap.getTileFromPos(mouserealPos));
 
             Debug.Log("click location: " + mouserealPos);
             Debug.Log("map location: " + MapPosClick.ToString());
@@ -101,7 +81,13 @@ public class CameraControl : MonoBehaviour {
             Debug.Log("thought location: " + CurrentMap.getTilePos(MapPosClick));
 
 
-
+            if(selectedObject)
+            {
+                if(selectedObject.GetComponent<Person>())
+                {
+                    selectedObject.GetComponent<Person>().Move(MapPosClick);
+                }
+            }
         }
 
 

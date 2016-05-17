@@ -70,6 +70,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skills: 
+  ToDoList: 
+  currentstate: 0
+  BusyTime: 0
+  teamID: 0
+  BusyTexture: {fileID: 2100000, guid: 732955eb84572b4419145facb47a1c21, type: 2}
+  FreeTexture: {fileID: 2100000, guid: 97610201ff3663f40a3e031fcb4ba050, type: 2}
 --- !u!136 &13688874
 CapsuleCollider:
   m_ObjectHideFlags: 1

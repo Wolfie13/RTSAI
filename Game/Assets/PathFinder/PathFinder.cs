@@ -38,7 +38,7 @@ public class IVec2
 
 	public override bool Equals(System.Object o)
 	{
-		return o.GetType ().Equals (this.GetType ()) && (o as IVec2) == this;
+		return o.GetType().Equals(this.GetType ()) && (o as IVec2) == this;
 	}
 
 	public override int GetHashCode ()
@@ -62,22 +62,22 @@ public class PathFinder : MonoBehaviour {
 	}
 
 
-    public uint GetPath(IVec2 MapPosStart, IVec2 MapPosEnd, float TimePerframe, Person jim)
+    public uint GetPath(IVec2 MapPosStart, IVec2 MapPosEnd, int TimePerframe, Person jim)
     {
         return GetPath(MapPosStart, MapPosEnd, TimePerframe, int.MaxValue, jim);
     }
 
     public uint GetPath(IVec2 MapPosStart, IVec2 MapPosEnd, Person jim )
     {
-        return GetPath(MapPosStart, MapPosEnd, float.MaxValue, int.MaxValue, jim);
+        return GetPath(MapPosStart, MapPosEnd, int.MaxValue, int.MaxValue, jim);
     }
 
 	public uint GetPath(IVec2 MapPosStart, IVec2 MapPosEnd)
 	{
-		return GetPath (MapPosStart, MapPosEnd, float.MaxValue, int.MaxValue, null);
+        return GetPath(MapPosStart, MapPosEnd, int.MaxValue, int.MaxValue, null);
 	}
 
-    public uint GetPath(IVec2 MapPosStart, IVec2 MapPosEnd, float TimePerframe, int Maxsteps, Person jim)
+    public uint GetPath(IVec2 MapPosStart, IVec2 MapPosEnd, int TimePerframe, int Maxsteps, Person jim)
     {
         if(!Map.CurrentMap)
             return 0;
