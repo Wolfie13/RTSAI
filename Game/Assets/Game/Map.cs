@@ -31,7 +31,8 @@ public class Map : MonoBehaviour {
     public GameObject Human = null;
 	public IVec2 player1Start, player2Start;
 
-    public GameObject BuildingTile = null;
+    public GameObject BuildingTile = null, CoalTile = null, OreTile = null;
+
 
 
     private List<Building> Buildings = new List<Building>();
@@ -42,7 +43,7 @@ public class Map : MonoBehaviour {
     public static Map CurrentMap = null;
 
     [Range(0,1)]
-    public float ResourceChance = 0.5f;
+    public float ResourceChance = 0.1f;
 
     public static float TimeUnit = 1;
 
@@ -404,11 +405,19 @@ public class Map : MonoBehaviour {
                 }
                 else if (Terrain.Contains(mapTiles[i, lineCount]))
                 {
-                    if (UnityEngine.Random.Range(0, 1) < ResourceChance)
+                    if (UnityEngine.Random.Range(0.0f, 1.0f) < ResourceChance)
                     {
-                        ResourceType t = (Mathf.FloorToInt(UnityEngine.Random.value) % 2 == 0) ? ResourceType.Iron : ResourceType.Coal;
+                        ResourceType t = ((UnityEngine.Random.Range(1,100) % 2) == 0) ? ResourceType.Iron : ResourceType.Coal;
                         entities[i, lineCount] = new ResourceTile();
                         ((ResourceTile)entities[i, lineCount]).setTile(t, new IVec2(i, lineCount));
+                        if(t == ResourceType.Coal)
+                        {
+                            Instantiate(CoalTile, getTilePos(i, lineCount), Quaternion.Euler(Vector3.zero));
+                        }
+                        else
+                        {
+                            Instantiate(OreTile, getTilePos(i, lineCount), Quaternion.Euler(Vector3.zero));
+                        }
                     }
                 }
                 else
