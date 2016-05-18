@@ -1,4 +1,7 @@
-*.meta
+#*.meta
+#*.stackdump
+#*.soln
+#*.xml
 
 -*.cs.meta
 -*.prefab.meta
