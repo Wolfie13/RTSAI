@@ -218,6 +218,8 @@ MonoBehaviour:
     x: 10
     y: 10
   BuildingTile: {fileID: 129396, guid: a067f6c4764ca4041ab576d0cc42a0c3, type: 2}
+  CoalTile: {fileID: 142140, guid: e5bb32bd090e6904c8ab4f41e375ad47, type: 2}
+  OreTile: {fileID: 189756, guid: 2eabb8cb43911e5429022008192c0b64, type: 2}
   ResourceChance: .5
   NumberOfPlayers: 2
 --- !u!4 &1303748745
