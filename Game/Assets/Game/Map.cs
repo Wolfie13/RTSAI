@@ -166,7 +166,7 @@ public class Map : MonoBehaviour
 		if (Human) {
 			GameObject go = (GameObject)Instantiate (Human);
 			go.renderer.material = GameObject.FindObjectOfType<MaterialSource>().getMaterialByName("Team" + (TeamID + 1).ToString());
-			go.name = "Person" + TeamID + "." + Players[TeamID].People.Count;
+			go.name = "Person" + TeamID + Players[TeamID].People.Count;
 			go.GetComponent<Person> ().teamID = TeamID;
 			go.GetComponent<Person> ().SetMapPosition (Pos);
 			People.Add (go.GetComponent<Person> ());
