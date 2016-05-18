@@ -105,7 +105,7 @@
 	
 	(:action trainRifleman
 			:parameters(?person - person)
-			:precondition(and (>= (rifles) 1) (> (population) (riflemen)))
+			:precondition(and (has-barracks) (>= (rifles) 1) (> (population) (riflemen)))
 			:effect(and  (increase (riflemen) 1) (decrease (rifles) 1))
 	)
 	

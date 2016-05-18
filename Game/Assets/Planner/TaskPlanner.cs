@@ -12,13 +12,15 @@ public class TaskPlanner : MonoBehaviour {
     private string working_directory;
 
     private string PDDLDomainName = "Domain";
-    private string PDDLProblemName = "TeamProblemTest";
-    private string SolutionName = "/ffSolution.soln";
+    private string PDDLProblemName = "TestGeneration";
+    private string SolutionName = "/ffPSolution.soln";
 
-    private List<string> solution;
+    private List<string> solution;    
     //private string task = "";
+
     
     private Map map;
+
 
 	// Use this for initialization
 	void Start () 
@@ -33,13 +35,16 @@ public class TaskPlanner : MonoBehaviour {
         {
             RunPlanner(1);
             ReadSolution();
-            UnityEngine.Debug.Log(solution);
-            ProcessSolution();
+            foreach (string task in solution)
+            {
+                UnityEngine.Debug.Log(task);
+            }
+            ProcessSolution(1);
         }
 
         if(Input.GetKeyDown(KeyCode.L))
         {
-            CreateProblem(1);
+           // CreateProblem(1);
         }
     }
 
@@ -70,12 +75,27 @@ public class TaskPlanner : MonoBehaviour {
         return solution;
     }
 
-    void ProcessSolution()
-    {       
+    void ProcessSolution(int TeamID)
+    {
+        PlayerData team_data = map.GetTeamData(TeamID);
+
+        List<Person> people = team_data.GetPeople();
+        List<Building> buildings = team_data.GetBuildings();
+
+        foreach(string task in solution)
+        {
+            if(task.Contains("CUTTREE"))
+            {
+                foreach(Person person in team_data.People)
+                {
+                    
+                }
+            }
+        }
     }
 
     //To Do: Pass in Desired goal from executive
-    void CreateProblem(int TeamID)
+    void CreateProblem(int TeamID, List<Goal> goals)
     {
         PlayerData team_data = map.GetTeamData(TeamID);
 
@@ -99,7 +119,7 @@ public class TaskPlanner : MonoBehaviour {
 
         foreach (Building building in buildings)
         {
-            lines.Add(building.name + " -place");
+           // lines.Add(building.name + " -place");
         }
 
         //Add lines for finding new resources
@@ -141,6 +161,11 @@ public class TaskPlanner : MonoBehaviour {
         //Add Lines for (:goal)
         lines.Add("(:goal");
 
+        foreach(Goal g in goals)
+        {
+            lines.Add(g.WriteGoal());
+        }
+
         lines.Add("(and");
 
         //Add Desired Goal State
@@ -152,6 +177,6 @@ public class TaskPlanner : MonoBehaviour {
 
         //End Problem File
         lines.Add(")");
-        System.IO.File.WriteAllLines(working_directory + "/Planner/TestGeneration.pddl", lines.ToArray());        
+        System.IO.File.WriteAllLines(working_directory + "/Planner/TestGeneration" + TeamID + ".pddl", lines.ToArray());        
     }
 }
