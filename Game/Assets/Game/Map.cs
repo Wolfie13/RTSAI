@@ -29,6 +29,7 @@ public class Map : MonoBehaviour {
     public const int ChunkSize = 32;
 
     public GameObject Human = null;
+    private int populationCount = 0;
 	public IVec2 player1Start, player2Start;
 
     public GameObject BuildingTile = null, CoalTile = null, OreTile = null;
@@ -148,6 +149,8 @@ public class Map : MonoBehaviour {
         if(Human)
         {
             GameObject go = (GameObject)Instantiate(Human);
+            populationCount++;
+            go.name = "Human" + populationCount;
             go.GetComponent<Person>().teamID = TeamID;
             go.GetComponent<Person>().SetMapPosition(Pos);
             People.Add(go.GetComponent<Person>());
