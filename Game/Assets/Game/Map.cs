@@ -459,7 +459,7 @@ public class Map : MonoBehaviour
 				GameObject newTile = null;
 				if (rt.m_resource == ResourceType.Coal) {
 					newTile = Instantiate (CoalTile, getTileCenterPos (rt.m_MapPos), Quaternion.Euler (Vector3.zero)) as GameObject;
-				} else if (rt.m_resource == ResourceType.Coal) {
+				} else if (rt.m_resource == ResourceType.Iron) {
 					newTile = Instantiate (OreTile, getTileCenterPos (rt.m_MapPos), Quaternion.Euler (Vector3.zero)) as GameObject;
 				}
 				if (newTile != null) {
