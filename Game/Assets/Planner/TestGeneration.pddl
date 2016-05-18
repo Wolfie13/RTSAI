@@ -1,11 +1,10 @@
 (define (problem team_problem)
 (:domain ai_game)
 (:objects
-forest1 - forest
-Human3 - person
-Human3place - place
+
+Person - person
 Human4 - person
-Human4place - place
+
 oreresource - resource
 coalresource - resource
 )
@@ -30,6 +29,8 @@ coalresource - resource
 (:goal
 (and
 (has-school)
+(= (riflemen) 5)
+(= (iron) 10)
 )
 )
 )

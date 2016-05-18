@@ -5,8 +5,7 @@
 		person - object
 		building - place
 		forest - place
-		resource - place		
-		
+		resource - place			
 	)
 	
 	(:functions
@@ -25,9 +24,7 @@
 		(population)
 	)
 	
-	(:predicates
-		
-		
+	(:predicates		
 		(has-turfhut)
 		(has-house)
 		(has-sawmill)
@@ -37,32 +34,22 @@
 		(has-oremine)
 		(has-coalmine)
 		(has-quarry)
-		(has-blacksmith)
-		(has-barracks)
-		(has-skill ?person - person)
-		(has-riflemanskill ?person - person)
-		(has-rifle ?person - person)
+		(has-blacksmithy)
+		(has-barracks)		
 		
 		(ore_resource ?p - place)
-		(coal_resource ?p - place)		
-		
-		(has-timber ?person - person)
-		(has-wood ?person - person)
-		(has-coal ?person - person)
-		(has-ore ?person - person)
-		(has-iron ?person - person)
-		(has-stone ?person - person)
-		(has-axe ?person - person)
+		(coal_resource ?p - place)	
 
-		(is-carpenter ?person - person)
-		(is-blacksmith ?person - person)
-		(is-lumberjack ?person - person)
-		(is-teacher ?person - person)
-		(is-miner ?person - person)
-		(is-rifleman ?person - person)			
+		(has-carpenter)	
+		(has-lumberjack)
+		(has-blacksmith)
+		(has-teacher)
+		(has-miner)				
 	)
 	
 	;; ------------- ACTIONS ---------- ;;	
+	
+	;; ------------- Reproduction --------- ;;
 
 	(:action reproduceTurfHut
 			:parameters ()
@@ -75,68 +62,61 @@
 			:precondition(has-house)
 			:effect(and (increase (population) 2))
 	)
-	;;------------- Training ------------- ;;
 	
-	(:action simpleEducate
-			:parameters(?person - person ?student - person ?place - place)
-			:precondition(and (not(has-skill ?student)) (not(= ?person ?student)))
-			:effect(and (has-skill ?student) (increase (time) 100))
-	)
-	
-	(:action schoolEducate
-			:parameters(?student - person ?teacher - person ?place - place)
-			:precondition(and (is-teacher ?teacher) (has-school) (not(has-skill ?student)))
-			:effect(and (has-skill ?student) (increase (time) 50))
-	)
-	
-	(:action barracksEducate
-			:parameters(?student - person ?teacher - person ?place - place)
-			:precondition(and(is-teacher ?teacher) (has-barracks))
-			:effect(and (has-riflemanskill ?student) (increase (time) 30))
-	)
+	;;------------- Training ------------- ;;	
 	
 	(:action trainCarpenter
-			:parameters(?person - person)
-			:precondition(and(has-skill ?person) (not(is-carpenter ?person)))
-			:effect(and (is-carpenter ?person) (not(has-skill ?person)))
+			:parameters()
+			:precondition(and(has-teacher) (not(has-carpenter)))
+			:effect(and (has-carpenter)
+					  (when(has-school) (increase(time) 50))
+					  (when(not(has-school)) (increase(time) 100)))
 	)
 	
 	(:action trainBlacksmith
-			:parameters(?person - person)
-			:precondition(and(has-skill ?person) (not(is-blacksmith ?person)))
-			:effect(and (is-blacksmith ?person) (not(has-skill ?person)))
+			:parameters()
+			:precondition(and(has-teacher) (not(has-blacksmith)))
+			:effect(and (has-blacksmith)
+					  (when(has-school) (increase(time) 50))
+					  (when(not(has-school)) (increase(time) 100)))
 	)
 	
 	(:action trainLumberjack
-			:parameters(?person - person)
-			:precondition(and(has-skill ?person) (not(is-lumberjack ?person)))
-			:effect(and (is-lumberjack ?person) (not(has-skill ?person)))
+			:parameters()
+			:precondition(and(has-teacher) (not(has-lumberjack)))
+			:effect(and (has-lumberjack)
+					  (when(has-school) (increase(time) 50))
+					  (when(not(has-school)) (increase(time) 100)))
 	)
 	
 	(:action trainTeacher
-			:parameters(?person - person)
-			:precondition(and(has-skill ?person) (not(is-teacher ?person)))
-			:effect(and (is-teacher ?person) (not(has-skill ?person)))
+			:parameters()
+			:precondition(and (not(has-teacher)))
+			:effect(and (has-teacher)
+					  (when(has-school) (increase(time) 50))
+					  (when(not(has-school)) (increase(time) 100)))
 	)
 
 	(:action trainMiner
-			:parameters(?person - person)
-			:precondition(and(has-skill ?person) (not(is-miner ?person)))
-			:effect(and (is-miner ?person) (not(has-skill ?person)))
+			:parameters()
+			:precondition(and(has-teacher) (not(has-miner)))
+			:effect(and (has-miner)
+					  (when(has-school) (increase(time) 50))
+					  (when(not(has-school)) (increase(time) 100)))
 	)
 	
 	(:action trainRifleman
-			:parameters(?person - person)
-			:precondition(and(has-riflemanskill ?person) (not(is-rifleman ?person)) (>= (rifles) 1))
-			:effect(and (is-rifleman ?person) (not(has-riflemanskill ?person)) (increase (riflemen) 1) (decrease (rifles) 1))
+			:parameters()
+			:precondition(and (>= (rifles) 1) (> (population) (riflemen)))
+			:effect(and  (increase (riflemen) 1) (decrease (rifles) 1))
 	)
 	
 	;; --------- Acquire Resource --------- ;;
 	
 	(:action cutTree
-			:parameters(?lumberjack - person)
-			:precondition(and(is-lumberjack ?lumberjack))
-			:effect(and (has-timber ?lumberjack) (increase (timber) 1))
+			:parameters()
+			:precondition(and(has-lumberjack))
+			:effect(and (increase (timber) 1))
 	)
 	
 	(:action simpleMineOre
@@ -152,14 +132,14 @@
 	)	
 	
 	(:action mineOre
-			:parameters(?miner - person)
-			:precondition(and(is-miner ?miner) (has-oremine))
+			:parameters()
+			:precondition(and(has-miner) (has-oremine))
 			:effect(increase(stored-ore) 1)
 	)
 	
 	(:action mineCoal
 			:parameters(?miner - person)
-			:precondition(and(is-miner ?miner)  (has-coalmine))
+			:precondition(and(has-miner) (has-coalmine))
 			:effect(increase(stored-coal) 1)
 	)
 
@@ -183,7 +163,7 @@
 	
 	(:action produceTool
 			:parameters(?blacksmith - person)
-			:precondition(and (is-blacksmith ?blacksmith) (has-blacksmith))
+			:precondition(and (has-blacksmith) (has-blacksmithy))
 			:effect(increase(rifles) 1)
 	)
 	
@@ -196,8 +176,8 @@
 	)
 	
 	(:action buildHouse
-			:parameters(?carpenter - person )
-			:precondition(and (is-carpenter ?carpenter)  (not(has-house))
+			:parameters()
+			:precondition(and (has-carpenter)  (not(has-house))
 						  (>= (wood) 1))
 			:effect(and(has-house) (decrease (wood) 1))
 	)
@@ -229,32 +209,32 @@
 	
 	(:action buildBlacksmith
 			:parameters()
-			:precondition(and (not(has-blacksmith))
+			:precondition(and (not(has-blacksmithy))
 						  (>= (stone) 1) 
 						  (>= (timber) 1) 
 						  (>= (iron) 1))
-			:effect(and(has-blacksmith) (decrease (stone) 1) (decrease (iron) 1) (decrease (timber) 1))
+			:effect(and(has-blacksmithy) (decrease (stone) 1) (decrease (iron) 1) (decrease (timber) 1))
 	)
 	
 	(:action buildOreMine
-			:parameters(?carpenter - person ?blacksmith - person ?person - person ?resource - resource)
-			:precondition(and(is-carpenter ?carpenter) (is-blacksmith ?blacksmith) (ore_resource ?resource) (not(= ?carpenter ?blacksmith)) (not(has-oremine))
+			:parameters(?resource - resource)
+			:precondition(and(has-carpenter) (has-blacksmith) (ore_resource ?resource)  (not(has-oremine))
 						  (>= (wood) 1)
 						  (>= (iron) 1))
 			:effect(and(has-oremine)  (decrease (wood) 1) (decrease (iron) 1))
 	)
 	
 	(:action buildCoalMine
-			:parameters(?carpenter - person ?blacksmith - person ?person - person ?resource - resource)
-			:precondition(and(is-carpenter ?carpenter) (is-blacksmith ?blacksmith) (coal_resource ?resource) (not (= ?carpenter ?blacksmith)) (not(has-coalmine))
+			:parameters(?resource - resource)
+			:precondition(and(has-carpenter) (has-blacksmith) (coal_resource ?resource) (not(has-coalmine))
 						  (>= (wood) 1)
 						  (>= (iron) 1))
 			:effect(and(has-coalmine) (decrease (wood) 1) (decrease (iron) 1))
 	)		
 	
 	(:action buildBarracks
-			:parameters(?carpenter - person )
-			:precondition(and(is-carpenter ?carpenter) (not(has-barracks))
+			:parameters()
+			:precondition(and(has-carpenter) (not(has-barracks))
 						  (>= (stone) 1)
 						  (>= (wood) 1))
 			:effect(and (has-barracks) (decrease (stone) 1) (decrease (wood) 1))
@@ -264,6 +244,5 @@
 			:parameters()
 			:precondition(and (not(has-quarry)))
 			:effect(and (has-quarry))
-	)
-	
+	)	
 )	

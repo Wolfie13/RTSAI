@@ -16,7 +16,7 @@ public class TaskPlanner : MonoBehaviour {
     private string SolutionName = "/ffSolution.soln";
 
     private List<string> solution;
-    private string task = "";
+    //private string task = "";
     
     private Map map;
 
@@ -71,15 +71,7 @@ public class TaskPlanner : MonoBehaviour {
     }
 
     void ProcessSolution()
-    {
-        foreach(string task in solution)
-        {
-            
-          
-
-            
-           
-        }
+    {       
     }
 
     //To Do: Pass in Desired goal from executive
@@ -121,12 +113,7 @@ public class TaskPlanner : MonoBehaviour {
         //Add Lines for (:init)
 
         lines.Add("(:init");
-
-        //foreach(Person person in people)
-        //{
-        //    lines.Add("(at " + person.name + " " + person.name + "place)");
-        //}
-
+      
         foreach(Building building in buildings)
         {            
             string problem_string = "(has-" + building.m_buildingtype.ToString().ToLower() + ")";
