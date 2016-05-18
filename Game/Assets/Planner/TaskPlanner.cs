@@ -82,6 +82,7 @@ public class TaskPlanner : MonoBehaviour {
         }
     }
 
+    //To Do: Pass in Desired goal from executive
     void CreateProblem(int TeamID)
     {
         PlayerData team_data = map.GetTeamData(TeamID);
@@ -142,6 +143,11 @@ public class TaskPlanner : MonoBehaviour {
         lines.Add("(= (wood) 0)");
         lines.Add("(= (iron) 0)");
         lines.Add("(= (timber) 0)");
+        lines.Add("(= (stored-ore) 0)");
+        lines.Add("(= (stored-coal) 0)");
+        lines.Add("(= (rifles) 0)");
+        lines.Add("(= (stone) 0)");
+        lines.Add("(= (population) " + people.Count + ")");
         lines.Add("(= (min_resource) 0)");
         lines.Add("(= (ore oreresource) 5)");
         lines.Add("(= (coal coalresource) 5)");
