@@ -62,6 +62,7 @@ public class Building : MapObject {
     IVec2 m_buildingSize;
 
     public int teamID;
+    public string name;
 
 
     //returns true if sucsessful
@@ -225,7 +226,7 @@ public class Building : MapObject {
 
     Person GetNonBusyPersonInBuildingWithSkill(Skill wantedSkill)
     {
-        Person john = null;
+        Person fred = null;
 
         for (IVec2 offset = new IVec2(); offset.x < Building.Sizes[m_buildingtype].x; offset.x++)
         {
@@ -235,24 +236,24 @@ public class Building : MapObject {
                 {
                     if (item.Skills.Contains(wantedSkill) && item.ToDoList.Count == 0 && item.teamID == teamID)
                     {
-                        john = item;
+                        fred = item;
                         break;
                     }
                 }
-                if (john)
+                if (fred)
                     break;
             }
-            if (john)
+            if (fred)
                 break;
         }
 
-        return john;
+        return fred;
 
     }
 
     public Person GetNonBusyPersonInBuilding()
     {
-        Person john = null;
+        Person fred = null;
 
         for (IVec2 offset = new IVec2(); offset.x < Building.Sizes[m_buildingtype].x; offset.x++)
         {
@@ -262,17 +263,17 @@ public class Building : MapObject {
                 {
                     if (item.ToDoList.Count == 0 && item.BusyTime == 0 && item.teamID == teamID)
                     {
-                        john = item;
+                        fred = item;
                         break;
                     }
                 }
-                if (john)
+                if (fred)
                     break;
             }
-            if (john)
+            if (fred)
                 break;
         }
 
-        return john;
+        return fred;
     }
 }
