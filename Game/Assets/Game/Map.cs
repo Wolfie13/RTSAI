@@ -485,8 +485,10 @@ public class Map : MonoBehaviour
 			timePassed = 0;
 
 			foreach (Building b in Buildings) {
-				b.Update ();
+				b.tick ();
 			}
+
+			GameObject.FindObjectOfType<Executive>().tick();
 		}
 	}
 }
