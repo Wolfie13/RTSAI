@@ -2,19 +2,9 @@
 using System.Collections;
 
 public class MapChunk : MonoBehaviour {
-	public Map parent;
-	public int chunkX, chunkY;
     public const float TILE_SIZE = 2.5f;
 
-	// Use this for initialization
-	void Awake () {
-	}
-
-	public void Position() {
-        this.transform.position = new Vector3(chunkX * Map.ChunkSize * TILE_SIZE, 0, chunkY * Map.ChunkSize * TILE_SIZE);
-	}
-
-	public void Generate()	{
+	public void Generate(int chunkX, int chunkY, Map parent)	{
 		MeshFilter filter = this.gameObject.GetComponent<MeshFilter> ();
 		if (filter == null) {
 			filter = this.gameObject.AddComponent<MeshFilter> ();
@@ -40,6 +30,7 @@ public class MapChunk : MonoBehaviour {
 		}
 
 		this.GetComponent<MeshFilter> ().sharedMesh = meshBuilder.CreateMesh ();
+		this.transform.position = new Vector3(chunkX * Map.ChunkSize * TILE_SIZE, 0, chunkY * Map.ChunkSize * TILE_SIZE);
 	}
 
 	

@@ -28,7 +28,6 @@ public class Map : MonoBehaviour
 	public Material mapMaterial;
 	public const int ChunkSize = 32;
 	public GameObject Human = null;
-	private int populationCount = 0;
 	public IVec2 player1Start, player2Start;
 	public GameObject BuildingTile = null, CoalTile = null, OreTile = null;
 	private List<Building> Buildings = new List<Building> ();
@@ -166,12 +165,13 @@ public class Map : MonoBehaviour
 	{
 		if (Human) {
 			GameObject go = (GameObject)Instantiate (Human);
-			populationCount++;
-			go.name = "Human" + populationCount;
+			go.renderer.material = GameObject.FindObjectOfType<MaterialSource>().getMaterialByName("Team" + (TeamID + 1).ToString());
+			go.name = "Person" + TeamID + "." + Players[TeamID].People.Count;
 			go.GetComponent<Person> ().teamID = TeamID;
 			go.GetComponent<Person> ().SetMapPosition (Pos);
 			People.Add (go.GetComponent<Person> ());
 			Players [TeamID].People.Add (go.GetComponent<Person> ());
+			go.transform.parent = this.transform;
 		}
 	}
 
@@ -224,22 +224,37 @@ public class Map : MonoBehaviour
 
 	public bool BuildBuilding (BuildingType type, IVec2 Pos, int teamID)
 	{
+		return BuildBuilding (type, Pos, teamID, false);
+	}
+
+
+	public bool BuildBuilding (BuildingType type, IVec2 Pos, int teamID, bool force)
+	{
 		bool isBuilding = false;
 
-		if (CanBuild (type, Pos)) {
+		if (CanBuild (type, Pos) || force) {
 			Building newBuilding = new Building ();
 			isBuilding = newBuilding.Build (type, Pos, teamID);
-			if (isBuilding) {
-				for (IVec2 offset = new IVec2(); offset.x < Building.Sizes[type].x; offset.x++) {
-					for (offset.y = 0; offset.y < Building.Sizes[type].y; offset.y++) {
+			if (isBuilding || force) {
+				IVec2 offset = new IVec2();
+				IVec2 size = Building.Sizes[type];
+				for (offset.x = -size.x / 2; offset.x < size.x / 2; offset.x++) {
+					for (offset.y = -size.y / 2; offset.y < size.y / 2; offset.y++) {
 						IVec2 newPos = Pos + offset;
 						entities [newPos.x, newPos.y] = newBuilding;
-						Instantiate (BuildingTile, getTilePos (newPos), Quaternion.Euler (Vector3.zero));
 					}
 				}
 
-                  
-
+				GameObject obj = Instantiate (BuildingTile, Vector3.zero, Quaternion.Euler (Vector3.zero)) as GameObject;
+				obj.renderer.material = GameObject.FindObjectOfType<MaterialSource>().getMaterialByName("Team" + (teamID + 1).ToString());
+				obj.transform.SetParent(chunks[Pos.x / 32, Pos.y / 32].transform);
+				obj.transform.position = getTileCenterPos (Pos);
+				Vector3 oldScale = obj.transform.localScale;
+				obj.transform.localScale = new Vector3(size.x * oldScale.x, 1 * oldScale.y, size.y * oldScale.z);
+				obj.name = "Building" + Buildings.Count + "(" + type.ToString() + ")";
+				newBuilding.gameObject = obj;
+				Buildings.Add(newBuilding);
+				Players[teamID].Buildings.Add(newBuilding);
 			}
 		}
 
@@ -315,7 +330,7 @@ public class Map : MonoBehaviour
 	}
 
 	// Use this for initialization
-	void Start ()
+	void Awake ()
 	{
 
 		if (CurrentMap != this) {
@@ -332,29 +347,28 @@ public class Map : MonoBehaviour
 		{/////////////////////player 1/////////////////////////
 			PlayerData player = new PlayerData (Players.Count);
 			Players.Add (player);
-			AddPerson (player1Start, player.TeamID);
+			AddPerson (player1Start + new IVec2(0, -10), player.TeamID);
 			for (Skill s = Skill.Labourer; s <= Skill.Rifleman; s++) {
 				if (!player.People [0].Skills.Contains (s))
 					player.People [0].Skills.Add (s);
 			}
-			AddPerson (player1Start, player.TeamID);
-			Players [Players.Count - 1].Resources [ResourceType.Stone]++;
-			Players [Players.Count - 1].Resources [ResourceType.Wood]++;
-			BuildBuilding (BuildingType.Storage, player1Start, player.TeamID);
-            
+			AddPerson (player1Start + new IVec2(0, 10), player.TeamID);
+			player.Resources [ResourceType.Stone]++;
+			player.Resources [ResourceType.Wood]++;
+			BuildBuilding (BuildingType.Storage, player1Start, player.TeamID, true);
 		}
 		{///////////////////////////player2/////////////////////////
 			PlayerData player = new PlayerData (Players.Count);
 			Players.Add (player);
-			AddPerson (player2Start, player.TeamID);
+			AddPerson (player2Start + new IVec2(0, -10), player.TeamID);
 			for (Skill s = Skill.Labourer; s <= Skill.Rifleman; s++) {
 				if (!player.People [0].Skills.Contains (s))
 					player.People [0].Skills.Add (s);
 			}
-			AddPerson (player2Start, player.TeamID);
-			Players [Players.Count - 1].Resources [ResourceType.Stone]++;
-			Players [Players.Count - 1].Resources [ResourceType.Wood]++;
-			BuildBuilding (BuildingType.Storage, player2Start, player.TeamID);
+			AddPerson (player2Start + new IVec2(0, 10), player.TeamID);
+			player.Resources [ResourceType.Stone]++;
+			player.Resources [ResourceType.Wood]++;
+			BuildBuilding (BuildingType.Storage, player2Start, player.TeamID, true);
 		}
 
 		foreach (var item in People) {
@@ -362,7 +376,7 @@ public class Map : MonoBehaviour
 		}
 
 		//Position the camera
-		//Camera.main.transform.position = getTilePos (player1Start) + new Vector3 (0, 100, 0);
+		Camera.main.transform.position = getTilePos (player1Start) + new Vector3 (0, 100, 0);
 	}
 
 	void load (string filename)
@@ -401,13 +415,9 @@ public class Map : MonoBehaviour
 				} else if (Terrain.Contains (mapTiles [i, lineCount])) {
 					if (UnityEngine.Random.Range (0.0f, 1.0f) < ResourceChance) {
 						ResourceType t = ((UnityEngine.Random.Range (1, 100) % 2) == 0) ? ResourceType.Iron : ResourceType.Coal;
-						entities [i, lineCount] = new ResourceTile ();
-						((ResourceTile)entities [i, lineCount]).setTile (t, new IVec2 (i, lineCount));
-						if (t == ResourceType.Coal) {
-							Instantiate (CoalTile, getTileCenterPos (i, lineCount), Quaternion.Euler (Vector3.zero));
-						} else {
-							Instantiate (OreTile, getTileCenterPos (i, lineCount), Quaternion.Euler (Vector3.zero));
-						}
+						ResourceTile rt = new ResourceTile ();
+						entities [i, lineCount] = rt;
+						rt.setTile (t, new IVec2 (i, lineCount));
 					}
 				} else {
 					entities [i, lineCount] = new MapObject ();
@@ -420,29 +430,47 @@ public class Map : MonoBehaviour
 		//close file
 		file.Close ();
 
-		//generate resource entities
-
 	}
 
+
+
+	private MapChunk[,] chunks;
 	public void initChunks ()
 	{
 		int chunksX = this.sizeX / ChunkSize;
 		int chunksY = this.sizeY / ChunkSize;
-
+		chunks = new MapChunk[chunksX, chunksY];
 		for (int i = 0; i != chunksX; i++) {
 			for (int j = 0; j != chunksY; j++) {
 				GameObject newChunk = new GameObject ("Chunk" + i + "," + j);
 				newChunk.transform.parent = this.gameObject.transform;
 				MapChunk obj = newChunk.AddComponent<MapChunk> ();
-				obj.chunkX = i;
-				obj.chunkY = j;
-				obj.parent = this;
-				obj.Generate ();
-				obj.Position ();
+				obj.Generate (i, j, this);
+				chunks[i, j] = obj;
 			}
 		}
-	}
 
+		foreach (MapObject mo in entities) {
+			if (mo is ResourceTile) {
+				ResourceTile rt = mo as ResourceTile;
+				if (rt.m_resource == ResourceType.Timber) {
+					continue;
+				}
+				GameObject newTile = null;
+				if (rt.m_resource == ResourceType.Coal) {
+					newTile = Instantiate (CoalTile, getTileCenterPos (rt.m_MapPos), Quaternion.Euler (Vector3.zero)) as GameObject;
+				} else if (rt.m_resource == ResourceType.Coal) {
+					newTile = Instantiate (OreTile, getTileCenterPos (rt.m_MapPos), Quaternion.Euler (Vector3.zero)) as GameObject;
+				}
+				if (newTile != null) {
+					newTile.transform.SetParent(chunks[rt.m_MapPos.x / 32, rt.m_MapPos.y / 32].transform);
+					mo.gameObject = newTile;
+				}
+			}
+
+		}
+	}
+	
 	public bool isLoaded ()
 	{
 		return mapTiles != null;

@@ -18,10 +18,16 @@ public class Executive : MonoBehaviour {
 
 	}
 
-	private static Vector2 UIROOT = new Vector2(10, 10);
-
 	void OnGUI() {
-		GUI.Label (new Rect(UIROOT.x, UIROOT.y, 400, 25), "Number of People: " + map.GetPeople().Count);
-		GUI.Label (new Rect(UIROOT.x, UIROOT.y + 25, 400, 25), "Number of Buildings: " + map.GetBuildings().Count);
+		Vector2 UIROOT = new Vector2 (10, 10);
+		for (int i = 0; i != 2; i++) {
+			PlayerData player = map.GetTeamData(i);
+			if (player != null) {
+				GUI.Label (new Rect(UIROOT.x, UIROOT.y, 400, 25), "Team " + i);
+				GUI.Label (new Rect(UIROOT.x, UIROOT.y + 25, 400, 25), "Number of People: " + player.People.Count);
+				GUI.Label (new Rect(UIROOT.x, UIROOT.y + 50, 400, 25), "Number of Buildings: " + player.Buildings.Count);
+				UIROOT = UIROOT + new Vector2(200, 0);
+			}
+		}
 	}
 }

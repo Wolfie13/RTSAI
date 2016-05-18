@@ -68,7 +68,7 @@ public class Person : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         finder = GameObject.FindGameObjectWithTag("Map").GetComponent<PathFinder>();
-
+		FreeTexture = this.renderer.material;
         ResetResources();
         Skills.Add(Skill.Labourer);
 	}
@@ -77,7 +77,7 @@ public class Person : MonoBehaviour {
     {
         currentMapPos = mapPos;
 
-        transform.position = Map.getTilePos(mapPos);
+        transform.position = Map.getTileCenterPos(mapPos);
     }
 
 	// Update is called once per frame
