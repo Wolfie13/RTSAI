@@ -105,6 +105,16 @@ public class Map : MonoBehaviour {
         return new Vector3(xPos, 0, yPos);
     }
 
+	public static Vector3 getTileCenterPos(IVec2 pos) { return getTileCenterPos(pos.x, pos.y); }
+
+	public static Vector3 getTileCenterPos(int x, int y)
+	{
+		float xPos = MapChunk.TILE_SIZE * x;
+		float yPos = MapChunk.TILE_SIZE * y;
+		
+		return new Vector3(xPos + MapChunk.TILE_SIZE / 2, 0, yPos + MapChunk.TILE_SIZE / 2);
+	}
+
     public static IVec2 getTileFromPos(Vector3 worldPos)
     {
         //worldPos += new Vector3(0.5f, 0.5f, 0.5f) * MapChunk.TILE_SIZE;
@@ -415,11 +425,11 @@ public class Map : MonoBehaviour {
                         ((ResourceTile)entities[i, lineCount]).setTile(t, new IVec2(i, lineCount));
                         if(t == ResourceType.Coal)
                         {
-                            Instantiate(CoalTile, getTilePos(i, lineCount), Quaternion.Euler(Vector3.zero));
+                            Instantiate(CoalTile, getTileCenterPos(i, lineCount), Quaternion.Euler(Vector3.zero));
                         }
                         else
                         {
-                            Instantiate(OreTile, getTilePos(i, lineCount), Quaternion.Euler(Vector3.zero));
+							Instantiate(OreTile, getTileCenterPos(i, lineCount), Quaternion.Euler(Vector3.zero));
                         }
                     }
                 }
