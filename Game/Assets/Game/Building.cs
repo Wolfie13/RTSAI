@@ -62,6 +62,7 @@ public class Building : MapObject {
     IVec2 m_buildingSize;
 
     public int teamID;
+    public string name;
 
 
     //returns true if sucsessful
