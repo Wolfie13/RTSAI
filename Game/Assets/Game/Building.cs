@@ -39,6 +39,10 @@ public class Building : MapObject {
 
     };
 
+	public override void tick() {
+
+	}
+
 
     public static Dictionary<BuildingType, int> BuildTime = new Dictionary<BuildingType, int>()
     {

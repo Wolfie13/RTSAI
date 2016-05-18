@@ -24,7 +24,7 @@ public enum State
 public delegate void actfunc();
 
 
-public enum action
+/*public enum action
 {
     Family,
     Educate,
@@ -38,16 +38,15 @@ public enum action
     SawWood,
     MakeTool,
     Combat
-}
+}*/
 
 public class Person : MonoBehaviour {
-
     
     public List<Skill> Skills = new List<Skill>();
     [HideInInspector]
     public Dictionary<ResourceType, int> Resources = new Dictionary<ResourceType, int>();
 
-    public List<action> ToDoList = new List<action>();
+    public List<Action> ToDoList = new List<Action>();
     
     public IVec2 currentMapPos = new IVec2();
 
