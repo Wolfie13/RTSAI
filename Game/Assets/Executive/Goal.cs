@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Goal
+public abstract class Goal
 {
-    public virtual string WriteGoal();
+    public abstract string WriteGoal();
 }
