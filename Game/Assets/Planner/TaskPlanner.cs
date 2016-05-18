@@ -89,14 +89,11 @@ public class TaskPlanner : MonoBehaviour {
         lines.Add("(:domain ai_game)");
 
         //Add Lines for (:objects)
-        lines.Add("(:objects");          
-        lines.Add("forest1 - forest");        
-
+        lines.Add("(:objects");   
+              
         foreach (Person person in people)
         {
-            lines.Add(person.name + " - person");
-            lines.Add(person.name + "place - place");
-
+            lines.Add(person.name + " - person");         
             //New place
         }
 
