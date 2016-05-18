@@ -1,7 +1,7 @@
-#*.meta
-#*.stackdump
-#*.soln
-#*.xml
+*.meta
+*.stackdump
+*.soln
+*.xml
 
 -*.cs.meta
 -*.prefab.meta
