@@ -9,6 +9,7 @@ public enum ResourceType
 	Timber,
 	Stone,
 	Ore,
+    Rifles,
 	Iron,
 	Coal,
 	Money,
