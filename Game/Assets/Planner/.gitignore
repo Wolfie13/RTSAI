@@ -1,0 +1,5 @@
+*.meta
+
+-*.cs.meta
+-*.prefab.meta
+-*.unity.meta
