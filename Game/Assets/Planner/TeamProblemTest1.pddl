@@ -20,6 +20,7 @@ storage - place
 (has-building coalresource)
 (has-quarry quarry)
 (has-storage storage)
+(has-building storage)
 (has-building forest1)
 (= (time) 0)
 (= (wood) 0)
@@ -29,6 +30,7 @@ storage - place
 (= (iron) 0)
 (= (stone) 0)
 (= (rifles) 0)
+(= (riflemen) 0)
 (= (population) 2)
 (= (min_resource) 0)
 (= (ore oreresource) 5)
@@ -36,8 +38,9 @@ storage - place
 )
 (:goal
 (and
-(= (population) 4)
-(has-sawmill human1place)
+(= (riflemen) 2)
+(has-building human1place)
+(has-school human1place)
 )
 )
 )

@@ -1,2 +1,2 @@
-metric-ff.exe -o Domain.pddl -f TestGeneration1.pddl
+metric-ff.exe -o Domain.pddl -f TestGeneration.pddl
 pause

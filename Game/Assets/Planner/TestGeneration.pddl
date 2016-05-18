@@ -8,8 +8,6 @@ Human4 - person
 Human4place - place
 oreresource - resource
 coalresource - resource
-quarry - place
-storage - place
 )
 (:init
 (ore_resource oreresource)
@@ -31,10 +29,7 @@ storage - place
 )
 (:goal
 (and
-;(has-building Human3place)
 (has-school)
-(= (wood) 10)
-
 )
 )
 )

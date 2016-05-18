@@ -110,7 +110,7 @@ public class TaskPlanner : MonoBehaviour {
 
         foreach (Building building in buildings)
         {
-            lines.Add(building.m_buildingtype + " -place");
+            lines.Add(building.name + " -place");
         }
 
         //Add lines for finding new resources
@@ -122,22 +122,21 @@ public class TaskPlanner : MonoBehaviour {
 
         lines.Add("(:init");
 
-        foreach(Person person in people)
-        {
-            lines.Add("(at " + person.name + " " + person.name + "place)");
-        }
+        //foreach(Person person in people)
+        //{
+        //    lines.Add("(at " + person.name + " " + person.name + "place)");
+        //}
 
         foreach(Building building in buildings)
-        {
-            lines.Add("(has-building " + building.m_buildingtype);
+        {            
+            string problem_string = "(has-" + building.m_buildingtype.ToString().ToLower() + ")";
+            lines.Add(problem_string);
         }
 
         lines.Add("(ore_resource oreresource)");
         lines.Add("(coal_resource coalresource)");
 
-        lines.Add("(has-building oreresource)");
-        lines.Add("(has-building coalresource)");
-
+        lines.Add("(has-storage)");
         //Add Initial Amounts Data
         lines.Add("(= (time) 0)");
         lines.Add("(= (wood) 0)");
@@ -161,14 +160,14 @@ public class TaskPlanner : MonoBehaviour {
         lines.Add("(and");
 
         //Add Desired Goal State
-        lines.Add("(has-wood human1)");
+        lines.Add("(has-school)");
 
         lines.Add(")");
 
-        lines.Add(")");
+        lines.Add(")");        
 
         //End Problem File
         lines.Add(")");
-        System.IO.File.WriteAllLines(working_directory + "/Planner/TestGeneration" + TeamID + ".pddl", lines.ToArray());        
+        System.IO.File.WriteAllLines(working_directory + "/Planner/TestGeneration.pddl", lines.ToArray());        
     }
 }
