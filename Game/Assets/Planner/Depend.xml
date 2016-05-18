@@ -2,26 +2,20 @@
 <Durative-FF-Depend>
 <Operator>
 <Name>
-(BUILDTURFHUT HUMAN2 HUMAN2PLACE)</Name>
+(BUILDQUARRY HUMAN4 HUMAN4PLACE)</Name>
 
 </Operator>
 
 <Operator>
 <Name>
-(MOVE HUMAN1 HUMAN1PLACE HUMAN2PLACE)</Name>
-
-</Operator>
-
-<Operator>
-<Name>
-(SIMPLEEDUCATE HUMAN1 HUMAN2 HUMAN2PLACE)</Name>
+(CUTSTONE HUMAN4 HUMAN4PLACE)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE HUMAN1 HUMAN1PLACE HUMAN2PLACE)
+(BUILDQUARRY HUMAN4 HUMAN4PLACE)
 </Name>
 
 </On_Operator>
@@ -32,22 +26,20 @@
 
 <Operator>
 <Name>
-(MOVE HUMAN2 HUMAN2PLACE QUARRY)</Name>
+(MOVE HUMAN3 HUMAN3PLACE HUMAN4PLACE)</Name>
+
+</Operator>
+
+<Operator>
+<Name>
+(SIMPLEEDUCATE HUMAN3 HUMAN4 HUMAN4PLACE)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(BUILDTURFHUT HUMAN2 HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE HUMAN1 HUMAN2 HUMAN2PLACE)
+(MOVE HUMAN3 HUMAN3PLACE HUMAN4PLACE)
 </Name>
 
 </On_Operator>
@@ -58,14 +50,30 @@
 
 <Operator>
 <Name>
-(CUTSTONE HUMAN2 QUARRY)</Name>
+(MOVE HUMAN4 HUMAN4PLACE FOREST1)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 HUMAN2PLACE QUARRY)
+(BUILDQUARRY HUMAN4 HUMAN4PLACE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTSTONE HUMAN4 HUMAN4PLACE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEEDUCATE HUMAN3 HUMAN4 HUMAN4PLACE)
 </Name>
 
 </On_Operator>
@@ -76,22 +84,14 @@
 
 <Operator>
 <Name>
-(MOVE HUMAN2 QUARRY FOREST1)</Name>
+(MOVE HUMAN4 FOREST1 STORAGE)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 HUMAN2PLACE QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(CUTSTONE HUMAN2 QUARRY)
+(MOVE HUMAN4 HUMAN4PLACE FOREST1)
 </Name>
 
 </On_Operator>
@@ -102,14 +102,22 @@
 
 <Operator>
 <Name>
-(TRAINLUMBERJACK HUMAN2)</Name>
+(STORESTONE HUMAN4 STORAGE)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(SIMPLEEDUCATE HUMAN1 HUMAN2 HUMAN2PLACE)
+(CUTSTONE HUMAN4 HUMAN4PLACE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE HUMAN4 FOREST1 STORAGE)
 </Name>
 
 </On_Operator>
@@ -120,14 +128,14 @@
 
 <Operator>
 <Name>
-(CUTTREE HUMAN2 FOREST1)</Name>
+(MOVE HUMAN4 STORAGE FOREST1)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 QUARRY FOREST1)
+(MOVE HUMAN4 FOREST1 STORAGE)
 </Name>
 
 </On_Operator>
@@ -135,7 +143,7 @@
 <On_Operator>
  
 <Name>
-(TRAINLUMBERJACK HUMAN2)
+(STORESTONE HUMAN4 STORAGE)
 </Name>
 
 </On_Operator>
@@ -146,14 +154,14 @@
 
 <Operator>
 <Name>
-(MOVE HUMAN2 FOREST1 HUMAN2PLACE)</Name>
+(BUILDSMELTER HUMAN4 FOREST1)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(BUILDTURFHUT HUMAN2 HUMAN2PLACE)
+(MOVE HUMAN4 HUMAN4PLACE FOREST1)
 </Name>
 
 </On_Operator>
@@ -161,7 +169,7 @@
 <On_Operator>
  
 <Name>
-(SIMPLEEDUCATE HUMAN1 HUMAN2 HUMAN2PLACE)
+(MOVE HUMAN4 FOREST1 STORAGE)
 </Name>
 
 </On_Operator>
@@ -169,7 +177,7 @@
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 HUMAN2PLACE QUARRY)
+(STORESTONE HUMAN4 STORAGE)
 </Name>
 
 </On_Operator>
@@ -177,15 +185,7 @@
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 QUARRY FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(CUTTREE HUMAN2 FOREST1)
+(MOVE HUMAN4 STORAGE FOREST1)
 </Name>
 
 </On_Operator>
@@ -196,14 +196,26 @@
 
 <Operator>
 <Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)</Name>
+(SIMPLEMINEORE HUMAN4 ORERESOURCE)</Name>
+
+</Operator>
+
+<Operator>
+<Name>
+(SIMPLEMINECOAL HUMAN4 COALRESOURCE)</Name>
+
+</Operator>
+
+<Operator>
+<Name>
+(MOVE HUMAN4 FOREST1 STORAGE)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(BUILDTURFHUT HUMAN2 HUMAN2PLACE)
+(MOVE HUMAN4 HUMAN4PLACE FOREST1)
 </Name>
 
 </On_Operator>
@@ -211,7 +223,7 @@
 <On_Operator>
  
 <Name>
-(SIMPLEEDUCATE HUMAN1 HUMAN2 HUMAN2PLACE)
+(MOVE HUMAN4 FOREST1 STORAGE)
 </Name>
 
 </On_Operator>
@@ -219,7 +231,7 @@
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 HUMAN2PLACE QUARRY)
+(STORESTONE HUMAN4 STORAGE)
 </Name>
 
 </On_Operator>
@@ -227,7 +239,15 @@
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 FOREST1 HUMAN2PLACE)
+(MOVE HUMAN4 STORAGE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDSMELTER HUMAN4 FOREST1)
 </Name>
 
 </On_Operator>
@@ -238,14 +258,14 @@
 
 <Operator>
 <Name>
-(STORESTONE HUMAN2 STORAGE)</Name>
+(STORECOAL HUMAN4 STORAGE)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(CUTSTONE HUMAN2 QUARRY)
+(MOVE HUMAN4 FOREST1 STORAGE)
 </Name>
 
 </On_Operator>
@@ -253,7 +273,23 @@
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
+(MOVE HUMAN4 STORAGE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEMINECOAL HUMAN4 COALRESOURCE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE HUMAN4 FOREST1 STORAGE)
 </Name>
 
 </On_Operator>
@@ -264,14 +300,14 @@
 
 <Operator>
 <Name>
-(MOVE HUMAN2 STORAGE HUMAN2PLACE)</Name>
+(STOREORE HUMAN4 STORAGE)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(BUILDTURFHUT HUMAN2 HUMAN2PLACE)
+(MOVE HUMAN4 FOREST1 STORAGE)
 </Name>
 
 </On_Operator>
@@ -279,7 +315,7 @@
 <On_Operator>
  
 <Name>
-(SIMPLEEDUCATE HUMAN1 HUMAN2 HUMAN2PLACE)
+(MOVE HUMAN4 STORAGE FOREST1)
 </Name>
 
 </On_Operator>
@@ -287,7 +323,7 @@
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 HUMAN2PLACE QUARRY)
+(SIMPLEMINEORE HUMAN4 ORERESOURCE)
 </Name>
 
 </On_Operator>
@@ -295,15 +331,7 @@
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STORESTONE HUMAN2 STORAGE)
+(MOVE HUMAN4 FOREST1 STORAGE)
 </Name>
 
 </On_Operator>
@@ -314,74 +342,14 @@
 
 <Operator>
 <Name>
-(SIMPLEMINEORE HUMAN2 ORERESOURCE)</Name>
-
-</Operator>
-
-<Operator>
-<Name>
-(SIMPLEMINECOAL HUMAN2 COALRESOURCE)</Name>
-
-</Operator>
-
-<Operator>
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)</Name>
+(TRAINLUMBERJACK HUMAN4)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(BUILDTURFHUT HUMAN2 HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE HUMAN1 HUMAN2 HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 FOREST1 HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STORESTONE HUMAN2 STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 STORAGE HUMAN2PLACE)
+(SIMPLEEDUCATE HUMAN3 HUMAN4 HUMAN4PLACE)
 </Name>
 
 </On_Operator>
@@ -392,14 +360,14 @@
 
 <Operator>
 <Name>
-(MOVE HUMAN1 HUMAN2PLACE STORAGE)</Name>
+(MOVE HUMAN4 STORAGE FOREST1)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE HUMAN1 HUMAN1PLACE HUMAN2PLACE)
+(MOVE HUMAN4 FOREST1 STORAGE)
 </Name>
 
 </On_Operator>
@@ -407,7 +375,47 @@
 <On_Operator>
  
 <Name>
-(SIMPLEEDUCATE HUMAN1 HUMAN2 HUMAN2PLACE)
+(STORESTONE HUMAN4 STORAGE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE HUMAN4 STORAGE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDSMELTER HUMAN4 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE HUMAN4 FOREST1 STORAGE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(STORECOAL HUMAN4 STORAGE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(STOREORE HUMAN4 STORAGE)
 </Name>
 
 </On_Operator>
@@ -418,14 +426,14 @@
 
 <Operator>
 <Name>
-(STORECOAL HUMAN2 STORAGE)</Name>
+(PRODUCEIRON HUMAN4 FOREST1)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
+(MOVE HUMAN4 HUMAN4PLACE FOREST1)
 </Name>
 
 </On_Operator>
@@ -433,7 +441,7 @@
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 STORAGE HUMAN2PLACE)
+(MOVE HUMAN4 FOREST1 STORAGE)
 </Name>
 
 </On_Operator>
@@ -441,7 +449,7 @@
 <On_Operator>
  
 <Name>
-(SIMPLEMINECOAL HUMAN2 COALRESOURCE)
+(MOVE HUMAN4 STORAGE FOREST1)
 </Name>
 
 </On_Operator>
@@ -449,7 +457,39 @@
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
+(BUILDSMELTER HUMAN4 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE HUMAN4 FOREST1 STORAGE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(STORECOAL HUMAN4 STORAGE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(STOREORE HUMAN4 STORAGE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE HUMAN4 STORAGE FOREST1)
 </Name>
 
 </On_Operator>
@@ -460,14 +500,14 @@
 
 <Operator>
 <Name>
-(STOREORE HUMAN2 STORAGE)</Name>
+(CUTTREE HUMAN4 FOREST1)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
+(MOVE HUMAN4 HUMAN4PLACE FOREST1)
 </Name>
 
 </On_Operator>
@@ -475,7 +515,7 @@
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 STORAGE HUMAN2PLACE)
+(MOVE HUMAN4 FOREST1 STORAGE)
 </Name>
 
 </On_Operator>
@@ -483,7 +523,7 @@
 <On_Operator>
  
 <Name>
-(SIMPLEMINEORE HUMAN2 ORERESOURCE)
+(MOVE HUMAN4 STORAGE FOREST1)
 </Name>
 
 </On_Operator>
@@ -491,7 +531,23 @@
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
+(MOVE HUMAN4 FOREST1 STORAGE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(TRAINLUMBERJACK HUMAN4)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE HUMAN4 STORAGE FOREST1)
 </Name>
 
 </On_Operator>
@@ -502,14 +558,14 @@
 
 <Operator>
 <Name>
-(MOVE HUMAN2 STORAGE HUMAN2PLACE)</Name>
+(CUTSTONE HUMAN3 HUMAN4PLACE)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(BUILDTURFHUT HUMAN2 HUMAN2PLACE)
+(BUILDQUARRY HUMAN4 HUMAN4PLACE)
 </Name>
 
 </On_Operator>
@@ -517,63 +573,7 @@
 <On_Operator>
  
 <Name>
-(SIMPLEEDUCATE HUMAN1 HUMAN2 HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STORESTONE HUMAN2 STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 STORAGE HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STORECOAL HUMAN2 STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STOREORE HUMAN2 STORAGE)
+(MOVE HUMAN3 HUMAN3PLACE HUMAN4PLACE)
 </Name>
 
 </On_Operator>
@@ -584,14 +584,14 @@
 
 <Operator>
 <Name>
-(BUILDSMELTER HUMAN1 STORAGE)</Name>
+(MOVE HUMAN4 FOREST1 STORAGE)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(STORESTONE HUMAN2 STORAGE)
+(MOVE HUMAN4 HUMAN4PLACE FOREST1)
 </Name>
 
 </On_Operator>
@@ -599,7 +599,79 @@
 <On_Operator>
  
 <Name>
-(MOVE HUMAN1 HUMAN2PLACE STORAGE)
+(MOVE HUMAN4 FOREST1 STORAGE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(STORESTONE HUMAN4 STORAGE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE HUMAN4 STORAGE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDSMELTER HUMAN4 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE HUMAN4 FOREST1 STORAGE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(STORECOAL HUMAN4 STORAGE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(STOREORE HUMAN4 STORAGE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE HUMAN4 STORAGE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEIRON HUMAN4 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE HUMAN4 FOREST1)
 </Name>
 
 </On_Operator>
@@ -610,14 +682,14 @@
 
 <Operator>
 <Name>
-(MOVE HUMAN2 HUMAN2PLACE QUARRY)</Name>
+(MOVE HUMAN3 HUMAN4PLACE STORAGE)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(BUILDTURFHUT HUMAN2 HUMAN2PLACE)
+(MOVE HUMAN3 HUMAN3PLACE HUMAN4PLACE)
 </Name>
 
 </On_Operator>
@@ -625,7 +697,7 @@
 <On_Operator>
  
 <Name>
-(SIMPLEEDUCATE HUMAN1 HUMAN2 HUMAN2PLACE)
+(SIMPLEEDUCATE HUMAN3 HUMAN4 HUMAN4PLACE)
 </Name>
 
 </On_Operator>
@@ -633,63 +705,7 @@
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 HUMAN2PLACE QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(CUTSTONE HUMAN2 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 QUARRY FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 FOREST1 HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 STORAGE HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 STORAGE HUMAN2PLACE)
+(CUTSTONE HUMAN3 HUMAN4PLACE)
 </Name>
 
 </On_Operator>
@@ -700,14 +716,14 @@
 
 <Operator>
 <Name>
-(PRODUCEIRON HUMAN1 STORAGE)</Name>
+(STORETIMBER HUMAN4 STORAGE)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE HUMAN1 HUMAN2PLACE STORAGE)
+(MOVE HUMAN4 FOREST1 STORAGE)
 </Name>
 
 </On_Operator>
@@ -715,7 +731,7 @@
 <On_Operator>
  
 <Name>
-(STORECOAL HUMAN2 STORAGE)
+(MOVE HUMAN4 STORAGE FOREST1)
 </Name>
 
 </On_Operator>
@@ -723,7 +739,7 @@
 <On_Operator>
  
 <Name>
-(STOREORE HUMAN2 STORAGE)
+(MOVE HUMAN4 FOREST1 STORAGE)
 </Name>
 
 </On_Operator>
@@ -731,7 +747,23 @@
 <On_Operator>
  
 <Name>
-(BUILDSMELTER HUMAN1 STORAGE)
+(MOVE HUMAN4 STORAGE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE HUMAN4 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE HUMAN4 FOREST1 STORAGE)
 </Name>
 
 </On_Operator>
@@ -742,14 +774,14 @@
 
 <Operator>
 <Name>
-(CUTSTONE HUMAN2 QUARRY)</Name>
+(STOREIRON HUMAN4 STORAGE)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 HUMAN2PLACE QUARRY)
+(MOVE HUMAN4 FOREST1 STORAGE)
 </Name>
 
 </On_Operator>
@@ -757,7 +789,7 @@
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 QUARRY FOREST1)
+(MOVE HUMAN4 STORAGE FOREST1)
 </Name>
 
 </On_Operator>
@@ -765,7 +797,7 @@
 <On_Operator>
  
 <Name>
-(STORESTONE HUMAN2 STORAGE)
+(MOVE HUMAN4 FOREST1 STORAGE)
 </Name>
 
 </On_Operator>
@@ -773,7 +805,23 @@
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 HUMAN2PLACE QUARRY)
+(MOVE HUMAN4 STORAGE FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(PRODUCEIRON HUMAN4 FOREST1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE HUMAN4 FOREST1 STORAGE)
 </Name>
 
 </On_Operator>
@@ -784,14 +832,14 @@
 
 <Operator>
 <Name>
-(MOVE HUMAN2 QUARRY HUMAN2PLACE)</Name>
+(MOVE HUMAN4 STORAGE HUMAN3PLACE)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(BUILDTURFHUT HUMAN2 HUMAN2PLACE)
+(MOVE HUMAN4 FOREST1 STORAGE)
 </Name>
 
 </On_Operator>
@@ -799,7 +847,7 @@
 <On_Operator>
  
 <Name>
-(SIMPLEEDUCATE HUMAN1 HUMAN2 HUMAN2PLACE)
+(STORESTONE HUMAN4 STORAGE)
 </Name>
 
 </On_Operator>
@@ -807,7 +855,7 @@
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 HUMAN2PLACE QUARRY)
+(MOVE HUMAN4 STORAGE FOREST1)
 </Name>
 
 </On_Operator>
@@ -815,7 +863,7 @@
 <On_Operator>
  
 <Name>
-(CUTSTONE HUMAN2 QUARRY)
+(MOVE HUMAN4 FOREST1 STORAGE)
 </Name>
 
 </On_Operator>
@@ -823,7 +871,7 @@
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 QUARRY FOREST1)
+(STORECOAL HUMAN4 STORAGE)
 </Name>
 
 </On_Operator>
@@ -831,7 +879,7 @@
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
+(STOREORE HUMAN4 STORAGE)
 </Name>
 
 </On_Operator>
@@ -839,7 +887,7 @@
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
+(MOVE HUMAN4 STORAGE FOREST1)
 </Name>
 
 </On_Operator>
@@ -847,7 +895,7 @@
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 HUMAN2PLACE QUARRY)
+(MOVE HUMAN4 FOREST1 STORAGE)
 </Name>
 
 </On_Operator>
@@ -855,7 +903,15 @@
 <On_Operator>
  
 <Name>
-(CUTSTONE HUMAN2 QUARRY)
+(STORETIMBER HUMAN4 STORAGE)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(STOREIRON HUMAN4 STORAGE)
 </Name>
 
 </On_Operator>
@@ -866,14 +922,14 @@
 
 <Operator>
 <Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)</Name>
+(STORESTONE HUMAN3 STORAGE)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(BUILDTURFHUT HUMAN2 HUMAN2PLACE)
+(BUILDSMELTER HUMAN4 FOREST1)
 </Name>
 
 </On_Operator>
@@ -881,7 +937,7 @@
 <On_Operator>
  
 <Name>
-(SIMPLEEDUCATE HUMAN1 HUMAN2 HUMAN2PLACE)
+(CUTSTONE HUMAN3 HUMAN4PLACE)
 </Name>
 
 </On_Operator>
@@ -889,87 +945,7 @@
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 HUMAN2PLACE QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 FOREST1 HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STORESTONE HUMAN2 STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 STORAGE HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STORECOAL HUMAN2 STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STOREORE HUMAN2 STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 STORAGE HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 QUARRY HUMAN2PLACE)
+(MOVE HUMAN3 HUMAN4PLACE STORAGE)
 </Name>
 
 </On_Operator>
@@ -980,14 +956,14 @@
 
 <Operator>
 <Name>
-(STORESTONE HUMAN2 STORAGE)</Name>
+(BUILDSAWMILL HUMAN4 HUMAN3PLACE)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(CUTSTONE HUMAN2 QUARRY)
+(STORESTONE HUMAN4 STORAGE)
 </Name>
 
 </On_Operator>
@@ -995,7 +971,7 @@
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
+(BUILDSMELTER HUMAN4 FOREST1)
 </Name>
 
 </On_Operator>
@@ -1003,7 +979,7 @@
 <On_Operator>
  
 <Name>
-(STORESTONE HUMAN2 STORAGE)
+(STORETIMBER HUMAN4 STORAGE)
 </Name>
 
 </On_Operator>
@@ -1011,7 +987,7 @@
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 STORAGE HUMAN2PLACE)
+(STOREIRON HUMAN4 STORAGE)
 </Name>
 
 </On_Operator>
@@ -1019,7 +995,7 @@
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
+(MOVE HUMAN4 STORAGE HUMAN3PLACE)
 </Name>
 
 </On_Operator>
@@ -1027,809 +1003,7 @@
 <On_Operator>
  
 <Name>
-(MOVE HUMAN2 STORAGE HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSMELTER HUMAN1 STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(CUTSTONE HUMAN2 QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(STOREIRON HUMAN1 STORAGE)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN1 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEIRON HUMAN1 STORAGE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(STORETIMBER HUMAN2 STORAGE)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(CUTTREE HUMAN2 FOREST1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 STORAGE HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 STORAGE HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(MOVE HUMAN2 STORAGE HUMAN2PLACE)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(BUILDTURFHUT HUMAN2 HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE HUMAN1 HUMAN2 HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STORESTONE HUMAN2 STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 STORAGE HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STORECOAL HUMAN2 STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STOREORE HUMAN2 STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 STORAGE HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STORESTONE HUMAN2 STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STORETIMBER HUMAN2 STORAGE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE HUMAN1PLACE)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(BUILDTURFHUT HUMAN2 HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE HUMAN1 HUMAN2 HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 FOREST1 HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 STORAGE HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 STORAGE HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 QUARRY HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 STORAGE HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(MOVE HUMAN1 STORAGE HUMAN2PLACE)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE HUMAN1 HUMAN2 HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN1 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSMELTER HUMAN1 STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(PRODUCEIRON HUMAN1 STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STOREIRON HUMAN1 STORAGE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(BUILDSAWMILL HUMAN2 HUMAN1PLACE)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(STORESTONE HUMAN2 STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSMELTER HUMAN1 STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STORESTONE HUMAN2 STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STOREIRON HUMAN1 STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STORETIMBER HUMAN2 STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE HUMAN1PLACE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(MOVE HUMAN2 HUMAN1PLACE HUMAN2PLACE)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(BUILDTURFHUT HUMAN2 HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLEEDUCATE HUMAN1 HUMAN2 HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE HUMAN1PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSAWMILL HUMAN2 HUMAN1PLACE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(REPRODUCETURFHUT HUMAN2 HUMAN1 HUMAN2PLACE)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(BUILDTURFHUT HUMAN2 HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN1 HUMAN1PLACE HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 FOREST1 HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 STORAGE HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN1 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 STORAGE HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 QUARRY HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 STORAGE HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE HUMAN1PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN1 STORAGE HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN1PLACE HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(REPRODUCETURFHUT HUMAN2 HUMAN1 HUMAN2PLACE)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(BUILDTURFHUT HUMAN2 HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN1 HUMAN1PLACE HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 FOREST1 HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 STORAGE HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN1 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 STORAGE HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE QUARRY)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 QUARRY HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE STORAGE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 STORAGE HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN2PLACE HUMAN1PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN1 STORAGE HUMAN2PLACE)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE HUMAN2 HUMAN1PLACE HUMAN2PLACE)
+(STORESTONE HUMAN3 STORAGE)
 </Name>
 
 </On_Operator>

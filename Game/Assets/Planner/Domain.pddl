@@ -21,6 +21,7 @@
 		(coal ?p - place)
 		(min_resource)		
 		(time)
+		(riflemen)
 		(population)
 	)
 	
@@ -136,7 +137,7 @@
 	(:action trainRifleman
 			:parameters(?person - person)
 			:precondition(and(has-riflemanskill ?person) (not(is-rifleman ?person)) (>= (rifles) 1))
-			:effect(and (is-rifleman ?person) (not(has-riflemanskill ?person)))
+			:effect(and (is-rifleman ?person) (not(has-riflemanskill ?person)) (increase (riflemen) 1) (decrease (rifles) 1))
 	)
 	
 	;; --------- Acquire Resource --------- ;;
@@ -199,27 +200,27 @@
 	
 	(:action buildTurfHut
 			:parameters(?person - person ?place - place)
-			:precondition(and(at ?person ?place) (not(has-turfhut ?place)) (not(has-building ?place)))
+			:precondition(and(at ?person ?place)  (not(has-building ?place)))
 			:effect(and(has-turfhut ?place) (has-building ?place))
 	)
 	
 	(:action buildHouse
 			:parameters(?carpenter - person ?person - person ?place - place)
-			:precondition(and(at ?carpenter ?place) (at ?person ?place) (is-carpenter ?carpenter) (not(has-house ?place)) (not(has-building ?place)) (not(= ?person ?carpenter))
+			:precondition(and(at ?carpenter ?place) (at ?person ?place) (is-carpenter ?carpenter)  (not(has-building ?place)) (not(= ?person ?carpenter))
 						  (>= (wood) 1))
 			:effect(and(has-house ?place) (has-building ?place) (decrease (wood) 1))
 	)
 	
 	(:action buildSmelter
 			:parameters(?person - person ?place - place)
-			:precondition(and(at ?person ?place) (not(has-smelter ?place)) (not(has-building ?place)) 
+			:precondition(and(at ?person ?place)  (not(has-building ?place)) 
 						  (>= (stone) 1))
 			:effect(and(has-smelter ?place) (has-building ?place) (decrease (stone) 1))
 	)
 	
 	(:action buildSchool
 			:parameters(?carpenter - person ?person - person ?place - place)
-			:precondition(and(at ?person ?place) (at ?carpenter ?place) (is-carpenter ?carpenter) (not(has-school ?place)) (not(has-building ?place)) (not(= ?person ?carpenter))
+			:precondition(and(at ?person ?place) (at ?carpenter ?place) (is-carpenter ?carpenter) (not(has-building ?place))  (not(= ?person ?carpenter))
 						  (>= (iron) 1)
 						  (>= (wood) 1)
 						  (>= (stone) 1))						  
@@ -228,7 +229,7 @@
 	
 	(:action buildSawMill
 			:parameters(?person - person ?place - place)
-			:precondition(and(at ?person ?place) (not(has-building ?place)) (not(has-sawmill ?place)) 
+			:precondition(and(at ?person ?place) (not(has-building ?place)) 
 						  (>= (stone) 1) 
 						  (>= (timber) 1) 
 						  (>= (iron) 1))
@@ -237,7 +238,7 @@
 	
 	(:action buildBlacksmith
 			:parameters(?person - person ?place - place)
-			:precondition(and(at ?person ?place) (not(has-building ?place)) (not(has-blacksmith ?place)) 
+			:precondition(and(at ?person ?place) (not(has-building ?place))
 						  (>= (stone) 1) 
 						  (>= (timber) 1) 
 						  (>= (iron) 1))
@@ -262,10 +263,16 @@
 	
 	(:action buildBarracks
 			:parameters(?carpenter - person ?person - person ?place - place)
-			:precondition(and(is-carpenter ?carpenter) (at ?carpenter ?place) (at ?person ?place) (not(= ?carpenter ?person)) (not(has-barracks ?place)) (not(has-building ?place))
+			:precondition(and(is-carpenter ?carpenter) (at ?carpenter ?place) (at ?person ?place) (not(= ?carpenter ?person)) (not(has-building ?place))
 						  (>= (stone) 1)
 						  (>= (wood) 1))
 			:effect(and (has-barracks ?place) (has-building ?place) (decrease (stone) 1) (decrease (wood) 1))
+	)
+	
+	(:action buildQuarry
+			:parameters(?person - person ?place - place)
+			:precondition(and(at ?person ?place) (not(has-building ?place)))
+			:effect(and (has-quarry ?place))
 	)
 	
 	;; --------- Store Resource ---------- ;;

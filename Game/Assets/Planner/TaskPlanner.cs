@@ -146,6 +146,7 @@ public class TaskPlanner : MonoBehaviour {
         lines.Add("(= (stored-ore) 0)");
         lines.Add("(= (stored-coal) 0)");
         lines.Add("(= (rifles) 0)");
+        lines.Add("(= (riflemen) 0)");
         lines.Add("(= (stone) 0)");
         lines.Add("(= (population) " + people.Count + ")");
         lines.Add("(= (min_resource) 0)");
@@ -168,8 +169,6 @@ public class TaskPlanner : MonoBehaviour {
 
         //End Problem File
         lines.Add(")");
-        System.IO.File.WriteAllLines(working_directory + "/Planner/TeamProblemTest" + TeamID + ".pddl", lines.ToArray());
-
-        
+        System.IO.File.WriteAllLines(working_directory + "/Planner/TestGeneration" + TeamID + ".pddl", lines.ToArray());        
     }
 }
