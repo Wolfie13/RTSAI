@@ -43,8 +43,9 @@ public class TaskPlanner : MonoBehaviour {
         }
 
         if(Input.GetKeyDown(KeyCode.L))
-        {
-           // CreateProblem(1);
+        {           
+            List<Goal> goals = new List<Goal>();           
+            CreateProblem(0, goals);
         }
     }
 
@@ -75,13 +76,13 @@ public class TaskPlanner : MonoBehaviour {
         return solution;
     }
 
-    void ProcessSolution(int TeamID)
+    public void ProcessSolution(int TeamID)
     {
         
     }
 
     //To Do: Pass in Desired goal from executive
-    void CreateProblem(int TeamID, List<Goal> goals)
+    public void CreateProblem(int TeamID, List<Goal> goals)
     {
         PlayerData team_data = map.GetTeamData(TeamID);
 
@@ -95,7 +96,7 @@ public class TaskPlanner : MonoBehaviour {
         lines.Add("(:domain ai_game)");
 
         //Add Lines for (:objects)
-        lines.Add("(:objects");   
+        lines.Add("(:objects");       
               
         foreach (Person person in people)
         {
@@ -142,15 +143,17 @@ public class TaskPlanner : MonoBehaviour {
         //Add Lines for (:goal)
         lines.Add("(:goal");
 
-        foreach(Goal g in goals)
+        
+
+        lines.Add("(and");
+
+        foreach (Goal g in goals)
         {
             lines.Add(g.WriteGoal());
         }
 
-        lines.Add("(and");
-
         //Add Desired Goal State
-        lines.Add("(has-school)");
+        //lines.Add("(has-school)");
 
         lines.Add(")");
 
