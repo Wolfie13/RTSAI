@@ -40,7 +40,7 @@ public class Mine : Action
 				{
 					person.Resources[type] += 1;
 					person.ToDoList[0] = new Store();
-					return ActionResult.SUCCESS;
+					return ActionResult.CONTINUE;
 				} else {
 					return ActionResult.FAIL;
 				}

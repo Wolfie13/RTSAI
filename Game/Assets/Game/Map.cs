@@ -402,6 +402,9 @@ public class Map : MonoBehaviour
 			p1.ToDoList.Add(new Mine(ResourceType.Ore));
 			//p1.ToDoList.Add(new Educate(Skill.Lumberjack, p2, false));
 			//p2.ToDoList.Add(new BuildBuilding(BuildingType.turfHut));
+			p2.ToDoList.Add(new BuildBuilding(BuildingType.Quarry));
+			p2.ToDoList.Add(new Quarry());
+			p2.ToDoList.Add(new Quarry());
 			player.Resources [ResourceType.Stone]++;
 			player.Resources [ResourceType.Wood]++;
 			BuildBuilding (BuildingType.Storage, player1Start, player.TeamID, true);

@@ -30,9 +30,9 @@ public class Building : MapObject {
         {BuildingType.School,       new IVec2(5,5)},
         {BuildingType.Barracks,     new IVec2(5,5)},
         {BuildingType.Storage,      new IVec2(5,5)},
-        {BuildingType.Mine,         new IVec2(1,1)},
+        {BuildingType.Mine,         new IVec2(2,2)},
         {BuildingType.Smelter,      new IVec2(2,2)},
-        {BuildingType.Quarry,       new IVec2(1,1)},
+        {BuildingType.Quarry,       new IVec2(2,2)},
         {BuildingType.Sawmill,      new IVec2(2,2)},
         {BuildingType.Forge,   		new IVec2(2,2)}
         //,{BuildingType.MarketStall,  new IVec2(1,1)}
