@@ -128,7 +128,7 @@ public class TaskPlanner : MonoBehaviour {
             }
             if(task.Contains("PRODUCETOOL"))
             {
-                //BLACKMSITH ACTION
+                
             }
             if (task.Contains("TRAINTEACHER"))
             {
@@ -153,6 +153,38 @@ public class TaskPlanner : MonoBehaviour {
             if(task.Contains("TRAINRIFLEMAN"))
             {                
                 AssignTask(new Educate(Skill.Rifleman, null), TeamID);
+            }
+            if(task.Contains("BUILDFORGE"))
+            {
+                AssignTask(new BuildBuilding(BuildingType.Forge), TeamID);
+            }
+            if(task.Contains("BUILDQUARRY"))
+            {
+                AssignTask(new BuildBuilding(BuildingType.Quarry), TeamID);
+            }
+            if(task.Contains("BUILDSMELTER"))
+            {
+                AssignTask(new BuildBuilding(BuildingType.Smelter), TeamID);
+            }
+            if(task.Contains("BUILDTURFHUT"))
+            {
+                AssignTask(new BuildBuilding(BuildingType.turfHut), TeamID);
+            }
+            if(task.Contains("BUILDHOUSE"))
+            {
+                AssignTask(new BuildBuilding(BuildingType.House), TeamID);
+            }
+            if(task.Contains("BUILDSCHOOL"))
+            {
+                AssignTask(new BuildBuilding(BuildingType.School), TeamID);
+            }
+            if(task.Contains("BUILDSAWMILL"))
+            {
+                AssignTask(new BuildBuilding(BuildingType.Sawmill), TeamID);
+            }
+            if(task.Contains("BUILDBARRACKS"))
+            {
+                AssignTask(new BuildBuilding(BuildingType.Barracks), TeamID);
             }
         }      
     }
