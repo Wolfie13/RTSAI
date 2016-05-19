@@ -141,7 +141,8 @@ public class Building : MapObject {
             
             //Spend Resource and set Busy timers
             //all require a labourer
-            GetNonBusyPersonInBuildingWithSkill(Skill.Labourer).SetBusy(BuildTime[m_buildingtype]);
+
+            //GetNonBusyPersonInBuildingWithSkill(Skill.Labourer).SetBusy(BuildTime[m_buildingtype]);
             PlayerData CurrentTeamData = Map.CurrentMap.GetTeamData(teamID);
             switch (m_buildingtype)
             {
