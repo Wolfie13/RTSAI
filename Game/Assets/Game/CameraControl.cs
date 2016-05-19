@@ -14,12 +14,6 @@ public class CameraControl : MonoBehaviour {
 
     public float Min_Zoom_Dist = 20, Max_Zoom_Dist = 150;
 
-    //GameObject selectedObject = null;
-
-    IVec2 MapPosClick = new IVec2();
-
-    Map CurrentMap = null;
-
 	// Use this for initialization
 	void Start () {
         CurrentMap = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>();
