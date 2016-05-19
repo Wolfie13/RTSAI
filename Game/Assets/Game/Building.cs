@@ -14,7 +14,7 @@ public enum BuildingType
     Smelter,
     Quarry,
     Sawmill,
-    Blacksmith
+    Forge
     //,MarketStall
 }
 
@@ -34,7 +34,7 @@ public class Building : MapObject {
         {BuildingType.Smelter,      new IVec2(2,2)},
         {BuildingType.Quarry,       new IVec2(1,1)},
         {BuildingType.Sawmill,      new IVec2(2,2)},
-        {BuildingType.Blacksmith,   new IVec2(2,2)}
+        {BuildingType.Forge,   		new IVec2(2,2)}
         //,{BuildingType.MarketStall,  new IVec2(1,1)}
 
     };
@@ -56,7 +56,7 @@ public class Building : MapObject {
         {BuildingType.Smelter,     20},
         {BuildingType.Quarry,      10},
         {BuildingType.Sawmill,     30},
-        {BuildingType.Blacksmith,  30}
+        {BuildingType.Forge,  30}
        // ,{BuildingType.MarketStall,  5}
 
     };
@@ -126,7 +126,7 @@ public class Building : MapObject {
                 if(!CheckResource(ResourceType.Timber)) return false;
                 if(!CheckForSkillWithinBuilding(Skill.Labourer)) return false;
                 break;
-            case BuildingType.Blacksmith:
+            case BuildingType.Forge:
                 if(!CheckResource(ResourceType.Stone)) return false;
                 if(!CheckResource(ResourceType.Iron)) return false;
                 if(!CheckResource(ResourceType.Timber)) return false;
@@ -181,7 +181,7 @@ public class Building : MapObject {
                     CurrentTeamData.Resources[ResourceType.Iron]--;
                     CurrentTeamData.Resources[ResourceType.Timber]--;
                     break;
-                case BuildingType.Blacksmith:
+                case BuildingType.Forge:
                     CurrentTeamData.Resources[ResourceType.Stone]--;
                     CurrentTeamData.Resources[ResourceType.Iron]--;
                     CurrentTeamData.Resources[ResourceType.Timber]--;
