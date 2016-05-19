@@ -19,6 +19,5 @@ public class Learn : Action
 			person.ToDoList.Insert (0, new Move (person.currentMapPos, dest));
 			return ActionResult.CONTINUE;
 		}
-		return ActionResult.CONTINUE;
 	}
 }
