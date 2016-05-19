@@ -93,5 +93,21 @@ public class PlayerData {
         return results;
     }
 
+	public Building GetNearestBuilding (IVec2 Pos, BuildingType type)
+	{
+		Building nearestBuilding = null;
+		int nearestDistance = int.MaxValue;
+		foreach (Building b in Buildings) {
+			if (b.m_buildingtype == type) {
+				int distance = Pos.manhatttanDistance(b.m_MapPos);
+				if (distance < nearestDistance){
+					nearestDistance = distance;
+					nearestBuilding = b;
+				}
+			}
+		}
+		return nearestBuilding;
+	}
+
     public List<Building> GetBuildings() { return Buildings; }
 }

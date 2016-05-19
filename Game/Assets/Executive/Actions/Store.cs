@@ -20,7 +20,7 @@ public class Store : Action
 				}
 			}
 		}
-		Building nearestStorage = Map.CurrentMap.GetNearestBuilding (person.currentMapPos, BuildingType.Storage);
+		Building nearestStorage = Map.CurrentMap.GetTeamData(person.teamID).GetNearestBuilding (person.currentMapPos, BuildingType.Storage);
 		if (nearestStorage == null) {
 			return ActionResult.FAIL;
 		}
