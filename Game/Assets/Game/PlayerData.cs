@@ -9,7 +9,7 @@ public class PlayerData {
 
     public List<Building> Buildings = new List<Building>();
     public List<Person> People = new List<Person>();
-
+	public int failedOrders = 0;
 
     public int TeamID;
 

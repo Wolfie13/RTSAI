@@ -66,6 +66,7 @@ public class Person : MonoBehaviour {
 
 			case Action.ActionResult.FAIL:
 				//Increment failed action counter
+				Map.CurrentMap.GetTeamData(this.teamID).failedOrders++;
 				goto case Action.ActionResult.SUCCESS;
 			case Action.ActionResult.SUCCESS:
 				ToDoList.RemoveAt(0);
