@@ -67,6 +67,7 @@ public class Person : MonoBehaviour {
 			case Action.ActionResult.FAIL:
 				//Increment failed action counter
 				Map.CurrentMap.GetTeamData(this.teamID).failedOrders++;
+				Debug.Log(ToDoList[0].GetType().ToString() + " Failed");
 				goto case Action.ActionResult.SUCCESS;
 			case Action.ActionResult.SUCCESS:
 				ToDoList.RemoveAt(0);

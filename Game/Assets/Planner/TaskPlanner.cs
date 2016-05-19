@@ -6,62 +6,53 @@ using System.Linq;
 using System.Threading;
 using System.Collections.Generic;
 
-public class TaskPlanner : MonoBehaviour {
+public class TaskPlanner {
 
     private Process ProcessPlanner;
     private string working_directory;
 
     private string PDDLDomainName = "Domain";
     private string PDDLProblemName = "TestGeneration";
-    private string SolutionName = "/ffPSolution.soln";
+    private string SolutionName = "/ffSolution.soln";
 
     private List<string> solution;    
     //private string task = "";
 
-    
-    private Map map;
-
 
 	// Use this for initialization
-	void Start () 
+	public TaskPlanner () 
     {
-        map = GetComponent<Map>();
         working_directory = Application.dataPath;        
 	}
 
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.T))
-        {
-            RunPlanner(1);
-            ReadSolution();
-            foreach (string task in solution)
-            {
-                UnityEngine.Debug.Log(task);
-            }
-            ProcessSolution(1);
-        }
+	public void PlannerTick()
+	{
+		List<Goal> staticGoals = new List<Goal> ();
+		staticGoals.Add (new BuildBuildingGoal (BuildingType.Forge));
+		CreateProblem (0, staticGoals);
+		RunPlanner (0);
+		ReadSolution ();
+		ProcessSolution (0);
 
-        if(Input.GetKeyDown(KeyCode.L))
-        {           
-            List<Goal> goals = new List<Goal>();
-            goals.Add(new BuildBuildingGoal(BuildingType.Forge));
-            CreateProblem(0, goals);
-        }
-    }
+		CreateProblem (1, staticGoals);
+		RunPlanner (1);
+		ReadSolution ();
+		ProcessSolution (1);
+	}
 
+	bool flipflop = true;
     void AssignTask(Action action, int TeamID)
     {
-        PlayerData team_data = map.GetTeamData(TeamID);
+        PlayerData team_data = Map.CurrentMap.GetTeamData(TeamID);
         List<Person> people = team_data.GetPeople();
 
-        foreach (Person p in people)
-        {
-            if (p.ToDoList.Count() == 0)
-            {
-                p.ToDoList.Add(action);
-            }
-        }
+		flipflop = !flipflop;
+		if (flipflop) {
+			people[0].ToDoList.Add(action);
+		} else {
+			people[1].ToDoList.Add(action);
+		}
+        
     }
 
     void RunPlanner(int TeamID)
@@ -78,19 +69,19 @@ public class TaskPlanner : MonoBehaviour {
         ProcessPlanner.WaitForExit();
     }
 
-    List<string> ReadSolution()
+	List<string> ReadSolution()
     {
         var result = File.ReadAllLines(working_directory + "/Planner" + SolutionName).Where(s => s.Contains(":"));
         //TO DO: add functionality for reading all actions and assigning tasks to population
         solution = result.ToList();        
-        File.Delete(working_directory + "/Planner" + SolutionName);
+        //File.Delete(working_directory + "/Planner" + SolutionName);
 
         return solution;
     }
 
     public void ProcessSolution(int TeamID)
     {
-        PlayerData team_data = map.GetTeamData(TeamID);
+		PlayerData team_data = Map.CurrentMap.GetTeamData(TeamID);
         List<Person> people = team_data.GetPeople();
         List<Building> buildings = team_data.GetBuildings();
 
@@ -211,7 +202,7 @@ public class TaskPlanner : MonoBehaviour {
     //To Do: Pass in Desired goal from executive
     public void CreateProblem(int TeamID, List<Goal> goals)
     {
-        PlayerData team_data = map.GetTeamData(TeamID);
+		PlayerData team_data = Map.CurrentMap.GetTeamData(TeamID);
 
         List<Person> people = team_data.GetPeople();
         List<Building> buildings = team_data.GetBuildings();
@@ -253,6 +244,25 @@ public class TaskPlanner : MonoBehaviour {
                 lines.Add(problem_string);
             }
         }
+
+		
+		{
+			Dictionary<Skill, bool> availableSkills = new Dictionary<Skill, bool>();
+			
+			foreach (Person p in people)
+			{
+				foreach (Skill s in p.Skills)
+				{
+					availableSkills.Add(s, true);
+				}
+			}
+			
+			foreach (var skill in availableSkills)
+			{
+				string problem_string = "(has-" + skill.Key.ToString().ToLower() + ")";
+				lines.Add(problem_string);
+			}
+		}
 
         lines.Add("(ore_resource oreresource)");
         lines.Add("(coal_resource coalresource)");

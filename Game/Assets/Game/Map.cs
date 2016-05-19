@@ -399,12 +399,12 @@ public class Map : MonoBehaviour
 					player.People [0].Skills.Add (s);
 			}
 			Person p2 = AddPerson (player1Start + new IVec2(0, 10), player.TeamID);
-			p1.ToDoList.Add(new Mine(ResourceType.Ore));
+			//p1.ToDoList.Add(new Mine(ResourceType.Ore));
 			//p1.ToDoList.Add(new Educate(Skill.Lumberjack, p2, false));
 			//p2.ToDoList.Add(new BuildBuilding(BuildingType.turfHut));
-			p2.ToDoList.Add(new BuildBuilding(BuildingType.Quarry));
-			p2.ToDoList.Add(new Quarry());
-			p2.ToDoList.Add(new Quarry());
+			//p2.ToDoList.Add(new BuildBuilding(BuildingType.Quarry));
+			//p2.ToDoList.Add(new Quarry());
+			//p2.ToDoList.Add(new Quarry());
 			player.Resources [ResourceType.Stone]++;
 			player.Resources [ResourceType.Wood]++;
 			BuildBuilding (BuildingType.Storage, player1Start, player.TeamID, true);

@@ -81,7 +81,7 @@
 	
 	(:action trainLumberjack
 			:parameters(?person - person)
-			:precondition((not(has-lumberjack)))
+			:precondition(not(has-lumberjack))
 			:effect(and (has-lumberjack)
 					  (when(has-school) (increase(time) 50))
 					  (when(not(has-school)) (increase(time) 100)))

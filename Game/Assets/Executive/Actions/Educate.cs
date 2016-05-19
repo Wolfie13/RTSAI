@@ -38,11 +38,7 @@ public class Educate : Action
             foreach (Person p in Map.CurrentMap.GetTeamData(person.teamID).GetPeople())
             {
                 if (p == person) continue;
-
-                if (p.ToDoList.Count == 0)
-                {
-                    target = p;
-                }
+                target = p;
             }
         }
 

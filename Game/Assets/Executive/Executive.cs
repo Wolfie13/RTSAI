@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Executive : MonoBehaviour {
 	private Map map = null;
+	private TaskPlanner taskPlanner = null;
 	// Use this for initialization
 	void Awake () {
 		map = GameObject.FindObjectOfType<Map> ();
@@ -10,13 +11,17 @@ public class Executive : MonoBehaviour {
 			Debug.Log("Executive Failed to get map Handle and disabled itself.");
 			this.enabled = false;
 		}
+
+		taskPlanner = new TaskPlanner ();
+		taskPlanner.PlannerTick ();
 	}
 
 	public void tick ()
     { 
-		innerAI (map.GetTeamData (0),  map.GetTeamData (1));
-		innerAI (map.GetTeamData (1),  map.GetTeamData (0));
+		//innerAI (map.GetTeamData (0),  map.GetTeamData (1));
+		//innerAI (map.GetTeamData (1),  map.GetTeamData (0));
 	}
+	
 
 	private void innerAI(PlayerData player, PlayerData opponent)
 	{

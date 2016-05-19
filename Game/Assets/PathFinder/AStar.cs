@@ -68,7 +68,7 @@ public class AStar {
             EndNode = EndNode.PrevNode;
         }
 
-        Debug.Log("AStarStopped path size: " + result.Count);
+//        Debug.Log("AStarStopped path size: " + result.Count);
 
         //output
         {
