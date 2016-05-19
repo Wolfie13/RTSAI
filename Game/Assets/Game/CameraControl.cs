@@ -16,7 +16,6 @@ public class CameraControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        CurrentMap = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>();
 	}
 	
 	// Update is called once per frame
