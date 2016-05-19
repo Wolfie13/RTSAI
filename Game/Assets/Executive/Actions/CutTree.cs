@@ -4,6 +4,9 @@ public class CutTree : Action
 
 	public override ActionResult actionTick (Person person)
 	{
+		if (!person.Skills.Contains (Skill.Lumberjack)) {
+			return ActionResult.FAIL;
+		}
 		if (Map.CurrentMap.getObject(person.currentMapPos) is ResourceTile)
 		{
 			ResourceTile tile = (ResourceTile)Map.CurrentMap.getObject(person.currentMapPos);

@@ -365,7 +365,7 @@ public class Map : MonoBehaviour
 				if (!player.People [0].Skills.Contains (s))
 					player.People [0].Skills.Add (s);
 			}
-			//AddPerson (player1Start + new IVec2(0, 10), player.TeamID);
+			AddPerson (player1Start + new IVec2(0, 10), player.TeamID);
 			player.Resources [ResourceType.Stone]++;
 			player.Resources [ResourceType.Wood]++;
 			BuildBuilding (BuildingType.Storage, player1Start, player.TeamID, true);
@@ -373,12 +373,12 @@ public class Map : MonoBehaviour
 		{///////////////////////////player2/////////////////////////
 			PlayerData player = new PlayerData (Players.Count);
 			Players.Add (player);
-			//AddPerson (player2Start + new IVec2(0, -10), player.TeamID);
-			//for (Skill s = Skill.Labourer; s <= Skill.Rifleman; s++) {
-				//if (!player.People [0].Skills.Contains (s))
-					//player.People [0].Skills.Add (s);
-			//}
-			//AddPerson (player2Start + new IVec2(0, 10), player.TeamID);
+			AddPerson (player2Start + new IVec2(0, -10), player.TeamID);
+			for (Skill s = Skill.Labourer; s <= Skill.Rifleman; s++) {
+				if (!player.People [0].Skills.Contains (s))
+					player.People [0].Skills.Add (s);
+			}
+			AddPerson (player2Start + new IVec2(0, 10), player.TeamID);
 			player.Resources [ResourceType.Stone]++;
 			player.Resources [ResourceType.Wood]++;
 			BuildBuilding (BuildingType.Storage, player2Start, player.TeamID, true);
