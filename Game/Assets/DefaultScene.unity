@@ -108,12 +108,26 @@ MonoBehaviour:
   - name: Team2
     material: {fileID: 2100000, guid: 03641b75d5e27b74ead61adfc8f94be6, type: 2}
   textures:
-  - name: Hut
+  - name: turfHut
     texture: {fileID: 2800000, guid: b7fa9151cee82124e91fe57f527b71bb, type: 3}
-  - name: Mine
-    texture: {fileID: 2800000, guid: c88715f0f3ccdd64cbc5a56bee045625, type: 3}
+  - name: House
+    texture: {fileID: 2800000, guid: 6047924373a99714baa635d6c811345d, type: 3}
+  - name: School
+    texture: {fileID: 2800000, guid: a28ae665e09ca1b42aafe9a30c14714f, type: 3}
+  - name: Barracks
+    texture: {fileID: 2800000, guid: 63ec6fdd17a43704c9638e6fb8ed4fee, type: 3}
   - name: Storage
     texture: {fileID: 2800000, guid: d3281a1670ad38a4cbb6e269bf2a57b6, type: 3}
+  - name: Mine
+    texture: {fileID: 2800000, guid: c88715f0f3ccdd64cbc5a56bee045625, type: 3}
+  - name: Smelter
+    texture: {fileID: 2800000, guid: c6f95034b32267844be7959b1ab730f6, type: 3}
+  - name: Quarry
+    texture: {fileID: 2800000, guid: e526db8f4270c244aadb80813ec566f3, type: 3}
+  - name: Sawmill
+    texture: {fileID: 2800000, guid: 71c906b9cac2e5141bd0a6e2afa340ef, type: 3}
+  - name: Blacksmith
+    texture: {fileID: 2800000, guid: 3be4fb2d94e80a343b283ad8781a97d7, type: 3}
 --- !u!4 &193665959
 Transform:
   m_ObjectHideFlags: 0
