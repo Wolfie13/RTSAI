@@ -56,7 +56,7 @@ public class Person : MonoBehaviour {
         renderer.material = FreeTexture;
         if(ToDoList.Count >0)
         {
-			Debug.Log(ToDoList[0].GetType().ToString());
+			//Debug.Log(ToDoList[0].GetType().ToString());
 			Action.ActionResult result = ToDoList[0].actionTick(this);
 
 			switch(result) {
@@ -113,7 +113,7 @@ public class Person : MonoBehaviour {
         }
     }*/
 
-    private void ResetResources()
+    public void ResetResources()
     {
         Resources.Clear();
         for (ResourceType i = ResourceType.Wood; i < ResourceType.NumOfResourcetypes; i++)

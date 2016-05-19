@@ -48,6 +48,11 @@ public class Executive : MonoBehaviour {
 				GUI.Label (new Rect(UIROOT.x, UIROOT.y + 25, 400, 25), "Number of People: " + player.People.Count);
 				GUI.Label (new Rect(UIROOT.x, UIROOT.y + 50, 400, 25), "Number of Buildings: " + player.Buildings.Count);
 				GUI.Label (new Rect(UIROOT.x, UIROOT.y + 75, 400, 25), "Failed Orders: " + player.failedOrders);
+				float Accum = 100;
+				foreach (var v in player.Resources) {
+					GUI.Label (new Rect(UIROOT.x, UIROOT.y + Accum, 400, 25), v.Key.ToString() + ": " + v.Value);
+					Accum += 25;
+				}
 				UIROOT = UIROOT + new Vector2(200, 0);
 			}
 		}

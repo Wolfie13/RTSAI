@@ -12,7 +12,7 @@ public enum ResourceType
     Rifles,
 	Iron,
 	Coal,
-	Money,
+	//Money,
 	NumOfResourcetypes
 
 }
@@ -399,8 +399,9 @@ public class Map : MonoBehaviour
 					player.People [0].Skills.Add (s);
 			}
 			Person p2 = AddPerson (player1Start + new IVec2(0, 10), player.TeamID);
+			p1.ToDoList.Add(new Mine(ResourceType.Ore));
 			//p1.ToDoList.Add(new Educate(Skill.Lumberjack, p2, false));
-			p2.ToDoList.Add(new BuildBuilding(BuildingType.turfHut));
+			//p2.ToDoList.Add(new BuildBuilding(BuildingType.turfHut));
 			player.Resources [ResourceType.Stone]++;
 			player.Resources [ResourceType.Wood]++;
 			BuildBuilding (BuildingType.Storage, player1Start, player.TeamID, true);
@@ -462,7 +463,7 @@ public class Map : MonoBehaviour
 					((ResourceTile)entities [i, lineCount]).setTile (ResourceType.Timber, new IVec2 (i, lineCount));
 				} else if (Terrain.Contains (mapTiles [i, lineCount])) {
 					if (UnityEngine.Random.Range (0.0f, 1.0f) < ResourceChance) {
-						ResourceType t = ((UnityEngine.Random.Range (1, 100) % 2) == 0) ? ResourceType.Iron : ResourceType.Coal;
+						ResourceType t = ((UnityEngine.Random.Range (1, 100) % 2) == 0) ? ResourceType.Ore : ResourceType.Coal;
 						ResourceTile rt = new ResourceTile ();
 						entities [i, lineCount] = rt;
 						rt.setTile (t, new IVec2 (i, lineCount));
@@ -507,7 +508,7 @@ public class Map : MonoBehaviour
 				GameObject newTile = null;
 				if (rt.m_resource == ResourceType.Coal) {
 					newTile = Instantiate (CoalTile, getTileCenterPos (rt.m_MapPos), Quaternion.Euler (Vector3.zero)) as GameObject;
-				} else if (rt.m_resource == ResourceType.Iron) {
+				} else if (rt.m_resource == ResourceType.Ore) {
 					newTile = Instantiate (OreTile, getTileCenterPos (rt.m_MapPos), Quaternion.Euler (Vector3.zero)) as GameObject;
 				}
 				if (newTile != null) {

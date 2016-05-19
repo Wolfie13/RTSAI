@@ -14,10 +14,11 @@ public class Store : Action
 				person.SetBusy(1);
 				foreach (var item in person.Resources)
 				{
+					//UnityEngine.Debug.Log(item.Key + ": " + item.Value);
 					Map.CurrentMap.GetTeamData(person.teamID).Resources[item.Key] += item.Value;
-					person.Resources[item.Key] = 0;
-					return ActionResult.SUCCESS;
 				}
+				person.ResetResources();
+				return ActionResult.SUCCESS;
 			}
 		}
 		Building nearestStorage = Map.CurrentMap.GetTeamData(person.teamID).GetNearestBuilding (person.currentMapPos, BuildingType.Storage);
