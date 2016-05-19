@@ -76,23 +76,23 @@ public class Educate : Action
 			taskDispatched = true;
 		}
 
+		if (skill == Skill.Rifleman) {
 
-		if (Map.CurrentMap.getObject(person.currentMapPos) is Building)
-		{
-			Building CurrentBuilding = (Building)Map.CurrentMap.getObject(person.currentMapPos);
-			
-			var other = CurrentBuilding.GetNonBusyPersonInBuilding();
-			
-			if (person.Skills.Contains(Skill.Rifleman)
-			    && CurrentBuilding.m_buildingtype == BuildingType.Barracks
-			    && CurrentBuilding.teamID == person.teamID
-			    && other != null
-			    && other.teamID == person.teamID)
-			{
-				person.SetBusy(RIFLE_TRAIN_TIME);
-				other.SetBusy(RIFLE_TRAIN_TIME);
-				other.Skills.Add(Skill.Rifleman);
-				return ActionResult.SUCCESS;
+			if (Map.CurrentMap.getObject (person.currentMapPos) is Building) {
+				Building CurrentBuilding = (Building)Map.CurrentMap.getObject (person.currentMapPos);
+				
+				var other = CurrentBuilding.GetNonBusyPersonInBuilding ();
+				
+				if (person.Skills.Contains (Skill.Rifleman)
+					&& CurrentBuilding.m_buildingtype == BuildingType.Barracks
+					&& CurrentBuilding.teamID == person.teamID
+					&& other != null
+					&& other.teamID == person.teamID) {
+					person.SetBusy (RIFLE_TRAIN_TIME);
+					other.SetBusy (RIFLE_TRAIN_TIME);
+					other.Skills.Add (Skill.Rifleman);
+					return ActionResult.SUCCESS;
+				}
 			}
 		}
 
