@@ -38,6 +38,10 @@
 		(ore_resource ?p - place)
 		(coal_resource ?p - place)	
 
+		(has-labourer)	
+		(has-rifleman)
+		(has-labourer)	
+		(has-rifleman)
 		(has-carpenter)	
 		(has-lumberjack)
 		(has-blacksmith)
