@@ -77,21 +77,7 @@ public class TaskPlanner : MonoBehaviour {
 
     void ProcessSolution(int TeamID)
     {
-        PlayerData team_data = map.GetTeamData(TeamID);
-
-        List<Person> people = team_data.GetPeople();
-        List<Building> buildings = team_data.GetBuildings();
-
-        foreach(string task in solution)
-        {
-            if(task.Contains("CUTTREE"))
-            {
-                foreach(Person person in team_data.People)
-                {
-                    
-                }
-            }
-        }
+        
     }
 
     //To Do: Pass in Desired goal from executive
@@ -115,12 +101,7 @@ public class TaskPlanner : MonoBehaviour {
         {
             lines.Add(person.name + " - person");         
             //New place
-        }
-
-        foreach (Building building in buildings)
-        {
-           // lines.Add(building.name + " -place");
-        }
+        }        
 
         //Add lines for finding new resources
         lines.Add("oreresource - resource");
