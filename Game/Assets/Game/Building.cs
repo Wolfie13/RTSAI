@@ -204,80 +204,76 @@ public class Building : MapObject {
 
     bool CheckForSkillWithinBuilding(Skill WantedSkill)
     {
-        bool Skillfound = false;
-
-        for (IVec2 offset = new IVec2(); offset.x < Building.Sizes[m_buildingtype].x; offset.x++)
-        {
-            for (offset.y = 0; offset.y < Building.Sizes[m_buildingtype].y; offset.y++)
-            {
+		IVec2 offset = new IVec2();
+		IVec2 size = Building.Sizes[m_buildingtype];
+		for (offset.x = -size.x / 2; offset.x < size.x / 2; offset.x++) {
+			for (offset.y = -size.y / 2; offset.y < size.y / 2; offset.y++) {
                  foreach (var item in Map.CurrentMap.GetPeopleAt(m_MapPos + offset))
                 {
                     if (item.Skills.Contains(WantedSkill) && item.teamID == teamID)
                     {
-                        Skillfound = true;
-                        break;
+						return true;
                     }
                 }
-                 if (Skillfound)
-                     break;
             }
-            if (Skillfound)
-                break;
         }
-        return Skillfound;
-        
+		return false;
     }
 
     Person GetNonBusyPersonInBuildingWithSkill(Skill wantedSkill)
     {
-        Person fred = null;
-
-        for (IVec2 offset = new IVec2(); offset.x < Building.Sizes[m_buildingtype].x; offset.x++)
-        {
-            for (offset.y = 0; offset.y < Building.Sizes[m_buildingtype].y; offset.y++)
-            {
+		IVec2 offset = new IVec2();
+		IVec2 size = Building.Sizes[m_buildingtype];
+		for (offset.x = -size.x / 2; offset.x < size.x / 2; offset.x++) {
+			for (offset.y = -size.y / 2; offset.y < size.y / 2; offset.y++) {
                 foreach (var item in Map.CurrentMap.GetPeopleAt(m_MapPos + offset))
                 {
                     if (item.Skills.Contains(wantedSkill) && item.ToDoList.Count == 0 && item.teamID == teamID)
                     {
-                        fred = item;
-                        break;
+						return item;
                     }
                 }
-                if (fred)
-                    break;
             }
-            if (fred)
-                break;
         }
-
-        return fred;
-
+		return null;
     }
+
+	public List<Person> GetPeopleInBuilding()
+	{
+		List<Person> result = new List<Person>();
+		IVec2 offset = new IVec2();
+		IVec2 size = Building.Sizes[m_buildingtype];
+		for (offset.x = -size.x / 2; offset.x < size.x / 2; offset.x++) {
+			for (offset.y = -size.y / 2; offset.y < size.y / 2; offset.y++) {
+				foreach (var item in Map.CurrentMap.GetPeopleAt(m_MapPos + offset))
+				{
+					if (item.teamID == teamID)
+					{
+						result.Add(item);
+					}
+				}
+			}
+		}
+		
+		return result;
+	}
 
     public Person GetNonBusyPersonInBuilding()
     {
-        Person fred = null;
 
-        for (IVec2 offset = new IVec2(); offset.x < Building.Sizes[m_buildingtype].x; offset.x++)
-        {
-            for (offset.y = 0; offset.y < Building.Sizes[m_buildingtype].y; offset.y++)
-            {
+		IVec2 offset = new IVec2();
+		IVec2 size = Building.Sizes[m_buildingtype];
+		for (offset.x = -size.x / 2; offset.x < size.x / 2; offset.x++) {
+			for (offset.y = -size.y / 2; offset.y < size.y / 2; offset.y++) {
                 foreach (var item in Map.CurrentMap.GetPeopleAt(m_MapPos + offset))
                 {
                     if (item.ToDoList.Count == 0 && item.BusyTime == 0 && item.teamID == teamID)
                     {
-                        fred = item;
-                        break;
+						return item;
                     }
                 }
-                if (fred)
-                    break;
             }
-            if (fred)
-                break;
         }
-
-        return fred;
+		return null;
     }
 }

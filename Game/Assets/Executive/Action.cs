@@ -2,6 +2,12 @@ using System;
 
 public abstract class Action
 {
-	public abstract void actionTick();
+	public enum ActionResult {
+		FAIL,
+		SUCCESS,
+		CONTINUE
+	}
+
+	public abstract ActionResult actionTick(Person person);
 }
 

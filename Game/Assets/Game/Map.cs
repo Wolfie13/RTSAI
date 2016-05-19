@@ -196,8 +196,10 @@ public class Map : MonoBehaviour
 	{
 		List<Person> result = new List<Person> ();
 
-		for (IVec2 offset = new IVec2(); offset.x < Building.Sizes[b.m_buildingtype].x; offset.x++) {
-			for (offset.y = 0; offset.y < Building.Sizes[b.m_buildingtype].y; offset.y++) {
+		IVec2 offset = new IVec2();
+		IVec2 size = Building.Sizes[b.m_buildingtype];
+		for (offset.x = -size.x / 2; offset.x < size.x / 2; offset.x++) {
+			for (offset.y = -size.y / 2; offset.y < size.y / 2; offset.y++) {
 				result.AddRange (GetPeopleAt (b.m_MapPos + offset));
 			}
 		}
@@ -266,8 +268,10 @@ public class Map : MonoBehaviour
 	{
 		bool Buildable = true;
 
-		for (IVec2 offset = new IVec2(); offset.x < Building.Sizes[type].x; offset.x++) {
-			for (offset.y = 0; offset.y < Building.Sizes[type].y; offset.y++) {
+		IVec2 offset = new IVec2();
+		IVec2 size = Building.Sizes[type];
+		for (offset.x = -size.x / 2; offset.x < size.x / 2; offset.x++) {
+			for (offset.y = -size.y / 2; offset.y < size.y / 2; offset.y++) {
 				IVec2 newPos = Pos + offset;
 				if (!Terrain.Contains (getTile (newPos)) || getObject (newPos) is Building) {
 					Buildable = false;
@@ -294,30 +298,17 @@ public class Map : MonoBehaviour
 	public ResourceTile GetNearestResourceTile (IVec2 Pos, ResourceType type)
 	{
 		ResourceTile nearestTile = null;
-
-		for (IVec2 offset = new IVec2(); offset.x < sizeX; offset.x++) {
-			for (offset.y = 0; offset.y <= offset.x; offset.y++) {
-				if (getObject (Pos + offset) is ResourceTile && (getObject (Pos + offset) as ResourceTile).m_resource == type) {
-					ResourceTile t = getObject (Pos + offset) as ResourceTile;
-					if (t.m_resource == type) {
-						nearestTile = t;
-						break;
-					}
-				}
-
-				if (getObject (Pos - offset) is ResourceTile && (getObject (Pos - offset) as ResourceTile).m_resource == type) {
-					ResourceTile t = getObject (Pos - offset) as ResourceTile;
-					if (t.m_resource == type) {
-						nearestTile = t;
-						break;
-					}
+		int nearestDistance = int.MaxValue;
+		foreach (MapObject mo in entities) {
+			if (mo is ResourceTile) {
+				ResourceTile rt = mo as ResourceTile;
+				int distance = Pos.manhatttanDistance(rt.m_MapPos);
+				if (distance < nearestDistance){
+					nearestTile = rt;
 				}
 			}
-			if (nearestTile != null)
-				break;
 		}
 		return nearestTile;
-
 	}
 	//
 
