@@ -131,43 +131,27 @@ public class TaskPlanner : MonoBehaviour {
             }
             if (task.Contains("TRAINTEACHER"))
             {
-                AssignTask(new Educate(), TeamID);
+                AssignTask(new Educate(Skill.Teacher, null), TeamID);
             }
             if(task.Contains("TRAINLUMBERJACK"))
             {
-                if(availableStructures.ContainsKey(BuildingType.School))
-                {
-                    AssignTask(new Train(), TeamID);
-                }
-                else{AssignTask(new Educate(), TeamID);}
+                AssignTask(new Educate(Skill.Lumberjack, null), TeamID);
             }
             if(task.Contains("TRAINCARPENTER"))
             {
-                if (availableStructures.ContainsKey(BuildingType.School))
-                {
-                    AssignTask(new Train(), TeamID);
-                }
-                else {AssignTask(new Educate(), TeamID);}
+                AssignTask(new Educate(Skill.Carpenter, null), TeamID);
             }
             if(task.Contains("TRAINMINER"))
             {
-                if (availableStructures.ContainsKey(BuildingType.School))
-                {
-                    AssignTask(new Train(), TeamID);
-                }
-                else {AssignTask(new Educate(), TeamID);}
+                AssignTask(new Educate(Skill.Miner, null), TeamID);
             }
             if(task.Contains("TRAINBLACKSMITH"))
             {
-                if (availableStructures.ContainsKey(BuildingType.School))
-                {
-                    AssignTask(new Train(), TeamID);
-                }
-                else { AssignTask(new Educate(), TeamID); }
+                AssignTask(new Educate(Skill.Blacksmith, null), TeamID);
             }
             if(task.Contains("TRAINRIFLEMAN"))
-            {
-                //Train Rifleman
+            {                
+                AssignTask(new Educate(Skill.Rifleman, null), TeamID);
             }
         }      
     }
