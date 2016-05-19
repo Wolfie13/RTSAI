@@ -32,7 +32,7 @@
 		(has-oremine)
 		(has-coalmine)
 		(has-quarry)
-		(has-blacksmithy)
+		(has-forge)
 		(has-barracks)		
 		
 		(ore_resource ?p - place)
@@ -161,7 +161,7 @@
 	
 	(:action produceTool
 			:parameters(?person - person)
-			:precondition(and (has-blacksmith) (has-blacksmithy))
+			:precondition(and (has-blacksmith) (has-forge))
 			:effect(increase(rifles) 1)
 	)
 	
@@ -205,13 +205,13 @@
 			:effect(and(has-sawmill) (decrease (stone) 1) (decrease (iron) 1) (decrease (timber) 1))
 	)
 	
-	(:action buildBlacksmith
+	(:action buildForge
 			:parameters(?person - person)
-			:precondition(and (not(has-blacksmithy))
+			:precondition(and (not(has-forge))
 						  (>= (stone) 1) 
 						  (>= (timber) 1) 
 						  (>= (iron) 1))
-			:effect(and(has-blacksmithy) (decrease (stone) 1) (decrease (iron) 1) (decrease (timber) 1))
+			:effect(and(has-forge) (decrease (stone) 1) (decrease (iron) 1) (decrease (timber) 1))
 	)
 	
 	(:action buildOreMine
