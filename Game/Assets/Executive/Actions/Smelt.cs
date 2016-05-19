@@ -1,28 +1,36 @@
 using System;
 public class Smelt : Action
 {
-
+	private IVec2 destination = null;
 	public override ActionResult actionTick (Person person)
 	{
-		var CurrentTeamData = Map.CurrentMap.GetTeamData (person.teamID);
-		if (Map.CurrentMap.getObject(person.currentMapPos) is Building)
-		{
-			Building CurrentBuilding = (Building)Map.CurrentMap.getObject(person.currentMapPos);
-			
-			if (CurrentBuilding.m_buildingtype == BuildingType.Smelter
-			    && CurrentBuilding.teamID == person.teamID
-			    && person.Skills.Contains(Skill.Labourer)
-			    && CurrentTeamData.Resources[ResourceType.Ore] > 0
-			    && CurrentTeamData.Resources[ResourceType.Coal] > 0)
-			{
-				person.SetBusy(5);
-				CurrentTeamData.Resources[ResourceType.Ore]--;
-				CurrentTeamData.Resources[ResourceType.Coal]--;
-				
-				person.Resources[ResourceType.Iron]++;
+		PlayerData team = Map.CurrentMap.GetTeamData (person.teamID);
+		if (destination == null) {
+			Building nearestMine = team.GetNearestBuilding (person.currentMapPos, BuildingType.Smelter);
+			if (nearestMine == null) {
+				return ActionResult.FAIL;
 			}
+			destination = nearestMine.m_MapPos;
 		}
-		return ActionResult.FAIL;
+		
+		if (person.currentMapPos == destination) {
+			MapObject mo = Map.CurrentMap.getObject(destination);
+			if (mo is Building) {
+				Building b = mo as Building;
+				if (b.m_buildingtype == BuildingType.Smelter && team.Resources[ResourceType.Ore] > 0 && team.Resources[ResourceType.Coal] > 0)
+				{
+					team.Resources[ResourceType.Ore]--;
+					team.Resources[ResourceType.Coal]--;
+					person.Resources[ResourceType.Iron] += 1;
+					person.ToDoList[0] = new Store();
+					return ActionResult.CONTINUE;
+				}
+			}
+			return ActionResult.FAIL;
+		}
+		
+		person.ToDoList.Insert (0, new Move (person.currentMapPos, destination));
+		return ActionResult.CONTINUE;
 	}
 }
 

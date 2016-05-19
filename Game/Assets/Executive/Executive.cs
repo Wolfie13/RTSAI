@@ -13,15 +13,20 @@ public class Executive : MonoBehaviour {
 		}
 
 		taskPlanner = new TaskPlanner ();
-		taskPlanner.PlannerTick ();
 	}
 
 	public void tick ()
     { 
 		//innerAI (map.GetTeamData (0),  map.GetTeamData (1));
 		//innerAI (map.GetTeamData (1),  map.GetTeamData (0));
+		if (plannerTicks++ > 20) {
+			Debug.Log("Planner Tick");
+			taskPlanner.PlannerTick ();
+			plannerTicks = 0;
+		}
 	}
-	
+
+	private int plannerTicks = 20;
 
 	private void innerAI(PlayerData player, PlayerData opponent)
 	{

@@ -1,25 +1,29 @@
 (define (problem team_problem)
 (:domain ai_game)
 (:objects
-forest1 - forest
-Human3 - person
-Human3place - place
-Human4 - person
-Human4place - place
+Person10 - person
+Person11 - person
 oreresource - resource
 coalresource - resource
-quarry - place
-storage - place
 )
 (:init
+(has-storage)
+(has-quarry)
+(has-smelter)
+(has-labourer)
+(has-carpenter)
+(has-blacksmith)
+(has-teacher)
+(has-miner)
+(has-lumberjack)
+(has-rifleman)
 (ore_resource oreresource)
 (coal_resource coalresource)
-(has-storage)
 (= (time) 0)
-(= (wood) 0)
+(= (wood) 1)
 (= (iron) 0)
-(= (timber) 0)
-(= (stored-ore) 0)
+(= (timber) 1)
+(= (stored-ore) 1)
 (= (stored-coal) 0)
 (= (rifles) 0)
 (= (riflemen) 0)
@@ -31,10 +35,7 @@ storage - place
 )
 (:goal
 (and
-;(has-building Human3place)
-(has-school)
-(= (wood) 10)
-
+(has-forge)
 )
 )
 )

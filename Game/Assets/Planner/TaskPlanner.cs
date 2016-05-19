@@ -239,7 +239,10 @@ public class TaskPlanner {
 
             foreach (Building building in buildings)
             {
-                availableStructures[building.m_buildingtype] = true;
+
+				if (!availableStructures.ContainsKey(building.m_buildingtype)) {
+                	availableStructures[building.m_buildingtype] = true;
+				}
             }
 
             foreach (var structure in availableStructures)
@@ -252,12 +255,14 @@ public class TaskPlanner {
 		
 		{
 			Dictionary<Skill, bool> availableSkills = new Dictionary<Skill, bool>();
-			
+
 			foreach (Person p in people)
 			{
 				foreach (Skill s in p.Skills)
 				{
-					availableSkills.Add(s, true);
+					if (!availableSkills.ContainsKey(s)) {
+						availableSkills.Add(s, true);
+					}
 				}
 			}
 			
