@@ -65,7 +65,7 @@
 	
 	(:action trainCarpenter
 			:parameters(?person - person)
-			:precondition(and(has-teacher) (not(has-carpenter)))
+			:precondition(and(not(has-carpenter)))
 			:effect(and (has-carpenter)
 					  (when(has-school) (increase(time) 50))
 					  (when(not(has-school)) (increase(time) 100)))
@@ -73,7 +73,7 @@
 	
 	(:action trainBlacksmith
 			:parameters(?person - person)
-			:precondition(and(has-teacher) (not(has-blacksmith)))
+			:precondition(and(not(has-blacksmith)))
 			:effect(and (has-blacksmith)
 					  (when(has-school) (increase(time) 50))
 					  (when(not(has-school)) (increase(time) 100)))
@@ -97,7 +97,7 @@
 
 	(:action trainMiner
 			:parameters(?person - person)
-			:precondition(and(has-teacher) (not(has-miner)))
+			:precondition(and (not(has-miner)))
 			:effect(and (has-miner)
 					  (when(has-school) (increase(time) 50))
 					  (when(not(has-school)) (increase(time) 100)))

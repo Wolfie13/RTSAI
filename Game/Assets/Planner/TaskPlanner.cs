@@ -49,6 +49,20 @@ public class TaskPlanner : MonoBehaviour {
         }
     }
 
+    void AssignTask(Action action, int TeamID)
+    {
+        PlayerData team_data = map.GetTeamData(TeamID);
+        List<Person> people = team_data.GetPeople();
+
+        foreach (Person p in people)
+        {
+            if (p.ToDoList.Count() == 0)
+            {
+                p.ToDoList.Add(action);
+            }
+        }
+    }
+
     void RunPlanner(int TeamID)
     {
         ProcessPlanner = new Process();
@@ -66,11 +80,8 @@ public class TaskPlanner : MonoBehaviour {
     List<string> ReadSolution()
     {
         var result = File.ReadAllLines(working_directory + "/Planner" + SolutionName).Where(s => s.Contains(":"));
-
         //TO DO: add functionality for reading all actions and assigning tasks to population
-        solution = result.ToList();       
-        
-
+        solution = result.ToList();        
         File.Delete(working_directory + "/Planner" + SolutionName);
 
         return solution;
@@ -78,7 +89,87 @@ public class TaskPlanner : MonoBehaviour {
 
     public void ProcessSolution(int TeamID)
     {
-        
+        PlayerData team_data = map.GetTeamData(TeamID);
+        List<Person> people = team_data.GetPeople();
+        List<Building> buildings = team_data.GetBuildings();
+
+        Dictionary<BuildingType, bool> availableStructures = new Dictionary<BuildingType, bool>();
+
+        foreach (Building building in buildings)
+        {
+            availableStructures[building.m_buildingtype] = true;
+        }   
+
+        //Train is with School
+        //Educate in barracks / without school
+
+        foreach(string task in solution)
+        {
+            if(task.Contains("CUTTREE"))
+            {
+                AssignTask(new CutTree(), TeamID);
+            }
+            if(task.Contains("CUTSTONE"))
+            {
+                AssignTask(new Quarry(), TeamID);
+            }
+            if(task.Contains("PRODUCEWOOD"))
+            {
+                AssignTask(new SawWood(), TeamID);
+            }
+            if(task.Contains("SIMPLEMINEORE"))
+            {
+                AssignTask(new Mine(), TeamID);
+            }
+            if(task.Contains("PRODUCEIRON"))
+            {
+                AssignTask(new Smelt(), TeamID);
+            }
+            if(task.Contains("PRODUCETOOL"))
+            {
+                //BLACKMSITH ACTION
+            }
+            if (task.Contains("TRAINTEACHER"))
+            {
+                AssignTask(new Educate(), TeamID);
+            }
+            if(task.Contains("TRAINLUMBERJACK"))
+            {
+                if(availableStructures.ContainsKey(BuildingType.School))
+                {
+                    AssignTask(new Train(), TeamID);
+                }
+                else{AssignTask(new Educate(), TeamID);}
+            }
+            if(task.Contains("TRAINCARPENTER"))
+            {
+                if (availableStructures.ContainsKey(BuildingType.School))
+                {
+                    AssignTask(new Train(), TeamID);
+                }
+                else {AssignTask(new Educate(), TeamID);}
+            }
+            if(task.Contains("TRAINMINER"))
+            {
+                if (availableStructures.ContainsKey(BuildingType.School))
+                {
+                    AssignTask(new Train(), TeamID);
+                }
+                else {AssignTask(new Educate(), TeamID);}
+            }
+            if(task.Contains("TRAINBLACKSMITH"))
+            {
+                if (availableStructures.ContainsKey(BuildingType.School))
+                {
+                    AssignTask(new Train(), TeamID);
+                }
+                else { AssignTask(new Educate(), TeamID); }
+            }
+            if(task.Contains("TRAINRIFLEMAN"))
+            {
+                //Train Rifleman
+            }
+        }      
     }
 
     //To Do: Pass in Desired goal from executive
@@ -110,7 +201,6 @@ public class TaskPlanner : MonoBehaviour {
         lines.Add(")");
 
         //Add Lines for (:init)
-
         lines.Add("(:init");
 
         {
@@ -150,24 +240,18 @@ public class TaskPlanner : MonoBehaviour {
 
         //Add Lines for (:goal)
         lines.Add("(:goal");
-
-
-
         lines.Add("(and");
 
+        //Add Goals
         foreach (Goal g in goals)
         {
             lines.Add(g.WriteGoal());
         }
 
-        //Add Desired Goal State
-        //lines.Add("(has-school)");
-
+        lines.Add(")");
         lines.Add(")");
 
-        lines.Add(")");
-
-        //End Problem File
+        //Write Problem File
         lines.Add(")");
         System.IO.File.WriteAllLines(working_directory + "/Planner/TestGeneration" + TeamID + ".pddl", lines.ToArray());
     }
