@@ -115,6 +115,10 @@ public class TaskPlanner {
             {
                 AssignTask(new Mine(), TeamID);
             }
+            if(task.Contains("SIMPLEMINECOAL"))
+            {
+                AssignTask(new Mine(ResourceType.Coal), TeamID);
+            }
             if(task.Contains("PRODUCEIRON"))
             {
                 AssignTask(new Smelt(), TeamID);
