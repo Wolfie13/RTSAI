@@ -36,6 +36,7 @@ public class Person : MonoBehaviour {
 		FreeTexture = this.renderer.material;
         ResetResources();
         Skills.Add(Skill.Labourer);
+		Skills.Add(Skill.Lumberjack); //HACk
 	}
 	
     public void SetMapPosition(IVec2 mapPos)

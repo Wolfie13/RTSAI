@@ -40,8 +40,6 @@
 
 		(has-labourer)	
 		(has-rifleman)
-		(has-labourer)	
-		(has-rifleman)
 		(has-carpenter)	
 		(has-lumberjack)
 		(has-blacksmith)

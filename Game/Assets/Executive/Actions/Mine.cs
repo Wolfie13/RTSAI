@@ -47,7 +47,7 @@ public class Mine : Action
 			}
 			if (mo is ResourceTile) {
 				ResourceTile rt = mo as ResourceTile;
-				if (rt.m_resource == type && person.Skills.Contains(Skill.Miner)) {
+				if (rt.m_resource == type) {
 					person.Resources[rt.m_resource] += rt.GatherResource(type);
 					person.SetBusy(5);
 					person.ToDoList[0] = new Store();

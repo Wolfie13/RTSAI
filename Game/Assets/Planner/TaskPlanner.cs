@@ -113,7 +113,7 @@ public class TaskPlanner {
             }
             if(task.Contains("SIMPLEMINEORE"))
             {
-                AssignTask(new Mine(), TeamID);
+				AssignTask(new Mine(ResourceType.Ore), TeamID);
             }
             if(task.Contains("SIMPLEMINECOAL"))
             {
