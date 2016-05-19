@@ -233,6 +233,37 @@ public class Map : MonoBehaviour
 		return BuildBuilding (type, Pos, teamID, false);
 	}
 
+	public IVec2 FindLocationToBuild(IVec2 startPos, BuildingType bt)
+	{
+		int attempts = 10;
+		int radius = 20;
+		for (int i = 0; i != attempts; i++) {
+			int x = UnityEngine.Random.Range(-radius, radius);
+			int y = UnityEngine.Random.Range(-radius, radius);
+			IVec2 vec = new IVec2(x, y);
+			if (SpaceToBuild(bt, startPos + vec))
+			{
+				return startPos + vec;
+			}
+		}
+		return null;
+	}
+
+	public bool SpaceToBuild(BuildingType type, IVec2 pos)
+	{
+		IVec2 offset = new IVec2();
+		IVec2 size = Building.Sizes[type];
+		for (offset.x = -size.x / 2; offset.x < size.x / 2; offset.x++) {
+			for (offset.y = -size.y / 2; offset.y < size.y / 2; offset.y++) {
+				IVec2 vec = offset + pos;
+				if (entities[vec.x, vec.y] != null || OutBounds.Contains(mapTiles[vec.x, vec.y]))
+				{
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 
 	public bool BuildBuilding (BuildingType type, IVec2 Pos, int teamID, bool force)
 	{
@@ -368,7 +399,8 @@ public class Map : MonoBehaviour
 					player.People [0].Skills.Add (s);
 			}
 			Person p2 = AddPerson (player1Start + new IVec2(0, 10), player.TeamID);
-			p1.ToDoList.Add(new Educate(Skill.Lumberjack, p2, false));
+			//p1.ToDoList.Add(new Educate(Skill.Lumberjack, p2, false));
+			p2.ToDoList.Add(new BuildBuilding(BuildingType.turfHut));
 			player.Resources [ResourceType.Stone]++;
 			player.Resources [ResourceType.Wood]++;
 			BuildBuilding (BuildingType.Storage, player1Start, player.TeamID, true);
