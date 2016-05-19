@@ -5,8 +5,22 @@ public class Educate : Action
 	{
 		this.skill = skill;
 		this.target = target;
-		this.inSchool = inSchool;
+        this.inSchool = inSchool ? StayInSchool.yes : StayInSchool.no;
 	}
+
+    public Educate(Skill skill, Person target)
+    {
+        this.skill = skill;
+        this.target = target;
+        this.inSchool = StayInSchool.whocares;
+    }
+
+    private enum StayInSchool
+    {
+        yes,
+        no,
+        whocares
+    }
 
 	private const int TRAIN_TIME = 10;
 	private const int RIFLE_TRAIN_TIME = 30;
@@ -14,16 +28,49 @@ public class Educate : Action
 	private IVec2 mutualLearningZone = new IVec2(0, 0);
 	private Skill skill;
 	private Person target;
-	private bool inSchool = false;
+    private StayInSchool inSchool = StayInSchool.no;
 	private bool taskDispatched = false;
 
 	public override ActionResult actionTick (Person person)
 	{
+        if (target == null)
+        {
+            foreach (Person p in Map.CurrentMap.GetTeamData(person.teamID).GetPeople())
+            {
+                if (p == person) continue;
+
+                if (p.ToDoList.Count == 0)
+                {
+                    target = p;
+                }
+            }
+        }
+
 		if (!taskDispatched) {
 			mutualLearningZone = (person.currentMapPos + target.currentMapPos) / 2;
-			if (inSchool) {
-				mutualLearningZone = Map.CurrentMap.GetNearestBuilding(mutualLearningZone, BuildingType.School).m_MapPos;
+            
+            var nearestSchool = Map.CurrentMap.GetTeamData(person.teamID).GetNearestBuilding(mutualLearningZone, BuildingType.School);
+            if (nearestSchool == null)
+            {
+                inSchool = StayInSchool.no;
+            }
+            if (inSchool == StayInSchool.yes)
+            {
+                mutualLearningZone = nearestSchool.m_MapPos;
            	}
+            if (inSchool == StayInSchool.whocares)
+            {
+                if ((mutualLearningZone - person.currentMapPos).magnitude() > (nearestSchool.m_MapPos - person.currentMapPos).magnitude())
+                {
+                    mutualLearningZone = nearestSchool.m_MapPos;
+                    inSchool = StayInSchool.yes;
+                }
+                else
+                {
+                    inSchool = StayInSchool.no;
+                }
+
+            }
 
 			target.ToDoList.Insert (0, new Learn (mutualLearningZone));
 			taskDispatched = true;
@@ -49,7 +96,7 @@ public class Educate : Action
 			}
 		}
 
-		if (inSchool) {
+		if (inSchool == StayInSchool.yes) {
 			if (Map.CurrentMap.getObject(person.currentMapPos) is Building)
 			{
 				Building CurrentBuilding = (Building)Map.CurrentMap.getObject(person.currentMapPos);
