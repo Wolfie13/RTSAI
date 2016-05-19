@@ -45,7 +45,7 @@ public class TaskPlanner : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.L))
         {           
             List<Goal> goals = new List<Goal>();
-            goals.Add(new BuildBuildingGoal(BuildingType.Blacksmith));
+            goals.Add(new BuildBuildingGoal(BuildingType.Forge));
             CreateProblem(0, goals);
         }
     }
