@@ -106,6 +106,8 @@ public class TaskPlanner : MonoBehaviour {
 
         foreach(string task in solution)
         {
+            //Resource Actions
+
             if(task.Contains("CUTTREE"))
             {
                 AssignTask(new CutTree(), TeamID);
@@ -130,6 +132,9 @@ public class TaskPlanner : MonoBehaviour {
             {
                 
             }
+
+            //Training Actions
+
             if (task.Contains("TRAINTEACHER"))
             {
                 AssignTask(new Educate(Skill.Teacher, null), TeamID);
@@ -154,6 +159,9 @@ public class TaskPlanner : MonoBehaviour {
             {                
                 AssignTask(new Educate(Skill.Rifleman, null), TeamID);
             }
+
+            //Building Actions
+
             if(task.Contains("BUILDFORGE"))
             {
                 AssignTask(new BuildBuilding(BuildingType.Forge), TeamID);
@@ -185,6 +193,17 @@ public class TaskPlanner : MonoBehaviour {
             if(task.Contains("BUILDBARRACKS"))
             {
                 AssignTask(new BuildBuilding(BuildingType.Barracks), TeamID);
+            }
+
+            //Reproduce Actions
+
+            if(task.Contains("REPRODUCETURFHUT"))
+            {
+                //AssignTask (REPRODUCE, HUT)
+            }
+            if(task.Contains("REPRODUCEHOUSE"))
+            {
+                //AssignTask (REPRODUCE HOUSE)
             }
         }      
     }
@@ -237,15 +256,24 @@ public class TaskPlanner : MonoBehaviour {
 
         lines.Add("(ore_resource oreresource)");
         lines.Add("(coal_resource coalresource)");
+
+        Dictionary<ResourceType, int> availableResource = team_data.Resources;
+        int wood = availableResource[ResourceType.Wood];
+        int iron = availableResource[ResourceType.Iron];
+        int timber = availableResource[ResourceType.Timber];
+        int ore = availableResource[ResourceType.Ore];
+        int coal = availableResource[ResourceType.Coal];
+        int stone = availableResource[ResourceType.Stone];
+        int rifles = availableResource[ResourceType.Rifles];
      
         //Add Initial Amounts Data
         lines.Add("(= (time) 0)");
-        lines.Add("(= (wood) 0)");
-        lines.Add("(= (iron) 0)");
-        lines.Add("(= (timber) 0)");
-        lines.Add("(= (stored-ore) 0)");
-        lines.Add("(= (stored-coal) 0)");
-        lines.Add("(= (rifles) 0)");
+        lines.Add("(= (wood) " + wood + ")"); 
+        lines.Add("(= (iron) " + iron + ")");
+        lines.Add("(= (timber) " + timber + ")");
+        lines.Add("(= (stored-ore) " + ore + ")");
+        lines.Add("(= (stored-coal) " + coal + ")");
+        lines.Add("(= (rifles) " + rifles + ")");
         lines.Add("(= (riflemen) 0)");
         lines.Add("(= (stone) 0)");
         lines.Add("(= (population) " + people.Count + ")");
