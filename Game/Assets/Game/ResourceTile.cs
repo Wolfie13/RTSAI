@@ -25,7 +25,7 @@ public class ResourceTile : MapObject {
     }
 
     //should be called from the Map UpdateLoop every time unit
-    public override void Update()
+    public override void tick()
     {
         if (m_resource == ResourceType.Timber)
         {

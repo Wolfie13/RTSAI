@@ -12,7 +12,7 @@ public class CameraControl : MonoBehaviour {
     public Vector2 UIPos = new Vector2(0.0f, 0.0f);
     public float UI_Distance = 10f;
 
-    public float Min_Zoom_Dist = 2, Max_Zoom_Dist = 75;
+    public float Min_Zoom_Dist = 20, Max_Zoom_Dist = 150;
 
     GameObject selectedObject = null;
 

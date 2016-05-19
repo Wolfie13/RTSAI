@@ -99,7 +99,7 @@ public class AStar {
             {
                 for (int i = 0; i < result.Count; i++)
                 {
-                    jim.ToDoList.Add(action.Move);
+                    jim.ToDoList.Add(new Move());
                 }
             }
             

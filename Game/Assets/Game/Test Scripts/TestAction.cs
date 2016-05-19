@@ -18,7 +18,7 @@ public class TestAction : MonoBehaviour {
 
     public float DelayTime = 1f;
 
-    public List<action> ActToDo = new List<action>();
+    public List<Action> ActToDo = new List<Action>();
 
     public int teamID = 0;
 

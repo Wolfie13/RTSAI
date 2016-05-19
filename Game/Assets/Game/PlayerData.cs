@@ -68,10 +68,10 @@ public class PlayerData {
     {
         List<Person> result = new List<Person>();
 
-        for (IVec2 offset = new IVec2(); offset.x < Building.Sizes[b.m_buildingtype].x; offset.x++)
-        {
-            for (offset.y = 0; offset.y < Building.Sizes[b.m_buildingtype].y; offset.y++)
-            {
+		IVec2 offset = new IVec2();
+		IVec2 size = Building.Sizes[b.m_buildingtype];
+		for (offset.x = -size.x / 2; offset.x < size.x / 2; offset.x++) {
+			for (offset.y = -size.y / 2; offset.y < size.y / 2; offset.y++) {
                 result.AddRange(GetPeopleAt(b.m_MapPos + offset));
             }
         }

@@ -45,6 +45,11 @@ public class IVec2
 	{
 		return base.GetHashCode ();
 	}
+
+	public int manhatttanDistance(IVec2 other)
+	{
+		return Mathf.Abs(other.x - this.x) + Mathf.Abs(other.y - this.y);
+	}
 }
 
 

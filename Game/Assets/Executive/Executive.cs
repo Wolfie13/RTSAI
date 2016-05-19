@@ -11,11 +11,32 @@ public class Executive : MonoBehaviour {
 			this.enabled = false;
 		}
 	}
-	
-	// Update is called once per frame
-	void Update ()
-    { 
 
+	public void tick ()
+    { 
+		innerAI (map.GetTeamData (0),  map.GetTeamData (1));
+		innerAI (map.GetTeamData (1),  map.GetTeamData (0));
+	}
+
+	private void innerAI(PlayerData player, PlayerData opponent)
+	{
+		int ourArmyStrength = CountArmy (player);
+		int theirArmyStrength = CountArmy (opponent);
+
+		if (ourArmyStrength > theirArmyStrength + 10) {
+
+		}
+	}
+
+	private static int CountArmy(PlayerData player)
+	{
+		int counter = 0;
+		foreach (Person p in player.People) {
+			if (p.Skills.Contains(Skill.Rifleman)){
+				counter++;
+			}
+		}
+		return counter;
 	}
 
 	void OnGUI() {

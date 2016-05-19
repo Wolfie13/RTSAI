@@ -8,6 +8,6 @@ public class MapObject{
 
 	public GameObject gameObject;
 
-    public virtual void Update() { }
+    public virtual void tick() { }
   
 }
