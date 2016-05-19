@@ -90,19 +90,19 @@ public class TaskPlanner : MonoBehaviour {
         List<Building> buildings = team_data.GetBuildings();
 
         //Write Start Problem - define domain
-        List<string> lines = new List<string>();    
-        
+        List<string> lines = new List<string>();
+
         lines.Add("(define (problem team_problem)");
         lines.Add("(:domain ai_game)");
 
         //Add Lines for (:objects)
-        lines.Add("(:objects");       
-              
+        lines.Add("(:objects");
+
         foreach (Person person in people)
         {
-            lines.Add(person.name + " - person");         
+            lines.Add(person.name + " - person");
             //New place
-        }        
+        }
 
         //Add lines for finding new resources
         lines.Add("oreresource - resource");
@@ -112,17 +112,25 @@ public class TaskPlanner : MonoBehaviour {
         //Add Lines for (:init)
 
         lines.Add("(:init");
-      
-        foreach(Building building in buildings)
-        {            
-            string problem_string = "(has-" + building.m_buildingtype.ToString().ToLower() + ")";
-            lines.Add(problem_string);
+
+        {
+            Dictionary<BuildingType, bool> availableStructures = new Dictionary<BuildingType, bool>();
+
+            foreach (Building building in buildings)
+            {
+                availableStructures[building.m_buildingtype] = true;
+            }
+
+            foreach (var structure in availableStructures)
+            {
+                string problem_string = "(has-" + structure.Key.ToString().ToLower() + ")";
+                lines.Add(problem_string);
+            }
         }
 
         lines.Add("(ore_resource oreresource)");
         lines.Add("(coal_resource coalresource)");
-
-        lines.Add("(has-storage)");
+     
         //Add Initial Amounts Data
         lines.Add("(= (time) 0)");
         lines.Add("(= (wood) 0)");
@@ -143,7 +151,7 @@ public class TaskPlanner : MonoBehaviour {
         //Add Lines for (:goal)
         lines.Add("(:goal");
 
-        
+
 
         lines.Add("(and");
 
@@ -157,10 +165,10 @@ public class TaskPlanner : MonoBehaviour {
 
         lines.Add(")");
 
-        lines.Add(")");        
+        lines.Add(")");
 
         //End Problem File
         lines.Add(")");
-        System.IO.File.WriteAllLines(working_directory + "/Planner/TestGeneration" + TeamID + ".pddl", lines.ToArray());        
+        System.IO.File.WriteAllLines(working_directory + "/Planner/TestGeneration" + TeamID + ".pddl", lines.ToArray());
     }
 }
