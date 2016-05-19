@@ -9,14 +9,12 @@ public class pathPlannerTester : MonoBehaviour {
     public IVec2 istartpos = new IVec2(), iendpos = new IVec2();
 
     private Map CurrentMap = null;
-    private PathFinder finder = null;
-
-    uint pathID = 0;
+    
+	path pathID;
 
 	// Use this for initialization
 	void Start () {
         CurrentMap = GameObject.FindGameObjectWithTag("Map").GetComponent<Map>();
-        finder = GetComponent<PathFinder>();
 
         istartpos.x = Mathf.FloorToInt(startpos.x);
         istartpos.y = Mathf.FloorToInt(startpos.y);
@@ -28,14 +26,14 @@ public class pathPlannerTester : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-        if(pathID == 0)
-        {
-            pathID = finder.GetPath(istartpos, iendpos);
-        }
+//        if(pathID)
+//        {
+//            pathID = PathFinder.GetPath(istartpos, iendpos);
+//        }
                    
 	}
 
-    void OnDrawGizmos()
+    /*void OnDrawGizmos()
     {
         if (CurrentMap)
         {
@@ -71,5 +69,5 @@ public class pathPlannerTester : MonoBehaviour {
                 }
             }
         }
-    }
+    }*/
 }

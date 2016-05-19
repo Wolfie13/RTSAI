@@ -11,9 +11,7 @@ public class AStar {
        public float Distance2Go;
     }
 
-    private Dictionary<uint, IVec2> EndPos = new Dictionary<uint,IVec2>();
-
-    public IEnumerator GetPath(IVec2 MapPosStart, IVec2 MapPosEnd, int Maxsteps, int TimePerframe, uint ID, Person jim)
+    public path GetPath(IVec2 MapPosStart, IVec2 MapPosEnd)
     {
         List<Node> result = new List<Node>();
 
@@ -24,20 +22,13 @@ public class AStar {
         AStarNodes startNode = new AStarNodes();
         Node EndNode = null;
 
-        System.Diagnostics.Stopwatch myTimer = new System.Diagnostics.Stopwatch();
-
-        myTimer.Reset();
-
-        EndPos.Add(ID, MapPosEnd);
         startNode.NodeInfo = new Node();
         startNode.NodeInfo.MapPos = MapPosStart;
         startNode.NodeInfo.MapSymbol = Map.CurrentMap.getTile(MapPosStart.x, MapPosStart.y);
         startNode.DistanceGone = 0;
-        startNode.Distance2Go = GetDirectDistance2End(MapPosStart,ID);
+        startNode.Distance2Go = GetDirectDistance2End(MapPosStart, MapPosEnd);
         openQueue.Add(startNode);
         CloseList.Add(startNode);
-
-        myTimer.Start();
 
         while (openQueue.Count > 0)
         {
@@ -45,22 +36,13 @@ public class AStar {
 
             openQueue.RemoveAt(0);
 
-            // do stuff and Yeild on Timeperframe
-            if(myTimer.ElapsedMilliseconds > TimePerframe)
-            {
-                Debug.Log("yield");
-                myTimer.Reset();
-                yield return true;
-                myTimer.Start();
-
-            }
-            if(currentNode.NodeInfo.MapPos == EndPos[ID])
+			if(currentNode.NodeInfo.MapPos == MapPosEnd)
             {
                 EndNode = currentNode.NodeInfo;
                 break;
             }
 
-            var newNodes = GetNextPositions(currentNode, ID);
+			var newNodes = GetNextPositions(currentNode, MapPosEnd);
 
             foreach (var item in newNodes)
             {
@@ -89,31 +71,22 @@ public class AStar {
         Debug.Log("AStarStopped path size: " + result.Count);
 
         //output
-        if (PathFinder.Paths.ContainsKey(ID))
         {
             path theWay = new path();
             theWay.FoundPath = result;
             theWay.isPathFound = result.Count > 0;
-            PathFinder.Paths[ID] = theWay;
-            if (jim)
-            {
-                for (int i = 0; i < result.Count; i++)
-                {
-                    jim.ToDoList.Add(new Move());
-                }
-            }
-            
+			return theWay;
         }
     }
 
 
 
-    private float GetDirectDistance2End(IVec2 point, uint ID)
+    private float GetDirectDistance2End(IVec2 point, IVec2 end)
     {
-        return (point - EndPos[ID]).magnitude();
+        return (point - end).magnitude();
     }
 
-    private List<AStarNodes> GetNextPositions(AStarNodes CurrentNode, uint ID)
+	private List<AStarNodes> GetNextPositions(AStarNodes CurrentNode, IVec2 MapPosEnd)
     {
         List<AStarNodes> NextPositions = new List<AStarNodes>();
 
@@ -144,7 +117,7 @@ public class AStar {
                     newNode.NodeInfo = new Node();
                     newNode.NodeInfo.MapPos = newPos;
                     newNode.NodeInfo.PrevNode = CurrentNode.NodeInfo;
-                    newNode.Distance2Go = GetDirectDistance2End(newPos, ID);
+					newNode.Distance2Go = GetDirectDistance2End(newPos, MapPosEnd);
 
                     NextPositions.Add(newNode);
                 }

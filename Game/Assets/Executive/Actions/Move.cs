@@ -2,32 +2,29 @@ using System;
 
 public class Move : Action
 {
-	int waitTicks = 0;
+	//int waitTicks = 0;
+	path path;
+
+	public Move(IVec2 source, IVec2 destination)
+	{
+		path = (new AStar ()).GetPath (source, destination);
+	}
 
 	public override ActionResult actionTick (Person person)
 	{
-		if (person.PathID > 0) {
-			if (PathFinder.Paths [person.PathID].isPathFound) {
-				if (PathFinder.Paths [person.PathID].FoundPath.Count > 0) {
-					person.currentMapPos = PathFinder.Paths [person.PathID].FoundPath [0].MapPos;
-					person.transform.position = Map.getTilePos (person.currentMapPos);
-				
-					PathFinder.Paths [person.PathID].FoundPath.RemoveAt (0);
-					return ActionResult.CONTINUE;
-				} else {
-					return ActionResult.SUCCESS;
-				}
-				
-			} else {
-				//Give the pathfinder 5 ticks to figure it out.
-				if (waitTicks++ > 4) {
-					return ActionResult.FAIL;
-				}
-				return ActionResult.CONTINUE;
-			}
+		person.currentMapPos = path.FoundPath [0].MapPos;
+		person.transform.position = Map.getTileCenterPos (person.currentMapPos);
+		
+		path.FoundPath.RemoveAt (0);
+
+		if (path.FoundPath.Count <= 0) {
+			return ActionResult.SUCCESS;
 		} else {
-			return ActionResult.FAIL;
+			return ActionResult.CONTINUE;
 		}
+
+		//return ActionResult.FAIL;
+
 	}
 }
 

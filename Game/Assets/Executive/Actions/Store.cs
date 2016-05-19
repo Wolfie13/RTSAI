@@ -16,10 +16,16 @@ public class Store : Action
 				{
 					Map.CurrentMap.GetTeamData(person.teamID).Resources[item.Key] += item.Value;
 					person.Resources[item.Key] = 0;
+					return ActionResult.SUCCESS;
 				}
 			}
 		}
-		return ActionResult.FAIL;
+		Building nearestStorage = Map.CurrentMap.GetNearestBuilding (person.currentMapPos, BuildingType.Storage);
+		if (nearestStorage == null) {
+			return ActionResult.FAIL;
+		}
+		person.ToDoList.Insert (0, new Move (person.currentMapPos, nearestStorage.m_MapPos));
+		return ActionResult.CONTINUE;
 	}
 	
 }

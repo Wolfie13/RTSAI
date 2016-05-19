@@ -13,32 +13,7 @@ public enum Skill
     Rifleman
 }
 
-
-public enum State
-{
-    Idle,
-    action,
-    move
-}
-
 public delegate void actfunc();
-
-
-/*public enum action
-{
-    Family,
-    Educate,
-    Train,
-    CutTree,
-    Mine,
-    Store,
-    Move,
-    Smelt,
-    Quarry,
-    SawWood,
-    MakeTool,
-    Combat
-}*/
 
 public class Person : MonoBehaviour {
     
@@ -48,14 +23,8 @@ public class Person : MonoBehaviour {
 
     public List<Action> ToDoList = new List<Action>();
     
-    public IVec2 currentMapPos = new IVec2();
+	public IVec2 currentMapPos = new IVec2 ();
 
-    public State currentstate = State.Idle;
-
-    Map CurrentMap = null;
-    PathFinder finder = null;
-
-    public uint PathID = 0;
     public int BusyTime = 0;
 
     public int teamID;
@@ -64,7 +33,6 @@ public class Person : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        finder = GameObject.FindGameObjectWithTag("Map").GetComponent<PathFinder>();
 		FreeTexture = this.renderer.material;
         ResetResources();
         Skills.Add(Skill.Labourer);
@@ -88,6 +56,7 @@ public class Person : MonoBehaviour {
         renderer.material = FreeTexture;
         if(ToDoList.Count >0)
         {
+			Debug.Log(ToDoList[0].GetType().ToString());
 			Action.ActionResult result = ToDoList[0].actionTick(this);
 
 			switch(result) {
@@ -105,30 +74,12 @@ public class Person : MonoBehaviour {
         }
 	}
 
-
-
-    public void Move(IVec2 toLocation)
-    {
-        if(PathFinder.Paths.ContainsKey(PathID))
-        {
-            PathFinder.Paths.Remove(PathID);
-        }
-
-        currentstate = State.move;
-
-        PathID = finder.GetPath(currentMapPos, toLocation, 10,this);
-    }
-
     public void SetBusy(int timeUnits)
     {
         BusyTime = timeUnits;
     }
 
-
-
-    
-
-    void OnDrawGizmos()
+/*    void OnDrawGizmos()
     {
         if (CurrentMap)
         {
@@ -159,7 +110,7 @@ public class Person : MonoBehaviour {
                 }
             }
         }
-    }
+    }*/
 
     private void ResetResources()
     {

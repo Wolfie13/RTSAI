@@ -171,7 +171,9 @@ public class Map : MonoBehaviour
 			go.GetComponent<Person> ().teamID = TeamID;
 			go.GetComponent<Person> ().SetMapPosition (Pos);
 			People.Add (go.GetComponent<Person> ());
-			Players [TeamID].People.Add (go.GetComponent<Person> ());
+			Person p = go.GetComponent<Person> ();
+			p.ToDoList.Add(new CutTree());
+			Players [TeamID].People.Add (p);
 			go.transform.parent = this.transform;
 		}
 	}
@@ -302,17 +304,39 @@ public class Map : MonoBehaviour
 		foreach (MapObject mo in entities) {
 			if (mo is ResourceTile) {
 				ResourceTile rt = mo as ResourceTile;
-				int distance = Pos.manhatttanDistance(rt.m_MapPos);
-				if (distance < nearestDistance){
-					nearestTile = rt;
+				if (rt.m_resource == type) {
+					int distance = Pos.manhatttanDistance(rt.m_MapPos);
+					if (distance < nearestDistance){
+						nearestDistance = distance;
+						nearestTile = rt;
+					}
 				}
+				
 			}
 		}
 		return nearestTile;
 	}
-	//
 
-
+	public Building GetNearestBuilding (IVec2 Pos, BuildingType type)
+	{
+		Building nearestBuilding = null;
+		int nearestDistance = int.MaxValue;
+		foreach (MapObject mo in entities) {
+			if (mo is Building) {
+				Building b = mo as Building;
+				if (b.m_buildingtype == type) {
+					int distance = Pos.manhatttanDistance(b.m_MapPos);
+					if (distance < nearestDistance){
+						nearestDistance = distance;
+						nearestBuilding = b;
+					}
+				}
+				
+			}
+		}
+		return nearestBuilding;
+	}
+	
 	public PlayerData GetTeamData (int TeamID)
 	{
 		if (TeamID < 0 || TeamID >= Players.Count)
@@ -333,9 +357,6 @@ public class Map : MonoBehaviour
 		load (MapName);
 		initChunks ();
 
-		//Init the entity array.
-		entities = new MapObject[this.sizeX, this.sizeY];
-
 		{/////////////////////player 1/////////////////////////
 			PlayerData player = new PlayerData (Players.Count);
 			Players.Add (player);
@@ -344,7 +365,7 @@ public class Map : MonoBehaviour
 				if (!player.People [0].Skills.Contains (s))
 					player.People [0].Skills.Add (s);
 			}
-			AddPerson (player1Start + new IVec2(0, 10), player.TeamID);
+			//AddPerson (player1Start + new IVec2(0, 10), player.TeamID);
 			player.Resources [ResourceType.Stone]++;
 			player.Resources [ResourceType.Wood]++;
 			BuildBuilding (BuildingType.Storage, player1Start, player.TeamID, true);
@@ -352,12 +373,12 @@ public class Map : MonoBehaviour
 		{///////////////////////////player2/////////////////////////
 			PlayerData player = new PlayerData (Players.Count);
 			Players.Add (player);
-			AddPerson (player2Start + new IVec2(0, -10), player.TeamID);
-			for (Skill s = Skill.Labourer; s <= Skill.Rifleman; s++) {
-				if (!player.People [0].Skills.Contains (s))
-					player.People [0].Skills.Add (s);
-			}
-			AddPerson (player2Start + new IVec2(0, 10), player.TeamID);
+			//AddPerson (player2Start + new IVec2(0, -10), player.TeamID);
+			//for (Skill s = Skill.Labourer; s <= Skill.Rifleman; s++) {
+				//if (!player.People [0].Skills.Contains (s))
+					//player.People [0].Skills.Add (s);
+			//}
+			//AddPerson (player2Start + new IVec2(0, 10), player.TeamID);
 			player.Resources [ResourceType.Stone]++;
 			player.Resources [ResourceType.Wood]++;
 			BuildBuilding (BuildingType.Storage, player2Start, player.TeamID, true);
@@ -478,6 +499,10 @@ public class Map : MonoBehaviour
 
 			foreach (Building b in Buildings) {
 				b.tick ();
+			}
+
+			foreach (Person p in People) {
+				p.personTick();
 			}
 
 			GameObject.FindObjectOfType<Executive>().tick();

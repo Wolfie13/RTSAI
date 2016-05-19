@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -53,54 +54,20 @@ public class IVec2
 }
 
 
-public class PathFinder : MonoBehaviour {
+public class PathFinder {
 
     // this is a bridge class to call the Path Finding Functions 
    static private AStar m_AStar = new AStar();
 
-    public static Dictionary<uint,path> Paths = new Dictionary<uint,path>();
-
-    private static uint count = 1;
-
-    void Start () {
-        DontDestroyOnLoad(this);
-	}
-
-
-    public uint GetPath(IVec2 MapPosStart, IVec2 MapPosEnd, int TimePerframe, Person jim)
+	public static path GetPath(IVec2 MapPosStart, IVec2 MapPosEnd)
     {
-        return GetPath(MapPosStart, MapPosEnd, TimePerframe, int.MaxValue, jim);
+		return m_AStar.GetPath(MapPosStart, MapPosEnd);
     }
 
-    public uint GetPath(IVec2 MapPosStart, IVec2 MapPosEnd, Person jim )
-    {
-        return GetPath(MapPosStart, MapPosEnd, int.MaxValue, int.MaxValue, jim);
-    }
-
-	public uint GetPath(IVec2 MapPosStart, IVec2 MapPosEnd)
+	private class PathFinderWorker
 	{
-        return GetPath(MapPosStart, MapPosEnd, int.MaxValue, int.MaxValue, null);
+		public PathFinderWorker(IVec2 startPos, IVec2 endPos) {
+
+		}
 	}
-
-    public uint GetPath(IVec2 MapPosStart, IVec2 MapPosEnd, int TimePerframe, int Maxsteps, Person jim)
-    {
-        if(!Map.CurrentMap)
-            return 0;
-        
-        // returns 0 if failed returns an ID for you path if success
-        uint ID = count;
-        ++count;
-
-        path temp = new path();
-        temp.isPathFound = false;
-        Paths.Add(ID,temp);
-
-        StartCoroutine(m_AStar.GetPath(MapPosStart, MapPosEnd, Maxsteps, TimePerframe, ID, jim));
-
-        return ID;
-    }
-
-
-
-
 }

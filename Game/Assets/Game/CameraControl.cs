@@ -14,7 +14,7 @@ public class CameraControl : MonoBehaviour {
 
     public float Min_Zoom_Dist = 20, Max_Zoom_Dist = 150;
 
-    GameObject selectedObject = null;
+    //GameObject selectedObject = null;
 
     IVec2 MapPosClick = new IVec2();
 
@@ -49,7 +49,7 @@ public class CameraControl : MonoBehaviour {
         //object controls
 
         //select object
-        if(Input.GetButtonDown("LeftClick"))
+        /*if(Input.GetButtonDown("LeftClick"))
         {
 
             Vector3 MouseRawPos = Input.mousePosition;
@@ -88,7 +88,7 @@ public class CameraControl : MonoBehaviour {
                     selectedObject.GetComponent<Person>().Move(MapPosClick);
                 }
             }
-        }
+        }*/
 
 
 	

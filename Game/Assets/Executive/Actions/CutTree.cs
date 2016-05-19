@@ -16,7 +16,9 @@ public class CutTree : Action
 				return ActionResult.CONTINUE; //Don't want to remove it.
 			}
 		}
-		return ActionResult.FAIL;
+		ResourceTile nearestResource = Map.CurrentMap.GetNearestResourceTile (person.currentMapPos, ResourceType.Timber);
+		person.ToDoList.Insert (0, new Move (person.currentMapPos, nearestResource.m_MapPos));
+		return ActionResult.CONTINUE;
 	}
 }
 
