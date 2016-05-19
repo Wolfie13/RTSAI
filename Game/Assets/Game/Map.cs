@@ -28,7 +28,7 @@ public class Map : MonoBehaviour
 	public int sizeY;
 	public Material mapMaterial;
 	public const int ChunkSize = 32;
-	public GameObject Human = null;
+	public GameObject PersonPrefab = null;
 	public IVec2 player1Start, player2Start;
 	public GameObject BuildingTile = null, CoalTile = null, OreTile = null;
 	private List<Building> Buildings = new List<Building> ();
@@ -162,20 +162,21 @@ public class Map : MonoBehaviour
 		return results;
 	}
 
-	public void AddPerson (IVec2 Pos, int TeamID)
+	public Person AddPerson (IVec2 Pos, int TeamID)
 	{
-		if (Human) {
-			GameObject go = (GameObject)Instantiate (Human);
+		if (PersonPrefab) {
+			GameObject go = (GameObject)Instantiate (PersonPrefab);
 			go.renderer.material = GameObject.FindObjectOfType<MaterialSource>().getMaterialByName("Team" + (TeamID + 1).ToString());
 			go.name = "Person" + TeamID + Players[TeamID].People.Count;
 			go.GetComponent<Person> ().teamID = TeamID;
 			go.GetComponent<Person> ().SetMapPosition (Pos);
 			People.Add (go.GetComponent<Person> ());
 			Person p = go.GetComponent<Person> ();
-			p.ToDoList.Add(new CutTree());
 			Players [TeamID].People.Add (p);
 			go.transform.parent = this.transform;
+			return p;
 		}
+		return null;
 	}
 
 	public void KillPerson (Person p)
@@ -251,7 +252,8 @@ public class Map : MonoBehaviour
 				}
 
 				GameObject obj = Instantiate (BuildingTile, Vector3.zero, Quaternion.Euler (Vector3.zero)) as GameObject;
-				obj.renderer.material = GameObject.FindObjectOfType<MaterialSource>().getMaterialByName("Team" + (teamID + 1).ToString());
+				obj.renderer.material = Instantiate(GameObject.FindObjectOfType<MaterialSource>().getMaterialByName("Team" + (teamID + 1).ToString())) as Material;
+				obj.renderer.material.mainTexture = GameObject.FindObjectOfType<MaterialSource>().getTextureByName(type.ToString());
 				obj.transform.SetParent(chunks[Pos.x / 32, Pos.y / 32].transform);
 				obj.transform.position = getTileCenterPos (Pos);
 				Vector3 oldScale = obj.transform.localScale;
@@ -360,12 +362,13 @@ public class Map : MonoBehaviour
 		{/////////////////////player 1/////////////////////////
 			PlayerData player = new PlayerData (Players.Count);
 			Players.Add (player);
-			AddPerson (player1Start + new IVec2(0, -10), player.TeamID);
+			Person p1 = AddPerson (player1Start + new IVec2(0, -10), player.TeamID);
 			for (Skill s = Skill.Labourer; s <= Skill.Rifleman; s++) {
 				if (!player.People [0].Skills.Contains (s))
 					player.People [0].Skills.Add (s);
 			}
-			AddPerson (player1Start + new IVec2(0, 10), player.TeamID);
+			Person p2 = AddPerson (player1Start + new IVec2(0, 10), player.TeamID);
+			p1.ToDoList.Add(new Educate(Skill.Lumberjack, p2, false));
 			player.Resources [ResourceType.Stone]++;
 			player.Resources [ResourceType.Wood]++;
 			BuildBuilding (BuildingType.Storage, player1Start, player.TeamID, true);

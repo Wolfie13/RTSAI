@@ -262,7 +262,7 @@ MonoBehaviour:
   sizeX: 0
   sizeY: 0
   mapMaterial: {fileID: 2100000, guid: b3de107869eba4645a9a965632578b5e, type: 2}
-  Human: {fileID: 188874, guid: 45960494564f47749802db49d8a0452f, type: 2}
+  PersonPrefab: {fileID: 188874, guid: 45960494564f47749802db49d8a0452f, type: 2}
   player1Start:
     x: 64
     y: 320
