@@ -3,7 +3,7 @@ using System;
 public class Move : Action
 {
 	//int waitTicks = 0;
-	path path;
+	public path path;
 
 	public Move(IVec2 source, IVec2 destination)
 	{
@@ -22,9 +22,7 @@ public class Move : Action
 		} else {
 			return ActionResult.CONTINUE;
 		}
-
 		//return ActionResult.FAIL;
-
 	}
 }
 

@@ -15,15 +15,16 @@ public enum Skill
 
 public delegate void actfunc();
 
-public class Person : MonoBehaviour {
-    
+public class Person : MonoBehaviour
+{
+
     public List<Skill> Skills = new List<Skill>();
     [HideInInspector]
     public Dictionary<ResourceType, int> Resources = new Dictionary<ResourceType, int>();
 
     public List<Action> ToDoList = new List<Action>();
-    
-	public IVec2 currentMapPos = new IVec2 ();
+
+    public IVec2 currentMapPos = new IVec2();
 
     public int BusyTime = 0;
 
@@ -31,14 +32,15 @@ public class Person : MonoBehaviour {
 
     public Material BusyTexture, FreeTexture;
 
-	// Use this for initialization
-	void Start () {
-		FreeTexture = this.renderer.material;
+    // Use this for initialization
+    void Start()
+    {
+        FreeTexture = this.renderer.material;
         ResetResources();
         Skills.Add(Skill.Labourer);
-		Skills.Add(Skill.Lumberjack); //HACk
-	}
-	
+        Skills.Add(Skill.Lumberjack); //HACk
+    }
+
     public void SetMapPosition(IVec2 mapPos)
     {
         currentMapPos = mapPos;
@@ -46,74 +48,77 @@ public class Person : MonoBehaviour {
         transform.position = Map.getTileCenterPos(mapPos);
     }
 
-	// Update is called once per frame
-	public void personTick () {
-        if(BusyTime >0)
+    // Update is called once per frame
+    public void personTick()
+    {
+        if (BusyTime > 0)
         {
             renderer.material = BusyTexture;
             BusyTime--;
             return;
         }
         renderer.material = FreeTexture;
-        if(ToDoList.Count >0)
+        if (ToDoList.Count > 0)
         {
-			//Debug.Log(ToDoList[0].GetType().ToString());
-			Action.ActionResult result = ToDoList[0].actionTick(this);
+            //Debug.Log(ToDoList[0].GetType().ToString());
+            Action.ActionResult result = ToDoList[0].actionTick(this);
 
-			switch(result) {
-			case Action.ActionResult.CONTINUE:
-				//Do nothing
-				break;
+            switch (result)
+            {
+                case Action.ActionResult.CONTINUE:
+                    //Do nothing
+                    break;
 
-			case Action.ActionResult.FAIL:
-				//Increment failed action counter
-				Map.CurrentMap.GetTeamData(this.teamID).failedOrders++;
-				Debug.Log(ToDoList[0].GetType().ToString() + " Failed");
-				goto case Action.ActionResult.SUCCESS;
-			case Action.ActionResult.SUCCESS:
-				ToDoList.RemoveAt(0);
-				break;
-			}
+                case Action.ActionResult.FAIL:
+                    //Increment failed action counter
+                    Map.CurrentMap.GetTeamData(this.teamID).failedOrders++;
+                    Debug.Log(ToDoList[0].GetType().ToString() + " Failed");
+                    goto case Action.ActionResult.SUCCESS;
+                case Action.ActionResult.SUCCESS:
+                    ToDoList.RemoveAt(0);
+                    break;
+            }
         }
-	}
+    }
 
     public void SetBusy(int timeUnits)
     {
         BusyTime = timeUnits;
     }
 
-/*    void OnDrawGizmos()
+    void OnDrawGizmos()
     {
-        if (CurrentMap)
+        if (Map.CurrentMap)
         {
-            if (PathID > 0)
+            foreach(Action a in ToDoList)
             {
-                if (PathFinder.Paths[PathID].isPathFound)
-                {
-                    var foundpath = PathFinder.Paths[PathID].FoundPath;
+               if(a is Move)
+               {
+                   var foundpath = ((Move)a).path.FoundPath;
 
-                    for (int idx = 0; idx < foundpath.Count; ++idx)
-                    {
-                        IVec2 LineStart, LineEnd;
+                   for (int i = 0; i < foundpath.Count; i++)
+                   {
+                       IVec2 LineStart, LineEnd;
 
-                        LineStart = foundpath[idx].MapPos;
-                        if (foundpath[idx].NextNode != null)
-                        {
-                            LineEnd = foundpath[idx].NextNode.MapPos;
+                       LineStart = foundpath[i].MapPos;
 
-                            Vector3 realstart, realEnd;
-                            realstart = Map.getTilePos(LineStart.x, LineStart.y);
-							realEnd = Map.getTilePos(LineEnd.x, LineEnd.y);
-                            // realstart.y += 10;
-                            //realEnd.y += 10;
-                            Gizmos.DrawLine(realstart, realEnd);
+                       if(foundpath[i].NextNode != null)
+                       {
+                           LineEnd = foundpath[i].NextNode.MapPos;                          
+                                
+                           Vector3 realstart, realend;
 
-                        }
-                    }
-                }
+                           realstart = Map.getTilePos(LineStart.x, LineStart.y);
+                           realend = Map.getTilePos(LineEnd.x, LineEnd.y);                           
+
+                           Gizmos.color = new Color(1.0f, 0.0f, 0.0f);                           
+                           Gizmos.DrawLine(realstart, realend);
+                       }
+                   }
+               }
             }
         }
-    }*/
+    }
 
     public void ResetResources()
     {
